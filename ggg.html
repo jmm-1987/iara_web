@@ -1,0 +1,877 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Dashboard de Flota — Control de Camiones</title>
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root{
+      --bg0:#070B14;
+      --bg1:#0B1222;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.10);
+      --text:#E8EEFF;
+      --muted: rgba(232,238,255,.70);
+      --muted2: rgba(232,238,255,.55);
+
+      --cyan:#2EE6D6;
+      --blue:#4A7DFF;
+      --purple:#B55CFF;
+      --green:#35F18F;
+      --amber:#FFCC66;
+      --red:#FF4D6D;
+
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 15% -10%, rgba(74,125,255,.35), transparent 60%),
+        radial-gradient(900px 700px at 110% 15%, rgba(181,92,255,.28), transparent 55%),
+        radial-gradient(900px 700px at 20% 120%, rgba(46,230,214,.22), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+    }
+
+    .wrap{
+      max-width: 1240px;
+      margin: 24px auto;
+      padding: 0 18px 40px;
+    }
+
+    /* Topbar */
+    .topbar{
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 240px;
+    }
+
+    .logo{
+      width:44px; height:44px;
+      border-radius: 14px;
+      background:
+        radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.40), transparent 60%),
+        linear-gradient(135deg, rgba(74,125,255,.95), rgba(46,230,214,.75));
+      box-shadow: 0 10px 30px rgba(74,125,255,.25);
+      border: 1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo::after{
+      content:"";
+      position:absolute; inset:-40% -10%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,.18), transparent);
+      transform: rotate(18deg);
+    }
+
+    .brand h1{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .2px;
+      line-height:1.15;
+    }
+    .brand small{
+      display:block;
+      margin-top:2px;
+      color: var(--muted);
+      font-weight: 500;
+      font-size: 12px;
+    }
+
+    .filters{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .select{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 14px;
+      padding: 10px 12px;
+      color: var(--text);
+      outline:none;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      min-width: 160px;
+      font-weight: 600;
+    }
+
+    .btn{
+      border: 1px solid rgba(53,241,143,.35);
+      background: linear-gradient(135deg, rgba(53,241,143,.20), rgba(46,230,214,.08));
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 14px;
+      cursor:pointer;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.06); }
+    .btn:active{ transform: translateY(0px); filter: brightness(.98); }
+
+    /* Layout */
+    .grid{
+      display:grid;
+      grid-template-columns: 340px 1fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      overflow:hidden;
+    }
+    .cardHeader{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .cardHeader h2{
+      margin:0;
+      font-size: 14px;
+      letter-spacing:.2px;
+      color: var(--text);
+    }
+    .cardHeader .hint{
+      color: var(--muted2);
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .cardBody{ padding: 14px; }
+
+    /* KPI row */
+    .kpis{
+      grid-column: 1 / -1;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .kpi{
+      padding: 14px;
+      position:relative;
+    }
+    .kpi .label{
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:99px;
+      background: var(--cyan);
+      box-shadow: 0 0 0 6px rgba(46,230,214,.12);
+    }
+    .kpi .value{
+      margin-top: 10px;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+    .kpi .sub{
+      margin-top: 6px;
+      color: var(--muted2);
+      font-size: 12px;
+      font-weight: 600;
+      display:flex; gap:8px; align-items:center;
+    }
+    .pill{
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .up{ color: var(--green); border-color: rgba(53,241,143,.35); background: rgba(53,241,143,.10); }
+    .down{ color: var(--red); border-color: rgba(255,77,109,.35); background: rgba(255,77,109,.10); }
+
+    /* Fleet list */
+    .fleetItem{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.04);
+      margin-bottom: 10px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      cursor:pointer;
+    }
+    .fleetItem:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.14);
+    }
+    .fleetLeft{
+      display:flex; gap:10px; align-items:center;
+    }
+    .avatar{
+      width:38px;height:38px;border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.30), transparent 60%),
+        linear-gradient(135deg, rgba(74,125,255,.55), rgba(181,92,255,.35));
+      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 900;
+      color: rgba(255,255,255,.92);
+    }
+    .fleetMeta b{
+      display:block;
+      font-size: 13px;
+      letter-spacing:.2px;
+    }
+    .fleetMeta small{
+      display:block;
+      margin-top:2px;
+      color: var(--muted2);
+      font-weight:700;
+      font-size: 12px;
+    }
+    .status{
+      display:flex;
+      align-items:flex-end;
+      gap:6px;
+      flex-direction:column;
+      min-width: 110px;
+      text-align:right;
+    }
+    .badge{
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      letter-spacing:.2px;
+      white-space:nowrap;
+    }
+    .b-ok{ border-color: rgba(53,241,143,.35); background: rgba(53,241,143,.12); color: var(--green); }
+    .b-warn{ border-color: rgba(255,204,102,.35); background: rgba(255,204,102,.12); color: var(--amber); }
+    .b-bad{ border-color: rgba(255,77,109,.35); background: rgba(255,77,109,.12); color: var(--red); }
+
+    .mini{
+      color: var(--muted2);
+      font-weight: 800;
+      font-size: 12px;
+    }
+    .mini span{ color: var(--text); font-weight: 900; }
+
+    /* Table */
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.14);
+    }
+    th,td{
+      padding: 10px 10px;
+      font-size: 12px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    th{
+      text-align:left;
+      color: var(--muted);
+      font-weight: 900;
+      letter-spacing:.25px;
+      background: rgba(255,255,255,.04);
+      position:sticky;
+      top:0;
+      backdrop-filter: blur(10px);
+    }
+    tr:last-child td{ border-bottom:none; }
+    td{
+      color: rgba(232,238,255,.86);
+      font-weight: 600;
+    }
+    .num{ text-align:right; font-variant-numeric: tabular-nums; }
+    .right{ text-align:right; }
+
+    .footerRow{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top: 10px;
+      color: var(--muted2);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* Charts */
+    canvas{ width:100% !important; height: 260px !important; }
+    .chartTall canvas{ height: 290px !important; }
+
+    /* Responsive */
+    @media (max-width: 1100px){
+      .grid{ grid-template-columns: 1fr; }
+      .kpis{ grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px){
+      .kpis{ grid-template-columns: 1fr; }
+      .brand{ min-width: unset; }
+      canvas{ height: 240px !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Dashboard de Flota</h1>
+          <small>Gasoil por km + Ingresos por km y por ruta</small>
+        </div>
+      </div>
+
+      <div class="filters">
+        <select id="monthSel" class="select" aria-label="Mes">
+          <option value="2026-01">Enero 2026</option>
+          <option value="2026-02" selected>Febrero 2026</option>
+          <option value="2026-03">Marzo 2026</option>
+        </select>
+
+        <select id="routeSel" class="select" aria-label="Ruta">
+          <option value="ALL" selected>Todas las rutas</option>
+        </select>
+
+        <button id="randomizeBtn" class="btn" type="button">Actualizar</button>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="card kpi">
+        <div class="label"><span class="dot"></span> Camiones activos</div>
+        <div class="value" id="kpiActive">—</div>
+        <div class="sub"><span class="pill" id="kpiActivePill">—</span> en operación</div>
+      </div>
+
+      <div class="card kpi">
+        <div class="label"><span class="dot" style="background:var(--amber); box-shadow:0 0 0 6px rgba(255,204,102,.12)"></span> Gasoil total</div>
+        <div class="value" id="kpiFuel">—</div>
+        <div class="sub"><span class="pill up" id="kpiFuelTrend">+—%</span> vs mes anterior</div>
+      </div>
+
+      <div class="card kpi">
+        <div class="label"><span class="dot" style="background:var(--green); box-shadow:0 0 0 6px rgba(53,241,143,.12)"></span> Ingreso total</div>
+        <div class="value" id="kpiIncome">—</div>
+        <div class="sub"><span class="pill up" id="kpiIncomeTrend">+—%</span> vs mes anterior</div>
+      </div>
+
+      <div class="card kpi">
+        <div class="label"><span class="dot" style="background:var(--purple); box-shadow:0 0 0 6px rgba(181,92,255,.12)"></span> Promedios</div>
+        <div class="value" id="kpiAvg">—</div>
+        <div class="sub"><span class="pill" id="kpiAvg2">—</span> ingreso/km</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- Fleet list -->
+      <div class="card">
+        <div class="cardHeader">
+          <h2>Flota en tiempo real</h2>
+          <div class="hint" id="fleetHint">6 camiones</div>
+        </div>
+        <div class="cardBody" id="fleetList"></div>
+      </div>
+
+      <!-- Chart: fuel by route -->
+      <div class="card chartTall">
+        <div class="cardHeader">
+          <h2>Gasto de gasoil por ruta</h2>
+          <div class="hint">L/100km</div>
+        </div>
+        <div class="cardBody">
+          <canvas id="fuelChart"></canvas>
+          <div class="footerRow">
+            <span>Promedio general</span>
+            <span><b id="fuelAvg">—</b> L/100km</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chart: income per km by route -->
+      <div class="card chartTall">
+        <div class="cardHeader">
+          <h2>Ingreso por km y ruta</h2>
+          <div class="hint">$/km</div>
+        </div>
+        <div class="cardBody">
+          <canvas id="incomeChart"></canvas>
+          <div class="footerRow">
+            <span>Mejor ruta</span>
+            <span><b id="bestRoute">—</b></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="card" style="grid-column: 2 / -1;">
+        <div class="cardHeader">
+          <h2>Resumen por camión y ruta</h2>
+          <div class="hint" id="tableHint">Mes actual</div>
+        </div>
+        <div class="cardBody" style="padding-top:10px;">
+          <div style="max-height: 340px; overflow:auto; border-radius:16px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Camión</th>
+                  <th>Ruta</th>
+                  <th class="right">Km</th>
+                  <th class="right">Gasoil (L)</th>
+                  <th class="right">Gasto/km (L)</th>
+                  <th class="right">Ingreso/km ($)</th>
+                  <th class="right">Ingreso total ($)</th>
+                </tr>
+              </thead>
+              <tbody id="tbody"></tbody>
+            </table>
+          </div>
+          <div class="footerRow">
+            <span>Tip: click en un camión para filtrar</span>
+            <span><b id="rowCount">—</b> registros</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extra chart (opcional): ingresos vs gasoil -->
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="cardHeader">
+          <h2>Ingresos vs gasto de gasoil (por mes)</h2>
+          <div class="hint">tendencia</div>
+        </div>
+        <div class="cardBody">
+          <canvas id="trendChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // -------------------------
+    // Datos de ejemplo (mock)
+    // Reemplaza esto por tu API/BD cuando quieras.
+    // -------------------------
+    const ROUTES = ["Ruta A", "Ruta B", "Ruta C", "Ruta D", "Ruta E", "Ruta F"];
+    const TRUCKS = [
+      { id:"TR-001", name:"Camión 1" },
+      { id:"TR-002", name:"Camión 2" },
+      { id:"TR-003", name:"Camión 3" },
+      { id:"TR-004", name:"Camión 4" },
+      { id:"TR-005", name:"Camión 5" },
+      { id:"TR-006", name:"Camión 6" },
+    ];
+
+    const STATUS_POOL = [
+      { label:"En ruta", cls:"b-ok" },
+      { label:"Mantenimiento", cls:"b-warn" },
+      { label:"Detenido", cls:"b-bad" },
+    ];
+
+    // Data store por mes: array de viajes (truck+route)
+    // Cada registro representa un “acumulado mensual” por camión/ruta
+    const store = {
+      "2026-01": [],
+      "2026-02": [],
+      "2026-03": [],
+    };
+
+    // Generación inicial de datos
+    function genMonthData(monthKey, seedShift=0){
+      const rows = [];
+      for(const t of TRUCKS){
+        // cada camión hace 2-4 rutas en el mes
+        const n = randInt(2,4);
+        const picked = shuffle([...ROUTES]).slice(0,n);
+        for(const r of picked){
+          const km = randInt(520, 1700) + seedShift;
+          const lPer100 = randFloat(22.5, 34.8); // L/100km
+          const gasoilL = (km * lPer100) / 100;
+          const incomePerKm = randFloat(2.6, 4.9); // $/km
+          const income = km * incomePerKm;
+
+          rows.push({
+            month: monthKey,
+            truckId: t.id,
+            truckName: t.name,
+            route: r,
+            km,
+            lPer100,
+            gasoilL,
+            gasoilPerKm: gasoilL / km,
+            incomePerKm,
+            income
+          });
+        }
+      }
+      return rows;
+    }
+
+    store["2026-01"] = genMonthData("2026-01", 0);
+    store["2026-02"] = genMonthData("2026-02", 30);
+    store["2026-03"] = genMonthData("2026-03", 60);
+
+    // -------------------------
+    // Helpers
+    // -------------------------
+    function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
+    function randFloat(min,max){ return Math.random()*(max-min)+min; }
+    function fmtInt(n){ return n.toLocaleString("es-ES"); }
+    function fmt2(n){ return n.toLocaleString("es-ES",{minimumFractionDigits:2, maximumFractionDigits:2}); }
+    function fmtMoney(n){ return n.toLocaleString("es-ES",{style:"currency", currency:"USD", maximumFractionDigits:0}); }
+    function shuffle(arr){
+      for(let i=arr.length-1;i>0;i--){
+        const j = Math.floor(Math.random()*(i+1));
+        [arr[i],arr[j]]=[arr[j],arr[i]];
+      }
+      return arr;
+    }
+    function clamp(n,min,max){ return Math.max(min, Math.min(max,n)); }
+
+    // -------------------------
+    // Estado UI
+    // -------------------------
+    let state = {
+      month: document.getElementById("monthSel").value,
+      route: "ALL",
+      truck: "ALL",
+    };
+
+    // -------------------------
+    // Poblar selector de rutas
+    // -------------------------
+    const routeSel = document.getElementById("routeSel");
+    ROUTES.forEach(r=>{
+      const opt = document.createElement("option");
+      opt.value = r;
+      opt.textContent = r;
+      routeSel.appendChild(opt);
+    });
+
+    // -------------------------
+    // Charts
+    // -------------------------
+    let fuelChart, incomeChart, trendChart;
+
+    function makeChart(ctx, config){
+      return new Chart(ctx, config);
+    }
+
+    function buildCharts(){
+      const fuelCtx = document.getElementById("fuelChart");
+      const incomeCtx = document.getElementById("incomeChart");
+      const trendCtx = document.getElementById("trendChart");
+
+      fuelChart = makeChart(fuelCtx, {
+        type: "bar",
+        data: { labels: [], datasets: [{ label:"L/100km", data: [], borderWidth: 1 }] },
+        options: {
+          responsive:true,
+          plugins:{ legend:{ display:false }, tooltip:{ mode:"index", intersect:false } },
+          scales: {
+            x: { grid:{ color:"rgba(255,255,255,.06)" }, ticks:{ color:"rgba(232,238,255,.75)", font:{ weight:"700" } } },
+            y: { grid:{ color:"rgba(255,255,255,.06)" }, ticks:{ color:"rgba(232,238,255,.65)", font:{ weight:"700" } } }
+          }
+        }
+      });
+
+      incomeChart = makeChart(incomeCtx, {
+        type: "bar",
+        data: { labels: [], datasets: [{ label:"$/km", data: [], borderWidth: 1 }] },
+        options: {
+          responsive:true,
+          plugins:{ legend:{ display:false }, tooltip:{ mode:"index", intersect:false } },
+          scales: {
+            x: { grid:{ color:"rgba(255,255,255,.06)" }, ticks:{ color:"rgba(232,238,255,.75)", font:{ weight:"700" } } },
+            y: { grid:{ color:"rgba(255,255,255,.06)" }, ticks:{ color:"rgba(232,238,255,.65)", font:{ weight:"700" } } }
+          }
+        }
+      });
+
+      // Tendencia mensual (ingreso vs litros)
+      trendChart = makeChart(trendCtx, {
+        type: "line",
+        data: {
+          labels: ["Ene 2026","Feb 2026","Mar 2026"],
+          datasets: [
+            { label:"Ingreso total ($)", data: [], tension:.35 },
+            { label:"Gasoil total (L)", data: [], tension:.35, yAxisID:"y2" }
+          ]
+        },
+        options: {
+          responsive:true,
+          plugins:{ legend:{ labels:{ color:"rgba(232,238,255,.75)", font:{ weight:"800" } } } },
+          scales: {
+            x: { grid:{ color:"rgba(255,255,255,.06)" }, ticks:{ color:"rgba(232,238,255,.75)", font:{ weight:"700" } } },
+            y: { grid:{ color:"rgba(255,255,255,.06)" }, ticks:{ color:"rgba(232,238,255,.65)", font:{ weight:"700" } } },
+            y2: {
+              position:"right",
+              grid:{ drawOnChartArea:false },
+              ticks:{ color:"rgba(232,238,255,.65)", font:{ weight:"700" } }
+            }
+          }
+        }
+      });
+    }
+
+    // -------------------------
+    // Render
+    // -------------------------
+    function getFilteredRows(){
+      let rows = [...store[state.month]];
+      if(state.route !== "ALL") rows = rows.filter(x=>x.route===state.route);
+      if(state.truck !== "ALL") rows = rows.filter(x=>x.truckId===state.truck);
+      return rows;
+    }
+
+    function aggregateByRoute(rows){
+      const map = new Map();
+      for(const r of rows){
+        if(!map.has(r.route)){
+          map.set(r.route, { route:r.route, km:0, gasoilL:0, income:0 });
+        }
+        const a = map.get(r.route);
+        a.km += r.km;
+        a.gasoilL += r.gasoilL;
+        a.income += r.income;
+      }
+      return [...map.values()].map(a=>({
+        route: a.route,
+        lPer100: a.km ? (a.gasoilL / a.km) * 100 : 0,
+        incomePerKm: a.km ? (a.income / a.km) : 0
+      })).sort((a,b)=>a.route.localeCompare(b.route));
+    }
+
+    function renderKPIs(rows){
+      // Activos: si hay al menos 1 fila en el filtro por camión, consideramos "activo" ese camión.
+      const trucksPresent = new Set(rows.map(r=>r.truckId));
+      const active = trucksPresent.size;
+
+      const totalKm = rows.reduce((s,r)=>s+r.km,0);
+      const totalFuel = rows.reduce((s,r)=>s+r.gasoilL,0);
+      const totalIncome = rows.reduce((s,r)=>s+r.income,0);
+
+      const avgLPer100 = totalKm ? (totalFuel/totalKm)*100 : 0;
+      const avgIncomePerKm = totalKm ? (totalIncome/totalKm) : 0;
+
+      document.getElementById("kpiActive").textContent = active;
+      document.getElementById("kpiActivePill").textContent = `${active}/6`;
+
+      document.getElementById("kpiFuel").textContent = `${fmtInt(Math.round(totalFuel))} L`;
+      document.getElementById("kpiIncome").textContent = fmtMoney(totalIncome);
+      document.getElementById("kpiAvg").textContent = `${fmt2(avgLPer100)} L/100km`;
+      document.getElementById("kpiAvg2").textContent = `${fmt2(avgIncomePerKm)} $/km`;
+
+      // Tendencias fake (para demo)
+      const fuelTrend = clamp(randFloat(-6, 14), -20, 20);
+      const incTrend = clamp(randFloat(-6, 14), -20, 20);
+
+      const fuelEl = document.getElementById("kpiFuelTrend");
+      fuelEl.textContent = `${fuelTrend>=0?"+":""}${fmt2(fuelTrend)}%`;
+      fuelEl.className = `pill ${fuelTrend>=0 ? "up":"down"}`;
+
+      const incEl = document.getElementById("kpiIncomeTrend");
+      incEl.textContent = `${incTrend>=0?"+":""}${fmt2(incTrend)}%`;
+      incEl.className = `pill ${incTrend>=0 ? "up":"down"}`;
+    }
+
+    function renderFleet(rowsAllMonth){
+      const list = document.getElementById("fleetList");
+      list.innerHTML = "";
+
+      // armar un resumen por camión (del mes, sin filtrar ruta)
+      const byTruck = new Map();
+      for(const r of store[state.month]){
+        if(!byTruck.has(r.truckId)){
+          byTruck.set(r.truckId, { truckId:r.truckId, truckName:r.truckName, km:0, gasoilL:0, income:0, lPer100:0 });
+        }
+        const a = byTruck.get(r.truckId);
+        a.km += r.km; a.gasoilL += r.gasoilL; a.income += r.income;
+      }
+      const trucks = [...byTruck.values()].map(a=>({
+        ...a,
+        lPer100: a.km ? (a.gasoilL/a.km)*100 : 0,
+        incomePerKm: a.km ? (a.income/a.km) : 0
+      })).sort((a,b)=>a.truckId.localeCompare(b.truckId));
+
+      document.getElementById("fleetHint").textContent = `${TRUCKS.length} camiones`;
+
+      for(const t of trucks){
+        const st = STATUS_POOL[randInt(0, STATUS_POOL.length-1)];
+        const item = document.createElement("div");
+        item.className = "fleetItem";
+        item.title = "Click para filtrar por este camión";
+        item.onclick = () => {
+          state.truck = (state.truck === t.truckId) ? "ALL" : t.truckId;
+          renderAll();
+        };
+
+        item.innerHTML = `
+          <div class="fleetLeft">
+            <div class="avatar">${t.truckId.slice(-1)}</div>
+            <div class="fleetMeta">
+              <b>${t.truckName}</b>
+              <small>${t.truckId}</small>
+            </div>
+          </div>
+          <div class="status">
+            <div class="badge ${st.cls}">${st.label}</div>
+            <div class="mini">Gasoil: <span>${fmt2(t.lPer100)}</span> L/100km</div>
+            <div class="mini">Ingreso: <span>${fmt2(t.incomePerKm)}</span> $/km</div>
+          </div>
+        `;
+        list.appendChild(item);
+      }
+    }
+
+    function renderTable(rows){
+      const tb = document.getElementById("tbody");
+      tb.innerHTML = "";
+
+      rows
+        .sort((a,b)=>a.truckId.localeCompare(b.truckId) || a.route.localeCompare(b.route))
+        .forEach(r=>{
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${r.truckName} <span style="color:rgba(232,238,255,.55); font-weight:800;">${r.truckId}</span></td>
+            <td>${r.route}</td>
+            <td class="num">${fmtInt(r.km)}</td>
+            <td class="num">${fmtInt(Math.round(r.gasoilL))}</td>
+            <td class="num">${fmt2(r.gasoilPerKm)}</td>
+            <td class="num">${fmt2(r.incomePerKm)}</td>
+            <td class="num">${fmtInt(Math.round(r.income))}</td>
+          `;
+          tb.appendChild(tr);
+        });
+
+      document.getElementById("rowCount").textContent = rows.length;
+      document.getElementById("tableHint").textContent =
+        `${state.month} · ${state.route==="ALL" ? "todas las rutas" : state.route} · ${state.truck==="ALL" ? "todos los camiones" : state.truck}`;
+    }
+
+    function renderRouteCharts(rows){
+      const agg = aggregateByRoute(rows);
+      const labels = agg.map(x=>x.route);
+      const fuel = agg.map(x=>Number(x.lPer100.toFixed(2)));
+      const inc = agg.map(x=>Number(x.incomePerKm.toFixed(2)));
+
+      // Actualiza charts
+      fuelChart.data.labels = labels;
+      fuelChart.data.datasets[0].data = fuel;
+      fuelChart.update();
+
+      incomeChart.data.labels = labels;
+      incomeChart.data.datasets[0].data = inc;
+      incomeChart.update();
+
+      // Promedios
+      const avgFuel = fuel.length ? fuel.reduce((s,n)=>s+n,0)/fuel.length : 0;
+      document.getElementById("fuelAvg").textContent = fmt2(avgFuel);
+
+      let best = {route:"—", v:-Infinity};
+      agg.forEach(x=>{ if(x.incomePerKm > best.v){ best={route:x.route, v:x.incomePerKm}; }});
+      document.getElementById("bestRoute").textContent = best.route === "—" ? "—" : `${best.route} (${fmt2(best.v)} $/km)`;
+    }
+
+    function renderTrend(){
+      // total por mes (sin filtros de ruta/camión)
+      const months = ["2026-01","2026-02","2026-03"];
+      const totals = months.map(m=>{
+        const rows = store[m];
+        const km = rows.reduce((s,r)=>s+r.km,0);
+        const fuel = rows.reduce((s,r)=>s+r.gasoilL,0);
+        const inc = rows.reduce((s,r)=>s+r.income,0);
+        return { km, fuel, inc };
+      });
+
+      trendChart.data.datasets[0].data = totals.map(x=>Math.round(x.inc));
+      trendChart.data.datasets[1].data = totals.map(x=>Math.round(x.fuel));
+      trendChart.update();
+    }
+
+    function renderAll(){
+      const rows = getFilteredRows();
+
+      renderKPIs(rows);
+      renderFleet(store[state.month]);
+      renderRouteCharts(rows);
+      renderTable(rows);
+      renderTrend();
+
+      // sincroniza selects (por si se cambia desde click en camión)
+      document.getElementById("monthSel").value = state.month;
+      document.getElementById("routeSel").value = state.route;
+    }
+
+    // -------------------------
+    // Eventos
+    // -------------------------
+    document.getElementById("monthSel").addEventListener("change", (e)=>{
+      state.month = e.target.value;
+      state.truck = "ALL"; // reset camión al cambiar mes
+      renderAll();
+    });
+
+    document.getElementById("routeSel").addEventListener("change", (e)=>{
+      state.route = e.target.value;
+      renderAll();
+    });
+
+    document.getElementById("randomizeBtn").addEventListener("click", ()=>{
+      // “Actualizar” re-genera datos del mes actual para simular refresh
+      store[state.month] = genMonthData(state.month, randInt(0,80));
+      state.truck = "ALL";
+      renderAll();
+    });
+
+    // Init
+    buildCharts();
+    renderAll();
+  </script>
+</body>
+</html>
