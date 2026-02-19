@@ -3,24 +3,36 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Mockup Chatbot — Atención al Cliente (Mensajería)</title>
+  <title>Mockup Chatbot — Clínica Dental (Gestión de Citas)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
+    /* Estética "clínica": clara, limpia, suave, menos neón */
     :root{
-      --bg0:#070B14; --bg1:#0B1222;
-      --card: rgba(255,255,255,.06);
-      --stroke: rgba(255,255,255,.10);
-      --text:#E8EEFF;
-      --muted: rgba(232,238,255,.70);
-      --muted2: rgba(232,238,255,.55);
+      --bg: #F4F8FB;
+      --bg2:#EEF5FA;
+      --panel:#FFFFFF;
+      --panel2:#F7FBFF;
+      --stroke:#D8E6F2;
 
-      --cyan:#2EE6D6; --blue:#4A7DFF; --purple:#B55CFF;
-      --green:#35F18F; --amber:#FFCC66; --red:#FF4D6D;
+      --text:#0C2233;
+      --muted:#4B6476;
+      --muted2:#6D8799;
 
-      --shadow: 0 16px 40px rgba(0,0,0,.35);
-      --radius: 22px;
+      --primary:#1B7A7A;     /* teal clínico */
+      --primary2:#2FA7A7;
+      --accent:#2B6CB0;      /* azul médico */
+      --ok:#1F9D55;
+      --warn:#B7791F;
+
+      --shadow: 0 18px 50px rgba(12,34,51,.10);
+      --shadow2: 0 10px 26px rgba(12,34,51,.08);
+
+      --r-xl: 26px;
+      --r-lg: 18px;
+      --r-md: 14px;
     }
 
     *{ box-sizing:border-box; }
@@ -30,309 +42,435 @@
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
       color: var(--text);
       background:
-        radial-gradient(1200px 800px at 15% -10%, rgba(74,125,255,.35), transparent 60%),
-        radial-gradient(900px 700px at 110% 15%, rgba(181,92,255,.28), transparent 55%),
-        radial-gradient(900px 700px at 20% 120%, rgba(46,230,214,.22), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
+        radial-gradient(900px 520px at 12% 10%, rgba(47,167,167,.18), transparent 60%),
+        radial-gradient(900px 520px at 88% 0%, rgba(43,108,176,.16), transparent 58%),
+        radial-gradient(900px 520px at 50% 110%, rgba(27,122,122,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       display:flex;
       align-items:center;
       justify-content:center;
-      padding: 24px;
+      padding: 22px;
     }
 
-    .promoFrame{
+    /* Marco "promo" más tipo app médica */
+    .frame{
       width: min(1120px, 100%);
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      border-radius: var(--r-xl);
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(216,230,242,.9);
+      box-shadow: var(--shadow);
       overflow:hidden;
       position:relative;
-    }
-    .promoFrame:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(600px 260px at 15% 10%, rgba(46,230,214,.20), transparent 60%),
-                  radial-gradient(600px 260px at 85% 0%, rgba(181,92,255,.16), transparent 60%),
-                  radial-gradient(900px 360px at 50% 110%, rgba(74,125,255,.16), transparent 60%);
-      pointer-events:none;
+      backdrop-filter: blur(10px);
     }
 
-    .topBar{
+    .top{
       display:flex;
       align-items:center;
       justify-content:space-between;
       padding: 14px 16px;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      backdrop-filter: blur(10px);
-      background: rgba(255,255,255,.03);
-      position:relative;
-      z-index: 2;
+      background: linear-gradient(90deg, rgba(255,255,255,.90), rgba(255,255,255,.72));
+      border-bottom: 1px solid var(--stroke);
     }
-    .dots{ display:flex; gap:8px; align-items:center; }
-    .dot{ width:10px;height:10px;border-radius:99px; background: rgba(255,255,255,.18); }
-    .dot:nth-child(1){ background: rgba(255,77,109,.7); }
-    .dot:nth-child(2){ background: rgba(255,204,102,.8); }
-    .dot:nth-child(3){ background: rgba(53,241,143,.75); }
 
-    .title{
-      display:flex; align-items:center; gap:10px;
-      font-weight: 900; letter-spacing: .2px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
     }
-    .logo{
-      width:30px; height:30px; border-radius: 12px;
+
+    .mark{
+      width:38px; height:38px;
+      border-radius: 14px;
       background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
-        linear-gradient(135deg, rgba(74,125,255,.95), rgba(46,230,214,.75));
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 12px 30px rgba(74,125,255,.18);
+        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,0) 60%),
+        linear-gradient(135deg, rgba(27,122,122,.95), rgba(47,167,167,.75));
+      box-shadow: 0 10px 22px rgba(27,122,122,.18);
+      border: 1px solid rgba(27,122,122,.18);
+      position:relative;
     }
-    .cta{ display:flex; gap:10px; align-items:center; color: var(--muted); font-weight: 700; font-size: 12px; }
-    .badge{
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.10);
-      color: rgba(232,238,255,.80);
-      font-weight: 800;
+    /* cruz/plus sutil */
+    .mark:before, .mark:after{
+      content:"";
+      position:absolute;
+      background: rgba(255,255,255,.95);
+      border-radius: 3px;
+      left:50%; top:50%;
+      transform: translate(-50%,-50%);
+    }
+    .mark:before{ width:16px; height:4px; }
+    .mark:after{ width:4px; height:16px; }
+
+    .brand h1{
+      margin:0;
+      font-size: 14px;
       letter-spacing:.2px;
-      white-space:nowrap;
-    }
-
-    .content{
-      display:grid;
-      grid-template-columns: 320px 1fr;
-      min-height: 640px;
-      position:relative;
-      z-index: 2;
-    }
-
-    /* Sidebar */
-    .sidebar{
-      border-right: 1px solid rgba(255,255,255,.06);
-      padding: 16px;
-      background: rgba(255,255,255,.02);
-      backdrop-filter: blur(10px);
-    }
-
-    .profile{
-      display:flex; gap:12px; align-items:center;
-      padding: 12px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow);
-      margin-bottom: 14px;
-    }
-    .avatar{
-      width:44px;height:44px;border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      background:
-        radial-gradient(14px 14px at 30% 30%, rgba(255,255,255,.28), transparent 60%),
-        linear-gradient(135deg, rgba(181,92,255,.55), rgba(74,125,255,.35));
-      display:flex; align-items:center; justify-content:center;
+      line-height:1.1;
       font-weight: 900;
     }
-    .profile b{ display:block; font-size: 13px; }
-    .profile small{ display:block; margin-top:2px; color: var(--muted2); font-weight:700; }
-
-    .online{
-      display:inline-flex; align-items:center; gap:8px;
-      margin-top: 6px;
-      color: rgba(232,238,255,.72);
-      font-size: 12px;
-      font-weight: 800;
-    }
-    .pulse{
-      width:9px;height:9px;border-radius:99px;background: var(--green);
-      box-shadow: 0 0 0 6px rgba(53,241,143,.10);
-      animation: pulse 1.4s ease-in-out infinite;
-    }
-    @keyframes pulse{
-      0%{ box-shadow: 0 0 0 0 rgba(53,241,143,.18); }
-      70%{ box-shadow: 0 0 0 12px rgba(53,241,143,0); }
-      100%{ box-shadow: 0 0 0 0 rgba(53,241,143,0); }
-    }
-
-    .menuTitle{
+    .brand small{
+      display:block;
+      margin-top:3px;
       color: var(--muted);
       font-size: 12px;
-      font-weight: 900;
-      letter-spacing: .25px;
-      margin: 12px 2px 10px;
+      font-weight: 700;
     }
-    .chipRow{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom: 12px; }
+
+    .topRight{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
     .chip{
       padding: 8px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.10);
-      color: rgba(232,238,255,.82);
-      font-weight: 800;
-      font-size: 12px;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select:none;
-    }
-    .chip:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.07);
-      border-color: rgba(255,255,255,.14);
-    }
-
-    .miniCard{
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      padding: 12px;
-      box-shadow: var(--shadow);
-    }
-    .miniCard .k{
-      display:flex; justify-content:space-between; align-items:center;
-      margin-bottom: 10px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
       color: var(--muted);
       font-size: 12px;
       font-weight: 800;
+      white-space:nowrap;
     }
-    .miniCard .v{ font-size: 18px; font-weight: 900; line-height: 1.2; }
-    .miniCard .sub{ margin-top: 6px; color: var(--muted2); font-size: 12px; font-weight: 700; }
-
-    /* Chat */
-    .chat{
-      display:flex; flex-direction:column;
-      padding: 16px; gap: 12px;
-      position:relative;
+    .chip.primary{
+      border-color: rgba(27,122,122,.22);
+      background: rgba(27,122,122,.10);
+      color: var(--primary);
     }
 
-    .chatHeader{
-      display:flex; align-items:center; justify-content:space-between;
-      padding: 12px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow);
+    .layout{
+      display:grid;
+      grid-template-columns: 360px 1fr;
+      min-height: 670px;
     }
-    .chatHeader .left{ display:flex; align-items:center; gap:10px; }
-    .botIcon{
-      width:38px;height:38px;border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
+
+    /* Sidebar estilo "panel clínico" */
+    .side{
+      padding: 16px;
+      background: rgba(255,255,255,.70);
+      border-right: 1px solid var(--stroke);
+    }
+
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow2);
+    }
+
+    .clinicCard{
+      padding: 14px;
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+
+    .avatar{
+      width:44px;height:44px;
+      border-radius: 16px;
       background:
-        radial-gradient(14px 14px at 30% 30%, rgba(255,255,255,.26), transparent 60%),
-        linear-gradient(135deg, rgba(46,230,214,.55), rgba(74,125,255,.35));
-      display:flex; align-items:center; justify-content:center;
+        radial-gradient(16px 16px at 30% 30%, rgba(255,255,255,.9), rgba(255,255,255,0) 60%),
+        linear-gradient(135deg, rgba(43,108,176,.85), rgba(47,167,167,.65));
+      border: 1px solid rgba(43,108,176,.14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
       font-weight: 900;
+      box-shadow: 0 10px 18px rgba(43,108,176,.14);
+      user-select:none;
     }
-    .chatHeader b{ display:block; font-size: 13px; }
-    .chatHeader small{ display:block; margin-top:2px; color: var(--muted2); font-weight:700; }
 
-    .actions{ display:flex; gap:8px; align-items:center; }
-    .iconBtn{
-      width:36px; height:36px; border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(232,238,255,.85);
+    .clinicCard b{
+      display:block;
+      font-size: 13px;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+    .clinicCard small{
+      display:block;
+      margin-top:4px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      line-height:1.25;
+    }
+
+    .statusLine{
+      margin-top: 8px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color: var(--muted2);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .dot{
+      width:9px;height:9px;border-radius:999px;
+      background: var(--ok);
+      box-shadow: 0 0 0 6px rgba(31,157,85,.12);
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%{ box-shadow: 0 0 0 0 rgba(31,157,85,.18); }
+      70%{ box-shadow: 0 0 0 12px rgba(31,157,85,0); }
+      100%{ box-shadow: 0 0 0 0 rgba(31,157,85,0); }
+    }
+
+    .sectionTitle{
+      margin: 14px 2px 10px;
+      color: var(--muted2);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing:.25px;
+      text-transform: uppercase;
+    }
+
+    .quickGrid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-bottom: 12px;
+    }
+    .qbtn{
+      padding: 10px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: var(--panel2);
+      color: var(--text);
+      font-weight: 800;
+      font-size: 12px;
       cursor:pointer;
-      display:flex; align-items:center; justify-content:center;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
       user-select:none;
     }
+    .qbtn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(27,122,122,.25);
+      background: rgba(27,122,122,.08);
+    }
+
+    .infoCard{
+      padding: 12px 12px;
+      margin-top: 10px;
+    }
+    .infoRow{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom: 8px;
+    }
+    .infoRow span{
+      color: var(--muted2);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing:.2px;
+    }
+    .pill{
+      padding: 6px 9px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .pill.ok{
+      border-color: rgba(31,157,85,.22);
+      background: rgba(31,157,85,.10);
+      color: var(--ok);
+    }
+    .pill.info{
+      border-color: rgba(27,122,122,.22);
+      background: rgba(27,122,122,.10);
+      color: var(--primary);
+    }
+
+    .infoText{
+      color: var(--text);
+      font-weight: 800;
+      font-size: 13px;
+      line-height:1.35;
+    }
+    .infoSub{
+      margin-top: 6px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+      line-height:1.35;
+    }
+
+    /* Chat area */
+    .chat{
+      padding: 16px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      background: rgba(255,255,255,.62);
+    }
+
+    .chatHead{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding: 12px;
+      border-radius: var(--r-lg);
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
+    }
+    .chatHead .left{
+      display:flex; gap:10px; align-items:center;
+    }
+    .botIcon{
+      width:40px; height:40px;
+      border-radius: 16px;
+      background: rgba(27,122,122,.10);
+      border: 1px solid rgba(27,122,122,.18);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--primary);
+      font-weight: 900;
+      user-select:none;
+    }
+    .chatHead b{
+      display:block;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .chatHead small{
+      display:block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+    }
+    .headBtns{ display:flex; gap:8px; }
+    .iconBtn{
+      width:38px;height:38px;
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
+      cursor:pointer;
+      color: var(--muted);
+      font-weight: 900;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      display:flex; align-items:center; justify-content:center;
+    }
     .iconBtn:hover{
       transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.14);
+      border-color: rgba(43,108,176,.20);
+      background: rgba(43,108,176,.06);
+      color: var(--accent);
     }
 
-    .hintLine{
-      color: var(--muted2);
+    .hint{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      padding: 0 6px;
+      color: var(--muted);
       font-size: 12px;
       font-weight: 700;
-      margin: 0 4px;
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+    }
+    .hint .kbd{
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid var(--stroke);
+      font-weight: 900;
+      color: var(--muted2);
     }
 
-    .messages{
+    .msgs{
       flex:1;
-      padding: 8px 4px;
+      padding: 6px 2px;
       overflow:auto;
       scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,.20) transparent;
+      scrollbar-color: rgba(75,100,118,.35) transparent;
     }
-    .messages::-webkit-scrollbar{ width: 10px; }
-    .messages::-webkit-scrollbar-thumb{ background: rgba(255,255,255,.16); border-radius: 999px; border: 3px solid transparent; background-clip: content-box; }
+    .msgs::-webkit-scrollbar{ width: 10px; }
+    .msgs::-webkit-scrollbar-thumb{
+      background: rgba(75,100,118,.25);
+      border-radius: 999px;
+      border: 3px solid transparent;
+      background-clip: content-box;
+    }
 
     .row{ display:flex; margin: 10px 0; gap:10px; align-items:flex-end; }
     .row.me{ justify-content:flex-end; }
 
     .bubble{
-      max-width: 72%;
-      padding: 12px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 16px 40px rgba(0,0,0,.22);
-      position:relative;
-      overflow:hidden;
-    }
-    .bubble.bot{
-      background:
-        radial-gradient(120px 80px at 20% 0%, rgba(46,230,214,.10), transparent 60%),
-        rgba(255,255,255,.05);
+      max-width: 74%;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      box-shadow: 0 10px 22px rgba(12,34,51,.08);
     }
     .bubble.me{
-      background:
-        radial-gradient(140px 90px at 20% 0%, rgba(74,125,255,.14), transparent 60%),
-        rgba(255,255,255,.05);
-      border-color: rgba(74,125,255,.18);
+      background: rgba(43,108,176,.07);
+      border-color: rgba(43,108,176,.18);
     }
+    .bubble.bot{
+      background: rgba(27,122,122,.06);
+      border-color: rgba(27,122,122,.18);
+    }
+
     .bubble p{
       margin:0;
       font-size: 13px;
-      line-height:1.35;
-      color: rgba(232,238,255,.88);
-      font-weight: 600;
+      line-height:1.4;
+      font-weight: 650;
       white-space: pre-wrap;
+      color: var(--text);
     }
 
     .meta{
-      margin-top: 6px;
-      color: rgba(232,238,255,.55);
-      font-size: 11px;
-      font-weight: 800;
+      margin-top: 8px;
       display:flex;
       gap:8px;
       align-items:center;
       flex-wrap:wrap;
+      font-size: 11px;
+      color: var(--muted2);
+      font-weight: 800;
     }
     .tag{
-      padding: 4px 8px;
+      padding: 5px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      font-size: 11px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.80);
       font-weight: 900;
-      color: rgba(232,238,255,.75);
+      color: var(--muted2);
     }
-    .tag.ok{ border-color: rgba(53,241,143,.35); background: rgba(53,241,143,.10); color: var(--green); }
-    .tag.warn{ border-color: rgba(255,204,102,.35); background: rgba(255,204,102,.10); color: var(--amber); }
-    .tag.bad{ border-color: rgba(255,77,109,.35); background: rgba(255,77,109,.10); color: var(--red); }
+    .tag.ok{ border-color: rgba(31,157,85,.22); background: rgba(31,157,85,.10); color: var(--ok); }
+    .tag.warn{ border-color: rgba(183,121,31,.24); background: rgba(183,121,31,.10); color: var(--warn); }
+    .tag.info{ border-color: rgba(27,122,122,.22); background: rgba(27,122,122,.10); color: var(--primary); }
 
     .typing{
       display:inline-flex;
-      gap:6px;
       align-items:center;
+      gap:8px;
       padding: 10px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      color: rgba(232,238,255,.72);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
+      color: var(--muted2);
       font-weight: 900;
       font-size: 12px;
       width: fit-content;
     }
     .dots3{ display:inline-flex; gap:4px; align-items:center; }
     .dots3 span{
-      width:6px; height:6px; border-radius: 99px;
-      background: rgba(232,238,255,.55);
+      width:6px; height:6px;
+      border-radius: 99px;
+      background: rgba(75,100,118,.55);
       animation: blink 1.1s infinite ease-in-out;
     }
     .dots3 span:nth-child(2){ animation-delay: .15s; }
@@ -342,185 +480,145 @@
       50%{ opacity:1; transform: translateY(-2px); }
     }
 
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .infoCard{
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.14);
-      padding: 10px;
-    }
-    .infoCard .h{
-      font-size: 12px;
-      font-weight: 900;
-      color: rgba(232,238,255,.75);
-      display:flex; justify-content:space-between; align-items:center;
-      margin-bottom: 6px;
-    }
-    .infoCard .b{
-      font-size: 12px;
-      font-weight: 700;
-      color: rgba(232,238,255,.88);
-      line-height: 1.3;
-    }
-    .pill{
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      font-size: 11px;
-      font-weight: 900;
-      color: rgba(232,238,255,.72);
-      white-space:nowrap;
-    }
-
     .composer{
-      display:flex; gap:10px;
+      display:flex;
+      gap:10px;
       padding: 12px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      box-shadow: var(--shadow);
+      border-radius: var(--r-lg);
+      background: var(--panel);
+      border: 1px solid var(--stroke);
+      box-shadow: var(--shadow2);
     }
     .input{
       flex:1;
-      padding: 12px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      color: var(--text);
+      border-radius: 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(244,248,251,.75);
+      padding: 12px 12px;
       outline:none;
       font-weight: 700;
+      color: var(--text);
     }
     .send{
       padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(53,241,143,.35);
-      background: linear-gradient(135deg, rgba(53,241,143,.22), rgba(46,230,214,.08));
-      color: var(--text);
+      border-radius: 14px;
+      border: 1px solid rgba(27,122,122,.22);
+      background: linear-gradient(135deg, rgba(27,122,122,.95), rgba(47,167,167,.85));
+      color: #fff;
       font-weight: 900;
       cursor:pointer;
       transition: transform .12s ease, filter .12s ease;
-      min-width: 110px;
+      min-width: 116px;
+      box-shadow: 0 14px 28px rgba(27,122,122,.18);
     }
-    .send:hover{ transform: translateY(-1px); filter: brightness(1.06); }
-    .send:active{ transform: translateY(0px); filter: brightness(.98); }
+    .send:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+    .send:active{ transform: translateY(0); filter: brightness(.98); }
 
+    /* Responsive */
     @media (max-width: 980px){
-      .content{ grid-template-columns: 1fr; }
-      .sidebar{ display:none; }
-      .promoFrame{ border-radius: 22px; }
-      .cards{ grid-template-columns: 1fr; }
+      .layout{ grid-template-columns: 1fr; }
+      .side{ display:none; }
     }
   </style>
 </head>
 
 <body>
-    <div class="promoFrame" role="img" aria-label="Mockup de un chatbot moderno para atención al cliente de un gimnasio">
-        <div class="topBar">
-          <div class="dots" aria-hidden="true">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          </div>
-      
-          <div class="title">
-            <span class="logo" aria-hidden="true"></span>
-            Chatbot — Atención al Cliente (Gimnasio)
-          </div>
-      
-          <div class="cta">
-            <span class="badge">Clases</span>
-            <span class="badge">Cuotas</span>
-            <span class="badge">Soporte</span>
-          </div>
-        </div>
-      
-        <div class="content">
-          <!-- Sidebar -->
-          <aside class="sidebar">
-            <div class="profile">
-              <div class="avatar">GYM</div>
-              <div>
-                <b>Asistente del Gimnasio</b>
-                <small>Altas · horarios · reservas</small>
-                <div class="online"><span class="pulse"></span> En línea</div>
-              </div>
-            </div>
-      
-            <div class="menuTitle">Acciones rápidas</div>
-            <div class="chipRow">
-              <div class="chip" data-q="Quiero ver horarios de clases">Horarios de clases</div>
-              <div class="chip" data-q="Quiero reservar una clase de spinning">Reservar clase</div>
-              <div class="chip" data-q="Quiero cambiar o cancelar una reserva">Cambiar/Cancelar</div>
-              <div class="chip" data-q="Info de cuotas y promociones">Cuotas</div>
-              <div class="chip" data-q="Quiero pausar mi membresía">Pausar membresía</div>
-            </div>
-      
-            <div class="miniCard">
-              <div class="k">
-                <span>Estado del club</span>
-                <span class="pill">ABIERTO</span>
-              </div>
-              <div class="v">Hoy: 06:00–23:00</div>
-              <div class="sub">Última actualización: hace 3 min</div>
-            </div>
-      
-            <div style="height:12px"></div>
-      
-            <div class="miniCard">
-              <div class="k">
-                <span>Tip</span>
-                <span class="pill">PRO</span>
-              </div>
-              <div class="v">Dime tu sede y objetivo (fuerza / cardio / perder peso).</div>
-              <div class="sub">Te recomiendo clases y horarios</div>
-            </div>
-          </aside>
-      
-          <!-- Chat -->
-          <main class="chat">
-            <div class="chatHeader">
-              <div class="left">
-                <div class="botIcon">🏋️</div>
-                <div>
-                  <b>Asistente — Gimnasio & Clases</b>
-                  <small>Reservas, horarios, cuotas y soporte</small>
-                </div>
-              </div>
-      
-              <div class="actions" aria-hidden="true">
-                <div class="iconBtn" title="Buscar">⌕</div>
-                <div class="iconBtn" title="Exportar">⇩</div>
-                <div class="iconBtn" title="Ajustes">⚙</div>
-              </div>
-            </div>
-      
-            <div class="hintLine">
-              <span>Ejemplos: “Horarios de yoga”, “Reservar spinning 19:00”, “Cuotas mensuales”</span>
-              <span style="color:rgba(232,238,255,.45)">UI mockup</span>
-            </div>
-      
-            <section class="messages" id="messages">
-              <!-- Mensajes iniciales (si tu JS los inserta, puedes dejar esto vacío) -->
-            </section>
-      
-            <div class="composer">
-              <input id="input" class="input" placeholder="Escribe tu consulta… (ej: Reservar yoga mañana 18:00)" />
-              <button id="send" class="send">Enviar</button>
-            </div>
-          </main>
+  <div class="frame" role="img" aria-label="Mockup de chatbot clínico para gestión de citas dentales">
+    <div class="top">
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <div>
+          <h1>Asistente de Citas — Clínica Dental</h1>
+          <small>Reservas · cambios · cancelaciones · recordatorios</small>
         </div>
       </div>
+      <div class="topRight">
+        <span class="chip primary">Agenda inteligente</span>
+        <span class="chip">Confirmación por WhatsApp</span>
+        <span class="chip">Atención 24/7</span>
+      </div>
+    </div>
+
+    <div class="layout">
+      <!-- Sidebar -->
+      <aside class="side">
+        <div class="card clinicCard">
+          <div class="avatar">🦷</div>
+          <div>
+            <b>Recepción Digital</b>
+            <small>Te ayudo a encontrar huecos disponibles y gestionar tu cita.</small>
+            <div class="statusLine"><span class="dot"></span> Disponible ahora</div>
+          </div>
+        </div>
+
+        <div class="sectionTitle">Accesos rápidos</div>
+        <div class="quickGrid">
+          <button class="qbtn" data-q="Quiero pedir cita para una limpieza">Pedir cita</button>
+          <button class="qbtn" data-q="Quiero cambiar mi cita a la tarde">Cambiar cita</button>
+          <button class="qbtn" data-q="Quiero cancelar mi cita">Cancelar</button>
+          <button class="qbtn" data-q="Tengo dolor urgente">Urgencia</button>
+          <button class="qbtn" data-q="Horarios de la clínica">Horarios</button>
+          <button class="qbtn" data-q="Precio aproximado de una limpieza">Precios</button>
+        </div>
+
+        <div class="card infoCard">
+          <div class="infoRow">
+            <span>Horario hoy</span>
+            <span class="pill ok">ABIERTO</span>
+          </div>
+          <div class="infoText">09:00–14:00 · 16:00–20:00</div>
+          <div class="infoSub">Sábados: 10:00–13:00 (con cita previa)</div>
+        </div>
+
+        <div class="card infoCard">
+          <div class="infoRow">
+            <span>Antes de venir</span>
+            <span class="pill info">TIP</span>
+          </div>
+          <div class="infoSub">
+            Indica <b>motivo</b> (limpieza, revisión, dolor, ortodoncia) y tu <b>disponibilidad</b> (día + mañana/tarde).
+          </div>
+        </div>
+      </aside>
+
+      <!-- Chat -->
+      <main class="chat">
+        <div class="chatHead">
+          <div class="left">
+            <div class="botIcon">🗓️</div>
+            <div>
+              <b>Gestión de Citas</b>
+              <small>Te propongo horarios y confirmo la cita en segundos</small>
+            </div>
+          </div>
+          <div class="headBtns" aria-hidden="true">
+            <div class="iconBtn" title="Buscar">⌕</div>
+            <div class="iconBtn" title="Historial">🕘</div>
+            <div class="iconBtn" title="Ajustes">⚙</div>
+          </div>
+        </div>
+
+        <div class="hint">
+          <span>Ejemplo: <span class="kbd">“Cita para limpieza el martes por la tarde”</span></span>
+          <span style="opacity:.9;">Formato clínico · UI mockup</span>
+        </div>
+
+        <section class="msgs" id="messages"></section>
+
+        <div class="composer">
+          <input id="input" class="input" placeholder="Escribe tu consulta… (ej: Cambiar mi cita a jueves 18:00)"/>
+          <button id="send" class="send">Enviar</button>
+        </div>
+      </main>
+    </div>
+  </div>
 
   <script>
     const messagesEl = document.getElementById("messages");
     const inputEl = document.getElementById("input");
     const sendBtn = document.getElementById("send");
 
-    const nowTime = () => new Date().toLocaleTimeString("es-ES", { hour: "2-digit", minute:"2-digit" });
+    const nowTime = () => new Date().toLocaleTimeString("es-ES", { hour:"2-digit", minute:"2-digit" });
 
     function addBubble(text, who="bot", tag=null){
       const row = document.createElement("div");
@@ -547,123 +645,87 @@
       const row = document.createElement("div");
       row.className = "row";
       row.id = "typingRow";
+
       const t = document.createElement("div");
       t.className = "typing";
-      t.innerHTML = `Escribiendo <span class="dots3"><span></span><span></span><span></span></span>`;
+      t.innerHTML = `Preparando opciones <span class="dots3"><span></span><span></span><span></span></span>`;
+
       row.appendChild(t);
       messagesEl.appendChild(row);
       messagesEl.scrollTop = messagesEl.scrollHeight;
     }
+
     function removeTyping(){
       const el = document.getElementById("typingRow");
       if(el) el.remove();
     }
 
-    // Demo: “motor” de respuestas para mensajería (mock)
+    // Demo: lógica de respuestas para clínica dental (mockup)
     function botReply(q){
       const s = q.trim().toLowerCase();
+      const urgent = /(dolor|urgencia|urgente|sangrado|inflamación|hinchazón)/i.test(q);
 
-      // detectar tracking tipo ZX-123456
-      const trackingMatch = q.match(/[A-Z]{2}-\d{6}/i);
-      const tracking = trackingMatch ? trackingMatch[0].toUpperCase() : null;
-
-      if(s.includes("rastrear") || s.includes("seguimiento") || tracking){
-        const code = tracking || "ZX-482193";
+      if(urgent){
         return {
+          tag:{ text:"Urgencia", cls:"warn" },
           text:
-`📦 Seguimiento: ${code}
-Estado: En reparto
-Último evento: “Salida a reparto — Centro Madrid”
-Entrega estimada: Hoy 18:30–20:30
-
-¿Quieres reprogramar o cambiar la dirección?`,
-          tag:{ text:"Seguimiento", cls:"ok" },
-          cards: [
-            { h:"Estado", b:"En reparto", pill:"OK" },
-            { h:"ETA", b:"18:30–20:30", pill:"HOY" }
-          ]
+"Lo siento, vamos a priorizarte.\n\n1) ¿El dolor es intenso (0–10)?\n2) ¿Hay inflamación o fiebre?\n3) ¿Prefieres venir hoy o mañana?\n\nCon esos datos, te propongo el primer hueco disponible."
         };
       }
 
-      if(s.includes("cambiar dirección") || (s.includes("cambiar") && s.includes("dirección"))){
+      if(s.includes("cambiar") && s.includes("cita")){
         return {
+          tag:{ text:"Cambio", cls:"info" },
           text:
-"📝 Puedo ayudarte a cambiar la dirección.\n\nIndícame:\n1) Nº de seguimiento\n2) Nueva dirección completa\n3) Franja horaria preferida\n\n(Nota: si ya está “En reparto”, el cambio puede no estar disponible).",
-          tag:{ text:"Cambio de dirección", cls:"warn" }
+"Perfecto. Para cambiar tu cita necesito:\n• Nombre y apellidos\n• Fecha/hora actual (si la recuerdas)\n• Nueva preferencia (día + mañana/tarde)\n\nSi me das el teléfono/email, la localizo más rápido."
         };
       }
 
-      if(s.includes("reprogramar") || s.includes("mañana") || s.includes("otra fecha")){
+      if(s.includes("cancelar") && s.includes("cita")){
         return {
+          tag:{ text:"Cancelación", cls:"warn" },
           text:
-"📅 Reprogramación de entrega\nPuedo ofrecerte estas opciones:\n• Mañana 10:00–14:00\n• Mañana 16:00–20:00\n• Próximo día hábil 10:00–14:00\n\nDime el nº de seguimiento y la franja que prefieres.",
-          tag:{ text:"Reprogramación", cls:"ok" }
+"De acuerdo. Puedo cancelarla.\n\nIndícame:\n• Nombre y apellidos\n• Fecha/hora de la cita\n• Teléfono o email\n\nSi quieres, también puedo reprogramarla."
         };
       }
 
-      if(s.includes("incidencia") || s.includes("dañado") || s.includes("no llegó") || s.includes("perdido")){
+      if(s.includes("horario") || s.includes("horarios") || s.includes("abren") || s.includes("cierra")){
         return {
+          tag:{ text:"Horarios", cls:"info" },
           text:
-"⚠️ Lo siento por el problema. Vamos a abrir una incidencia.\n\nPara gestionarlo, necesito:\n• Nº de seguimiento\n• Tipo de incidencia (dañado / falta contenido / no entregado)\n• Fotos (si aplica)\n\nTe generaré un nº de ticket al finalizar.",
-          tag:{ text:"Incidencia", cls:"bad" }
+"Horarios de la clínica:\n• L–V: 09:00–14:00 y 16:00–20:00\n• Sáb: 10:00–13:00 (con cita)\n\n¿Te propongo un hueco esta semana?"
         };
       }
 
-      if(s.includes("tarifa") || s.includes("precio") || s.includes("coste")){
+      if(s.includes("precio") || s.includes("cuánto") || s.includes("coste") || s.includes("tarifa")){
         return {
+          tag:{ text:"Información", cls:"info" },
           text:
-"💳 Tarifas (estimación)\n• Urbano 2h–4h: desde 6,90€\n• 24h nacional: desde 4,50€\n• Internacional: desde 14,90€\n\nDime origen, destino, peso y medidas para una cotización exacta.",
-          tag:{ text:"Tarifas", cls:"ok" }
+"Precios orientativos (según valoración):\n• Limpieza: 35–60€\n• Revisión: 0–25€\n• Empaste: desde 60€\n• Blanqueamiento: desde 180€\n\nSi me dices el tratamiento y si tienes seguro, lo ajusto mejor."
         };
       }
 
-      if(s.includes("devolución") || s.includes("retorno")){
+      // pedir cita / reservar
+      if(s.includes("pedir cita") || s.includes("quiero cita") || s.includes("reservar") || s.includes("cita para") || s.includes("limpieza") || s.includes("revisión")){
         return {
+          tag:{ text:"Nueva cita", cls:"ok" },
           text:
-"↩️ Devoluciones\nPuedo:\n• Programar recogida\n• Generar etiqueta\n• Informar del estado\n\n¿Tienes nº de seguimiento o pedido?",
-          tag:{ text:"Devoluciones", cls:"ok" }
+"Perfecto, te ayudo a reservar.\n\nDime:\n1) Motivo (limpieza, revisión, ortodoncia, empaste…)\n2) Día preferido\n3) Franja (mañana o tarde)\n\nSi lo deseas, puedo sugerirte 2–3 horarios cercanos."
         };
       }
 
       return {
+        tag:{ text:"Ayuda", cls:"ok" },
         text:
-"Hola 👋 Soy tu asistente de mensajería.\nPuedo ayudarte con:\n• Seguimiento de envíos\n• Cambios de dirección\n• Reprogramaciones\n• Incidencias y devoluciones\n• Tarifas y tiempos estimados\n\nEjemplo: “Rastrear ZX-482193”.",
-        tag:{ text:"Ayuda", cls:"ok" }
+"Hola 👋 Soy el asistente de citas de la clínica.\nPuedo:\n• reservar / cambiar / cancelar citas\n• gestionar urgencias\n• informar horarios y precios orientativos\n\nEjemplo: “Cita para limpieza el martes por la tarde”."
       };
-    }
-
-    // Render de “cards” opcionales
-    function addCards(cards){
-      if(!cards || !cards.length) return;
-      const row = document.createElement("div");
-      row.className = "row";
-      const wrap = document.createElement("div");
-      wrap.className = "bubble bot";
-      const grid = document.createElement("div");
-      grid.className = "cards";
-      cards.forEach(c=>{
-        const el = document.createElement("div");
-        el.className = "infoCard";
-        el.innerHTML = `
-          <div class="h">
-            <span>${c.h}</span>
-            <span class="pill">${c.pill}</span>
-          </div>
-          <div class="b">${c.b}</div>
-        `;
-        grid.appendChild(el);
-      });
-      wrap.appendChild(grid);
-      row.appendChild(wrap);
-      messagesEl.appendChild(row);
-      messagesEl.scrollTop = messagesEl.scrollHeight;
     }
 
     function send(){
       const q = inputEl.value.trim();
       if(!q) return;
 
-      addBubble(q, "me", { text:"Cliente", cls:"" });
+      addBubble(q, "me", { text:"Paciente", cls:"" });
       inputEl.value = "";
 
       addTyping();
@@ -671,31 +733,29 @@ Entrega estimada: Hoy 18:30–20:30
         removeTyping();
         const r = botReply(q);
         addBubble(r.text, "bot", r.tag);
-        addCards(r.cards);
-      }, 700);
+      }, 650);
     }
 
     sendBtn.addEventListener("click", send);
     inputEl.addEventListener("keydown", (e)=>{ if(e.key === "Enter") send(); });
 
-    // Chips rápidos
-    document.querySelectorAll(".chip").forEach(ch=>{
-      ch.addEventListener("click", ()=>{
-        inputEl.value = ch.dataset.q;
+    // Quick buttons
+    document.querySelectorAll(".qbtn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        inputEl.value = btn.dataset.q;
         send();
       });
     });
 
-    // Mensajes iniciales para que parezca una captura real
-    addBubble("¡Hola! Soy el asistente de atención al cliente 📦. ¿Quieres rastrear un envío o gestionar una incidencia?", "bot", { text:"Asistente", cls:"ok" });
-    addBubble("Rastrear ZX-482193", "me", { text:"Cliente", cls:"" });
+    // Conversación inicial para que sea "captura"
+    addBubble("Hola, soy la recepción digital de la clínica. ¿Quieres pedir cita, cambiarla o consultar horarios?", "bot", { text:"Asistente", cls:"ok" });
+    addBubble("Quiero cita para limpieza el martes por la tarde", "me", { text:"Paciente", cls:"" });
     addTyping();
     setTimeout(() => {
       removeTyping();
-      const r = botReply("Rastrear ZX-482193");
+      const r = botReply("Quiero cita para limpieza el martes por la tarde");
       addBubble(r.text, "bot", r.tag);
-      addCards(r.cards);
-    }, 650);
+    }, 520);
   </script>
 </body>
 </html>
