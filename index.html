@@ -8,6 +8,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
 
+  <!-- ✅ EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBCR3ZDM2Z"></script>
   <script>
@@ -35,14 +38,12 @@
       transition: all 0.3s ease;
     }
 
-    /* Hero caja “glass” (más transparencia) */
     .hero-box {
       background: rgba(18, 18, 18, 0.35);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(57, 255, 20, 0.35);
       box-shadow: 0 0 18px rgba(57, 255, 20, 0.10);
     }
-    /* En escritorio un pelín menos transparente (para legibilidad) */
     @media (min-width: 768px) {
       .hero-box { background: rgba(18, 18, 18, 0.45); }
     }
@@ -96,13 +97,12 @@
         <a href="#modelo" class="hover:text-green-400 transition">Cuotas</a>
         <a href="#faq" class="hover:text-green-400 transition">FAQ</a>
       </div>
-      <a href="#contacto" class="bg-green-500 text-black px-6 py-2 rounded-full font-bold hover:bg-white transition text-sm">CONTACTO</a>
+      <a href="#contacto" class="bg-green-500 text-black px-6 py-2 rounded-full font-bold hover:bg-white transition text-sm" data-cta="nav_contacto">CONTACTO</a>
     </div>
   </nav>
 
-  <!-- HERO: SOLO VIDEO + CAJÓN -->
+  <!-- HERO -->
   <header class="relative min-h-screen overflow-hidden">
-    <!-- Video -->
     <div class="absolute inset-0 z-0">
       <video id="portadaVideo" class="w-full h-full object-cover" muted loop playsinline>
         <source src="Video_Listo.mp4" type="video/mp4">
@@ -110,41 +110,50 @@
       </video>
     </div>
 
-    <!-- Overlay -->
     <div id="videoOverlay" class="absolute inset-0 bg-black/70 z-10 transition-opacity duration-700"></div>
 
-    <!-- Cajón (en móvil más pequeño y lo más abajo posible) -->
     <div class="absolute z-20 left-0 right-0 bottom-3 md:bottom-10">
       <div class="w-full max-w-6xl mx-auto px-3 md:px-6">
         <div class="hero-box rounded-2xl p-4 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
           <div class="min-w-0">
             <div class="text-[10px] md:text-xs uppercase tracking-widest text-green-400 font-bold mb-2">
-              IAra · Desarrollo especializado
+              IAra · Software a medida con IA
             </div>
-            <h1 class="text-lg md:text-3xl font-black uppercase leading-tight">
-              IA + software <span class="text-green-500">personalizado</span> <br class="hidden md:block" />
-              <span class="text-white/90">sin coste de desarrollo</span>
+
+            <h1 class="text-xl md:text-4xl font-black uppercase leading-tight">
+              Automatiza tu operación <span class="text-green-500">con IA</span><br class="hidden md:block" />
+              <span class="text-white/90">software a medida · 0€ desarrollo</span>
             </h1>
-            <p class="text-gray-200/90 text-xs md:text-base mt-2 max-w-2xl">
-              Construimos tu sistema (web, móvil o escritorio) para interpretar imágenes y voz, automatizar procesos y generar analítica.
-              <span class="text-white font-semibold">Pagas solo pequeñas cuotas mensuales.</span>
-              Y si lo necesitas, <span class="text-white font-semibold">podemos incluir facturación adaptada a Veri*Factu</span>.
+
+            <p class="text-gray-200/90 text-xs md:text-base mt-3 max-w-xl">
+              Convertimos <span class="text-white font-semibold">documentos e imágenes</span> en datos y flujo:
+              validación, estados y <span class="text-white font-semibold">KPIs</span>.
             </p>
+
+            <div class="mt-3 text-xs md:text-sm text-gray-300">
+              <span class="text-green-400 font-bold">Auditoría gratis</span> en 15 min · Propuesta por fases
+            </div>
           </div>
 
-          <div class="flex gap-2 md:gap-3 w-full md:w-auto">
+          <div class="flex flex-col md:flex-row gap-2 md:gap-3 w-full md:w-auto">
             <a href="#contacto"
-               class="w-full md:w-auto bg-green-500 text-black px-4 md:px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-xs md:text-sm text-center">
+               class="w-full md:w-auto bg-green-500 text-black px-4 md:px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-xs md:text-sm text-center"
+               data-cta="hero_auditoria">
               Auditoría gratis
             </a>
-            
+
+            <a href="#casos"
+               class="w-full md:w-auto border-2 border-green-500 text-green-300 px-4 md:px-6 py-3 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-xs md:text-sm text-center"
+               data-cta="hero_ver_casos">
+              Ver casos
+            </a>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Estadísticas (sección más “limpia” para variar) -->
+  <!-- Estadísticas -->
   <section class="max-w-7xl mx-auto px-6 py-16 md:py-20">
     <div class="grid md:grid-cols-4 gap-8">
       <div class="text-center">
@@ -169,7 +178,7 @@
     </div>
   </section>
 
-  <!-- ESPECIALIZACIÓN (mantiene cards, pero con layout mixto para no parecer “todo igual”) -->
+  <!-- ESPECIALIZACIÓN -->
   <section id="especializacion" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
     <div class="grid lg:grid-cols-2 gap-10 items-start">
       <div>
@@ -192,7 +201,7 @@
             <div>✓ Reglas de negocio y validación</div>
             <div>✓ Dashboards, KPIs y reportes</div>
             <div>✓ Alertas, estados y aprobaciones</div>
-            <div>✓ Cuotas mensuales (sin 0€ de dev)</div>
+            <div>✓ Cuotas mensuales (0€ dev)</div>
           </div>
         </div>
       </div>
@@ -237,7 +246,7 @@
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONA (cambiada a “timeline” para que NO parezca otra grid igual) -->
+  <!-- CÓMO FUNCIONA -->
   <section id="capas" class="max-w-7xl mx-auto px-6 py-20">
     <div class="text-center mb-12">
       <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Cómo funciona</div>
@@ -250,29 +259,24 @@
     </div>
 
     <div class="grid lg:grid-cols-2 gap-10">
-      <!-- Timeline -->
       <div class="card-dark p-8 rounded-2xl border border-gray-800">
         <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-6">Flujo típico</div>
-
         <ol class="relative border-s border-gray-800 ps-6 space-y-8">
           <li class="relative">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
             <h3 class="font-black uppercase">1) Captura</h3>
             <p class="text-gray-400 text-sm mt-1">Móvil, escáner, email, carpeta, cámara… lo que ya usas.</p>
           </li>
-
           <li class="relative">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
             <h3 class="font-black uppercase">2) Interpretación</h3>
             <p class="text-gray-400 text-sm mt-1">OCR + detección + clasificación + extracción de campos.</p>
           </li>
-
           <li class="relative">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
             <h3 class="font-black uppercase">3) Validación</h3>
             <p class="text-gray-400 text-sm mt-1">Reglas, tolerancias, duplicidades y revisión opcional.</p>
           </li>
-
           <li class="relative">
             <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
             <h3 class="font-black uppercase">4) Control + analítica</h3>
@@ -281,7 +285,6 @@
         </ol>
       </div>
 
-      <!-- “Qué entregamos” -->
       <div class="card-dark p-8 rounded-2xl border border-gray-800">
         <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-4">Entregable real</div>
         <h3 class="text-2xl md:text-3xl font-black uppercase mb-4">
@@ -304,7 +307,7 @@
     </div>
   </section>
 
-  <!-- CASOS DE USO -->
+  <!-- CASOS -->
   <section id="casos" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
     <div class="text-center mb-12">
       <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Casos</div>
@@ -347,7 +350,7 @@
     </div>
   </section>
 
-  <!-- VERIFACTU (logo container en BLANCO) -->
+  <!-- VERIFACTU -->
   <section id="verifactu" class="max-w-7xl mx-auto px-6 py-20">
     <div class="text-center mb-12">
       <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Veri*Factu</div>
@@ -372,15 +375,14 @@
         </div>
       </div>
 
-      <!-- Contenedor en blanco -->
       <div class="rounded-2xl p-10 border border-gray-200 bg-white flex flex-col items-center justify-center">
-        <img src="logo_verifactu.png" alt="VeriFactu" class="h-14 md:h-16 w-auto">
+        <img src="logo_verifactu.png" alt="VeriFactu" class="h-20 md:h-24 w-auto">
         <div class="text-gray-700 text-xs mt-4 uppercase tracking-widest text-center">Módulo Veri*Factu</div>
       </div>
     </div>
   </section>
 
-  <!-- MODELO DE CUOTAS (cambiada a “pricing” con variación visual) -->
+  <!-- CUOTAS -->
   <section id="modelo" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
     <div class="text-center mb-12">
       <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Cuotas</div>
@@ -415,7 +417,7 @@
           <div class="flex gap-2"><span class="text-green-400">✓</span><span>Mejoras continuas</span></div>
           <div class="flex gap-2"><span class="text-green-400">✓</span><span>Módulos opcionales (Veri*Factu)</span></div>
         </div>
-        <a href="#contacto" class="mt-6 inline-block w-full bg-green-500 text-black px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-sm text-center">
+        <a href="#contacto" class="mt-6 inline-block w-full bg-green-500 text-black px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-sm text-center" data-cta="pricing_pedir_propuesta">
           Pedir propuesta
         </a>
       </div>
@@ -466,7 +468,7 @@
     </div>
   </section>
 
-  <!-- CONTACTO -->
+  <!-- CONTACTO + FORMULARIO EmailJS -->
   <section id="contacto" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
     <div class="text-center mb-12">
       <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Contacto</div>
@@ -478,8 +480,58 @@
       </p>
     </div>
 
-    
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+      <!-- FORM -->
+      <div class="card-dark p-8 md:p-12 rounded-2xl border border-gray-800">
+        <h3 class="text-2xl md:text-3xl font-black uppercase text-green-300 mb-4">Pide tu auditoría (15 min)</h3>
+        <p class="text-gray-400 text-sm mb-6">
+          Te respondemos con una propuesta de alcance por fases y estimación de cuota.
+        </p>
 
+        <form id="leadForm" class="space-y-4">
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="nombre">Nombre</label>
+            <input id="nombre" name="nombre" type="text" required
+                   class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                   placeholder="Tu nombre">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="empresa">Empresa</label>
+            <input id="empresa" name="empresa" type="text"
+                   class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                   placeholder="Nombre de la empresa (opcional)">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="email">Email</label>
+            <input id="email" name="email" type="email" required
+                   class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                   placeholder="tu@email.com">
+          </div>
+
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="proceso">¿Qué quieres automatizar?</label>
+            <textarea id="proceso" name="proceso" rows="4" required
+                      class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                      placeholder="Ej: leer facturas y validar proveedor/importe, estados, exportación a ERP..."></textarea>
+          </div>
+
+          <button id="leadBtn" type="submit"
+                  class="w-full bg-green-500 text-black px-8 py-4 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-base"
+                  data-cta="form_enviar">
+            Enviar solicitud
+          </button>
+
+          <p class="text-xs text-gray-500">
+            Envío seguro vía EmailJS (sin abrir tu cliente de correo).
+          </p>
+
+          <p id="leadMsg" class="text-sm mt-2 hidden"></p>
+        </form>
+      </div>
+
+      <!-- CTA -->
       <div class="card-dark p-8 md:p-12 rounded-2xl border-l-4 border-green-500">
         <h3 class="text-2xl md:text-3xl font-black uppercase text-green-300 mb-4">¿Listo para automatizar sin inversión inicial?</h3>
         <div class="space-y-4">
@@ -491,19 +543,19 @@
 
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
           <a href="mailto:hola@iarabot.es"
-             class="w-full bg-green-500 text-black px-8 py-4 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-base text-center">
+             class="w-full bg-green-500 text-black px-8 py-4 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-base text-center"
+             data-cta="contacto_email">
             Enviar email
           </a>
-          <a target="_blank"
+          <a target="_blank" rel="noopener"
              href="https://wa.me/34625433667?text=Hola,%20quiero%20una%20auditor%C3%ADa%20de%2015%20min%20para%20un%20sistema%20a%20medida%20con%20cuotas%20mensuales"
-             class="w-full border-2 border-green-500 text-green-400 px-8 py-4 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-base text-center">
+             class="w-full border-2 border-green-500 text-green-400 px-8 py-4 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-base text-center"
+             data-cta="contacto_whatsapp">
             WhatsApp
           </a>
         </div>
       </div>
     </div>
-
-    
   </section>
 
   <!-- Footer -->
@@ -520,7 +572,7 @@
     </p>
   </footer>
 
-  <!-- Aviso de Cookies -->
+  <!-- Cookies -->
   <div id="cookieBanner" class="cookie-banner fixed bottom-0 left-0 right-0 z-50 bg-gray-900 border-t border-gray-800 px-6 py-4 shadow-2xl">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex-1 text-sm text-gray-300">
@@ -538,7 +590,22 @@
     </div>
   </div>
 
+  <!-- WhatsApp floating -->
+  <a class="whatsapp-button" target="_blank" rel="noopener"
+     href="https://wa.me/34625433667?text=Hola,%20quiero%20una%20auditor%C3%ADa%20de%2015%20min%20para%20un%20sistema%20a%20medida%20con%20cuotas%20mensuales"
+     data-cta="floating_whatsapp">
+    <svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true">
+      <path fill="currentColor" d="M19.11 17.37c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.33-1.57-1.49-1.84-.16-.27-.02-.41.12-.54.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.83-2.01-.22-.53-.45-.46-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.64 1.11 2.82.14.18 1.93 2.95 4.69 4.14.66.28 1.18.45 1.58.58.66.21 1.26.18 1.73.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16.04 27.2h-.01c-1.85 0-3.66-.5-5.25-1.45l-.38-.23-3.9 1.02 1.04-3.8-.25-.39a10.88 10.88 0 0 1-1.67-5.78c0-6.02 4.9-10.92 10.93-10.92 2.92 0 5.67 1.14 7.73 3.2a10.86 10.86 0 0 1 3.19 7.73c0 6.02-4.9 10.92-10.93 10.92zm9.34-20.27A12.93 12.93 0 0 0 16.06 3C8.87 3 3.02 8.84 3.02 16.02c0 2.28.6 4.5 1.74 6.45L3 29l6.69-1.75a12.98 12.98 0 0 0 6.37 1.63h.01c7.19 0 13.04-5.84 13.04-13.02a12.95 12.95 0 0 0-3.73-9.93z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
   <script>
+    // ✅ EmailJS init (OBLIGATORIO: cambia TU_PUBLIC_KEY)
+    (function(){
+      emailjs.init("topNg38j9LTlBzeSQ");
+    })();
+
     // Cookies
     function aceptarCookies() { localStorage.setItem('cookiesAceptadas', 'true'); ocultarBannerCookies(); }
     function rechazarCookies() { localStorage.setItem('cookiesAceptadas', 'false'); ocultarBannerCookies(); }
@@ -548,11 +615,10 @@
       setTimeout(() => { banner.style.display = 'none'; }, 300);
     }
 
-    // Video: quitar overlay + reproducir
+    // Video
     window.addEventListener('DOMContentLoaded', function() {
       const portadaVideo = document.getElementById('portadaVideo');
       const videoOverlay = document.getElementById('videoOverlay');
-
       setTimeout(function() {
         if (videoOverlay) videoOverlay.style.opacity = '0';
         if (portadaVideo) portadaVideo.play().catch(()=>{});
@@ -584,10 +650,64 @@
       if (scrollPosition > 50) menu.classList.add('nav-scrolled');
       else menu.classList.remove('nav-scrolled');
     });
-  </script>
 
-  <!-- WhatsApp floating -->
-  
+    // CTA tracking
+    document.addEventListener('click', function(e) {
+      const el = e.target.closest('[data-cta]');
+      if (!el) return;
+      const cta = el.getAttribute('data-cta');
+      if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_name: cta });
+    });
+
+    // ✅ Formulario -> EmailJS
+    document.getElementById('leadForm')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const btn = document.getElementById('leadBtn');
+      const msg = document.getElementById('leadMsg');
+
+      const originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "Enviando...";
+
+      msg.classList.add('hidden');
+      msg.textContent = "";
+      msg.className = "text-sm mt-2 hidden";
+
+      const templateParams = {
+        nombre: document.getElementById('nombre').value.trim(),
+        empresa: document.getElementById('empresa').value.trim() || "-",
+        email: document.getElementById('email').value.trim(),
+        proceso: document.getElementById('proceso').value.trim()
+      };
+
+      try {
+        // ✅ Este es tu service ID (ya puesto)
+        const SERVICE_ID = "service_p8clbak";
+
+        // 🔥 OBLIGATORIO: cambia esto por tu TEMPLATE_ID de EmailJS
+        const TEMPLATE_ID = "template_8dl1y4o";
+
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+
+        if (typeof gtag === 'function') gtag('event', 'lead_submit', { method: 'emailjs' });
+
+        msg.textContent = "✅ Enviado. Te respondemos en breve.";
+        msg.className = "text-sm mt-2 text-green-400";
+        msg.classList.remove('hidden');
+        this.reset();
+
+      } catch (err) {
+        console.error(err);
+        msg.textContent = "❌ No se pudo enviar. Prueba WhatsApp o email.";
+        msg.className = "text-sm mt-2 text-red-400";
+        msg.classList.remove('hidden');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }
+    });
+  </script>
 
 </body>
 </html>
