@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>IAra | Software con IA a medida (Imagen + Voz) · Sin coste de desarrollo</title>
+
+  <!-- ✅ SEO básico -->
+  <meta name="description" content="Software con IA a medida (imagen + voz) para automatizar procesos, leer documentos y generar KPIs. 0€ de desarrollo inicial y cuotas mensuales pequeñas. Auditoría gratis." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://iarabot.es/" />
+  <meta name="theme-color" content="#0b0b0b" />
+  <link rel="alternate" hreflang="es" href="https://iarabot.es/" />
+
+  <!-- ✅ Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="IAra | Software con IA a medida (Imagen + Voz) · Sin coste de desarrollo" />
+  <meta property="og:description" content="Construimos tu sistema (web/móvil/escritorio) para interpretar imágenes y voz, automatizar procesos y generar analítica. Pagas cuotas mensuales pequeñas." />
+  <meta property="og:url" content="https://iarabot.es/" />
+  <meta property="og:image" content="https://iarabot.es/og-image.jpg" /> <!-- TODO: sube una imagen real -->
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- ✅ Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="IAra | Software con IA a medida (Imagen + Voz)" />
+  <meta name="twitter:description" content="Automatiza procesos con IA sin inversión inicial. Auditoría gratis." />
+  <meta name="twitter:image" content="https://iarabot.es/og-image.jpg" /> <!-- TODO -->
+
+  <!-- ✅ Favicon (placeholder) -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- ✅ Performance: preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <!-- ✅ Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FBCR3ZDM2Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-FBCR3ZDM2Z');
+  </script>
+
+  <!-- ✅ Schema.org: Organization + WebSite + Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "IAra",
+        "url": "https://iarabot.es/",
+        "logo": "https://iarabot.es/logoo.png",
+        "email": "hola@iarabot.es",
+        "telephone": "+34 625 433 667",
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "name": "IAra",
+        "url": "https://iarabot.es/",
+        "inLanguage": "es"
+      },
+      {
+        "@type": "Service",
+        "name": "Software con IA a medida (Imagen + Voz)",
+        "provider": { "@type": "Organization", "name": "IAra" },
+        "areaServed": "ES",
+        "serviceType": "Automatización de procesos con IA, OCR e interpretación de imágenes/voz",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR",
+          "description": "0€ de desarrollo inicial. Cuotas mensuales pequeñas según alcance."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; background-color: #0b0b0b; color: white; scroll-behavior: smooth; }
+    .neon-text { text-shadow: 0 0 10px #39FF14; color: #39FF14; }
+    .neon-border { border: 1px solid #39FF14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.18); }
+    .card-dark { background: #121212; border: 1px solid #222; transition: 0.3s; }
+    .card-dark:hover { border-color: #39FF14; transform: translateY(-5px); }
+
+    @keyframes fadeInLogo { from { opacity: 0; transform: translateX(-20px);} to { opacity: 1; transform: translateX(0);} }
+    .logo-fade { transition: opacity 0.3s ease; }
+    .logo-fade-in { animation: fadeInLogo 1s ease-out forwards; opacity: 0; }
+    .nav-scrolled {
+      background-color: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 8px 16px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-box {
+      background: rgba(18, 18, 18, 0.35);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(57, 255, 20, 0.35);
+      box-shadow: 0 0 18px rgba(57, 255, 20, 0.10);
+    }
+    @media (min-width: 768px) { .hero-box { background: rgba(18, 18, 18, 0.45); } }
+
+    .cookie-banner { transform: translateY(100%); transition: transform 0.3s ease-in-out; }
+    .cookie-banner.show { transform: translateY(0); }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .whatsapp-button:hover { background-color: #20BA5A; transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
+    .whatsapp-icon { width: 24px; height: 24px; }
+    @media (max-width: 768px) {
+      .whatsapp-button { bottom: 80px; right: 15px; padding: 10px 16px; font-size: 14px; }
+      .whatsapp-button span { display: none; }
+      .whatsapp-button { border-radius: 50%; width: 56px; height: 56px; justify-content: center; padding: 0; }
+    }
+
+    /* Accesibilidad: skip link */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: #39FF14;
+      color: #000;
+      padding: 10px 12px;
+      border-radius: 10px;
+      z-index: 9999;
+      font-weight: 800;
+    }
+    .skip-link:focus { left: 12px; top: 12px; }
+  </style>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#contacto">Saltar a contacto</a>
+
+  <!-- Logo -->
+  <div id="logo" class="fixed z-50 left-4 top-4 logo-fade-in logo-fade">
+    <img src="logoo.png" alt="IAra" class="h-16 md:h-28 w-auto" loading="eager">
+  </div>
+
+  <!-- Nav -->
+  <nav id="menu" class="fixed z-50 overflow-visible right-4 top-4" aria-label="Menú principal">
+    <div class="flex items-center py-2 px-4 relative gap-4 md:gap-12">
+      <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+        <a href="#especializacion" class="hover:text-green-400 transition" aria-label="Ir a Especialización">Especialización</a>
+        <a href="#capas" class="hover:text-green-400 transition" aria-label="Ir a Cómo funciona">Cómo funciona</a>
+        <a href="#casos" class="hover:text-green-400 transition" aria-label="Ir a Casos">Casos</a>
+        <a href="#resultados" class="hover:text-green-400 transition" aria-label="Ir a Resultados">Resultados</a>
+        <a href="#verifactu" class="hover:text-green-400 transition" aria-label="Ir a VeriFactu">Veri*Factu</a>
+        <a href="#modelo" class="hover:text-green-400 transition" aria-label="Ir a Cuotas">Cuotas</a>
+        <a href="#faq" class="hover:text-green-400 transition" aria-label="Ir a FAQ">FAQ</a>
+      </div>
+      <a href="#contacto" class="bg-green-500 text-black px-6 py-2 rounded-full font-bold hover:bg-white transition text-sm"
+         data-cta="nav_contacto">CONTACTO</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="relative min-h-screen overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <video id="portadaVideo" class="w-full h-full object-cover" muted loop playsinline preload="metadata" poster="poster.jpg">
+        <source src="Video_Listo.mp4" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+      </video>
+    </div>
+
+    <div id="videoOverlay" class="absolute inset-0 bg-black/70 z-10 transition-opacity duration-700"></div>
+
+    <div class="absolute z-20 left-0 right-0 bottom-3 md:bottom-10">
+      <div class="w-full max-w-6xl mx-auto px-3 md:px-6">
+        <div class="hero-box rounded-2xl p-4 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
+          <div class="min-w-0">
+            <div class="text-[10px] md:text-xs uppercase tracking-widest text-green-400 font-bold mb-2">
+              IAra · Desarrollo especializado
+            </div>
+
+            <h1 class="text-lg md:text-3xl font-black uppercase leading-tight">
+              IA + software <span class="text-green-500">personalizado</span><br class="hidden md:block" />
+              <span class="text-white/90">sin coste de desarrollo</span>
+            </h1>
+
+            <p class="text-gray-200/90 text-xs md:text-base mt-2 max-w-2xl">
+              Construimos tu sistema (web, móvil o escritorio) para interpretar imágenes y voz, automatizar procesos y generar analítica.
+              <span class="text-white font-semibold">Pagas solo pequeñas cuotas mensuales.</span>
+              Y si lo necesitas, <span class="text-white font-semibold">podemos incluir facturación adaptada a Veri*Factu</span>.
+            </p>
+
+            <div class="mt-3 text-xs md:text-sm text-gray-300">
+              <span class="text-green-400 font-bold">En 15 min</span>: te decimos si encaja, alcance y siguiente paso.
+            </div>
+          </div>
+
+          <div class="flex flex-col md:flex-row gap-2 md:gap-3 w-full md:w-auto">
+            <a href="#contacto"
+               class="w-full md:w-auto bg-green-500 text-black px-4 md:px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-xs md:text-sm text-center"
+               data-cta="hero_auditoria">
+              Auditoría gratis
+            </a>
+
+            <a href="#resultados"
+               class="w-full md:w-auto border-2 border-green-500 text-green-300 px-4 md:px-6 py-3 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-xs md:text-sm text-center"
+               data-cta="hero_ver_resultados">
+              Ver casos reales
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Estadísticas -->
+  <section class="max-w-7xl mx-auto px-6 py-16 md:py-20">
+    <div class="grid md:grid-cols-4 gap-8">
+      <div class="text-center">
+        <div class="text-5xl md:text-6xl font-black text-green-500 mb-2">100%</div>
+        <p class="text-gray-400 text-sm uppercase tracking-widest">A medida</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl md:text-6xl font-black text-green-500 mb-2">0€</div>
+        <p class="text-gray-400 text-sm uppercase tracking-widest">Desarrollo inicial</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl md:text-6xl font-black text-green-500 mb-2">1</div>
+        <p class="text-gray-400 text-sm uppercase tracking-widest">Sistema central</p>
+      </div>
+      <div class="text-center">
+        <div class="text-5xl md:text-6xl font-black text-green-500 mb-2">KPIs</div>
+        <p class="text-gray-400 text-sm uppercase tracking-widest">Control + analítica</p>
+      </div>
+    </div>
+    <div class="mt-10 max-w-4xl mx-auto text-center text-xs md:text-sm text-gray-500">
+      En la auditoría definimos el alcance real y una estimación de impacto (tiempo ahorrado, errores evitados y visibilidad por KPI).
+    </div>
+  </section>
+
+  <!-- ESPECIALIZACIÓN -->
+  <section id="especializacion" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">
+          Especialización
+        </div>
+        <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic leading-tight">
+          Construimos el sistema <span class="text-green-500">como tú trabajas</span>
+        </h2>
+        <p class="text-gray-300 text-lg">
+          La clave no es “leer imágenes”: es convertir esa lectura en un flujo real dentro de un software.
+          Por eso entregamos plataforma completa (web/móvil/escritorio) con usuarios, roles, estados, histórico y analítica.
+        </p>
+
+        <div class="mt-8 card-dark p-6 rounded-2xl border border-gray-800">
+          <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-2">Lo que incluye el servicio</div>
+          <div class="grid sm:grid-cols-2 gap-3 text-sm text-gray-200">
+            <div>✓ Software (panel/app) incluido</div>
+            <div>✓ IA de imagen (OCR + interpretación)</div>
+            <div>✓ Reglas de negocio y validación</div>
+            <div>✓ Dashboards, KPIs y reportes</div>
+            <div>✓ Alertas, estados y aprobaciones</div>
+            <div>✓ Cuotas mensuales (0€ dev)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card-dark p-8 rounded-2xl border-l-4 border-green-500">
+          <h3 class="text-xl font-bold mb-3 uppercase">Software incluido</h3>
+          <p class="text-gray-400 text-sm mb-4">Web, escritorio o móvil con usuarios, roles, histórico y paneles.</p>
+          <ul class="text-gray-400 text-xs space-y-2">
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Interfaz a medida</span></li>
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Trazabilidad completa</span></li>
+          </ul>
+        </div>
+
+        <div class="card-dark p-8 rounded-2xl border-l-4 border-green-500">
+          <h3 class="text-xl font-bold mb-3 uppercase">IA de imagen</h3>
+          <p class="text-gray-400 text-sm mb-4">Extrae, clasifica, normaliza y detecta información visual.</p>
+          <ul class="text-gray-400 text-xs space-y-2">
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Documentos, fotos, pantallas</span></li>
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Campos variables y reglas</span></li>
+          </ul>
+        </div>
+
+        <div class="card-dark p-8 rounded-2xl border-l-4 border-green-500">
+          <h3 class="text-xl font-bold mb-3 uppercase">Voz (si aporta)</h3>
+          <p class="text-gray-400 text-sm mb-4">Agendas, registros o creación rápida de tareas por voz.</p>
+          <ul class="text-gray-400 text-xs space-y-2">
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Comandos + dictado</span></li>
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Recordatorios y seguimiento</span></li>
+          </ul>
+        </div>
+
+        <div class="card-dark p-8 rounded-2xl border-l-4 border-green-500">
+          <h3 class="text-xl font-bold mb-3 uppercase">Analítica</h3>
+          <p class="text-gray-400 text-sm mb-4">Convierte lecturas en KPIs, alertas y decisiones.</p>
+          <ul class="text-gray-400 text-xs space-y-2">
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Dashboards y reportes</span></li>
+            <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Exportación / Integración opcional</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section id="capas" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Cómo funciona</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        De captura a control: <span class="text-green-500">flujo completo</span>
+      </h2>
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+        La IA sola no sirve si no está integrada en un sistema. Por eso montamos un flujo completo, auditable y medible.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10">
+      <div class="card-dark p-8 rounded-2xl border border-gray-800">
+        <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-6">Flujo típico</div>
+
+        <ol class="relative border-s border-gray-800 ps-6 space-y-8">
+          <li class="relative">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+            <h3 class="font-black uppercase">1) Captura</h3>
+            <p class="text-gray-400 text-sm mt-1">Móvil, escáner, email, carpeta, cámara… lo que ya usas.</p>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+            <h3 class="font-black uppercase">2) Interpretación</h3>
+            <p class="text-gray-400 text-sm mt-1">OCR + detección + clasificación + extracción de campos.</p>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+            <h3 class="font-black uppercase">3) Validación</h3>
+            <p class="text-gray-400 text-sm mt-1">Reglas, tolerancias, duplicidades y revisión opcional.</p>
+          </li>
+
+          <li class="relative">
+            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+            <h3 class="font-black uppercase">4) Control + analítica</h3>
+            <p class="text-gray-400 text-sm mt-1">Estados, alertas, paneles, KPIs, exportación o integración.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="card-dark p-8 rounded-2xl border border-gray-800">
+        <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-4">Entregable real</div>
+        <h3 class="text-2xl md:text-3xl font-black uppercase mb-4">
+          Un software que tu equipo usa <span class="text-green-500">cada día</span>
+        </h3>
+        <p class="text-gray-300">
+          No es una demo: es un sistema con pantallas, roles, estados, histórico y analítica.
+          La IA vive dentro del software, y el software se adapta a tu proceso.
+        </p>
+
+        <div class="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-gray-200">
+          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Usuarios y permisos</span></div>
+          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Estados y flujos</span></div>
+          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Histórico y auditoría</span></div>
+          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Alertas y vencimientos</span></div>
+          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Paneles y KPIs</span></div>
+          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Integraciones (opcional)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASOS -->
+  <section id="casos" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Casos</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        Ejemplos (no límites): <span class="text-green-500">lo adaptamos a tu proceso</span>
+      </h2>
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+        Documentos, gastos, flota, controles, inventario, inspecciones, pantallas, incidencias…
+        Si hay información visual, podemos convertirla en datos y operativa.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Control documental</h3>
+        <p class="text-gray-400 text-sm">Facturas, albaranes, tickets, contratos, partes, informes, anexos.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Gastos y compras</h3>
+        <p class="text-gray-400 text-sm">Clasificación, categorías, centros de coste, proveedores y reportes.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Vencimientos</h3>
+        <p class="text-gray-400 text-sm">ITV, revisiones, seguros, talleres, garantías, renovaciones y alertas.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Consumos y costes</h3>
+        <p class="text-gray-400 text-sm">Combustible, peajes, parking, mantenimiento y KPIs por periodo.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Agendas por voz</h3>
+        <p class="text-gray-400 text-sm">Creación de tareas/citas por voz con recordatorios y seguimiento.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl border-2 border-green-500">
+        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Personalizado</h3>
+        <p class="text-gray-400 text-sm">
+          Si tu equipo “mira y decide”, podemos automatizar y medir ese proceso en un sistema a medida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ RESULTADOS / PRUEBA SOCIAL (nuevo) -->
+  <section id="resultados" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Resultados</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        Lo que más importa: <span class="text-green-500">impacto</span>
+      </h2>
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+        Esta sección está lista para que pongas 2–3 casos con métricas (aunque sean conservadoras).
+        Eso dispara la conversión.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="card-dark p-8 rounded-2xl">
+        <div class="text-green-400 font-black text-4xl">-40%</div>
+        <p class="text-gray-300 mt-2 font-bold uppercase text-sm">Tiempo administrativo</p>
+        <p class="text-gray-400 text-sm mt-2">TODO: describe el caso (ej. lectura de facturas + validación + panel).</p>
+      </div>
+
+      <div class="card-dark p-8 rounded-2xl">
+        <div class="text-green-400 font-black text-4xl">+99%</div>
+        <p class="text-gray-300 mt-2 font-bold uppercase text-sm">Trazabilidad</p>
+        <p class="text-gray-400 text-sm mt-2">TODO: roles, estados, histórico, auditoría y KPIs.</p>
+      </div>
+
+      <div class="card-dark p-8 rounded-2xl border-2 border-green-500">
+        <div class="text-green-400 font-black text-4xl">2–6</div>
+        <p class="text-gray-300 mt-2 font-bold uppercase text-sm">Semanas a primera versión útil</p>
+        <p class="text-gray-400 text-sm mt-2">TODO: explica “primera automatización útil” y iteración por fases.</p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid md:grid-cols-2 gap-8">
+      <div class="card-dark p-8 rounded-2xl">
+        <p class="text-gray-200 text-sm">
+          “TODO: testimonio real. Qué hacía antes, qué hace ahora, y qué mejoró.”
+        </p>
+        <div class="mt-4 text-xs text-gray-500 uppercase tracking-widest">— Cliente / Sector</div>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <p class="text-gray-200 text-sm">
+          “TODO: otro testimonio. Ideal si menciona ‘cuota’, ‘sin inversión inicial’ y ‘control’.”
+        </p>
+        <div class="mt-4 text-xs text-gray-500 uppercase tracking-widest">— Cliente / Sector</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFACTU -->
+  <section id="verifactu" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Veri*Factu</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        Módulo de facturación <span class="text-green-500">adaptado a Veri*Factu</span>
+      </h2>
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+        Si quieres centralizarlo todo, podemos entregar un módulo de facturación integrado dentro del sistema (opcional).
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div class="card-dark p-10 rounded-2xl border-l-4 border-green-500">
+        <h3 class="text-2xl font-black uppercase text-green-400 mb-4">¿Qué aporta?</h3>
+        <ul class="text-gray-300 text-sm space-y-3">
+          <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Facturación dentro del mismo software (usuarios, roles, histórico)</span></li>
+          <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Unifica operación + documentos + analítica en un solo sistema</span></li>
+          <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Opcional: integración con ERP/contabilidad existente</span></li>
+        </ul>
+        <div class="mt-6 text-xs text-gray-500 uppercase tracking-widest">
+          *Módulo opcional según necesidades
+        </div>
+      </div>
+
+      <div class="rounded-2xl p-10 border border-gray-200 bg-white flex flex-col items-center justify-center">
+        <img src="logo_verifactu.png" alt="VeriFactu" class="h-14 md:h-16 w-auto" loading="lazy">
+        <div class="text-gray-700 text-xs mt-4 uppercase tracking-widest text-center">Módulo Veri*Factu</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUOTAS -->
+  <section id="modelo" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Cuotas</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        0€ desarrollo inicial · <span class="text-green-500">cuotas mensuales pequeñas</span>
+      </h2>
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+        Construimos tu sistema a medida y lo mantenemos vivo. Pagas una cuota mensual reducida y escalamos por fases.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8">
+      <div class="card-dark p-8 rounded-2xl border border-gray-800">
+        <div class="text-xs uppercase tracking-widest text-gray-300 mb-2">Fase 1</div>
+        <h3 class="text-2xl font-black uppercase text-green-400 mb-3">Arranque</h3>
+        <p class="text-gray-400 text-sm">Definición del caso, primeras capturas y primera automatización útil.</p>
+        <div class="mt-5 text-sm text-gray-200 space-y-2">
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Auditoría y alcance</span></div>
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Primer flujo operativo</span></div>
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Panel base + histórico</span></div>
+        </div>
+      </div>
+
+      <div class="hero-box rounded-2xl p-8 border border-green-500/50">
+        <div class="text-xs uppercase tracking-widest text-green-200 mb-2">Modelo</div>
+        <h3 class="text-2xl font-black uppercase text-green-400 mb-3">Cuota mensual</h3>
+        <p class="text-gray-200 text-sm">
+          <span class="font-black text-white">0€</span> de desarrollo inicial. Pagas una cuota mensual pequeña que cubre el sistema y su evolución (según alcance).
+        </p>
+        <div class="mt-5 text-sm text-gray-200 space-y-2">
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Sin inversión inicial</span></div>
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Mejoras continuas</span></div>
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Módulos opcionales (Veri*Factu)</span></div>
+        </div>
+        <a href="#contacto" class="mt-6 inline-block w-full bg-green-500 text-black px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-sm text-center"
+           data-cta="pricing_pedir_propuesta">
+          Pedir propuesta
+        </a>
+      </div>
+
+      <div class="card-dark p-8 rounded-2xl border border-gray-800">
+        <div class="text-xs uppercase tracking-widest text-gray-300 mb-2">Fase 2+</div>
+        <h3 class="text-2xl font-black uppercase text-green-400 mb-3">Escalado</h3>
+        <p class="text-gray-400 text-sm">Más procesos, reglas, paneles avanzados, alertas y, si aplica, integraciones.</p>
+        <div class="mt-5 text-sm text-gray-200 space-y-2">
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Dashboards y KPIs</span></div>
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Alertas y vencimientos</span></div>
+          <div class="flex gap-2"><span class="text-green-400">✓</span><span>Integración opcional (API/ERP/BI)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-gray-500 text-xs mt-6 text-center max-w-3xl mx-auto">
+      *La cuota exacta depende del alcance real. Te damos propuesta tras la auditoría (sin compromiso).
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">FAQ</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        Preguntas <span class="text-green-500">frecuentes</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-green-400 mb-2">¿Esto es un producto cerrado?</h3>
+        <p class="text-gray-400 text-sm">No. Construimos tu sistema a medida y lo evolucionamos según tu operativa.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-green-400 mb-2">¿Incluye el software donde se gestiona todo?</h3>
+        <p class="text-gray-400 text-sm">Sí. Entregamos la plataforma completa (web/móvil/escritorio) con roles y flujos.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-green-400 mb-2">¿De verdad no hay gastos de desarrollo?</h3>
+        <p class="text-gray-400 text-sm">Correcto: modelo por cuota mensual pequeña. El alcance se define por fases.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-green-400 mb-2">¿Incluís facturación Veri*Factu?</h3>
+        <p class="text-gray-400 text-sm">Sí, como módulo opcional (integrado en el sistema y/o integrable con ERP).</p>
+      </div>
+    </div>
+
+    <!-- ✅ FAQ schema (nuevo) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Esto es un producto cerrado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Construimos tu sistema a medida y lo evolucionamos según tu operativa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Incluye el software donde se gestiona todo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Entregamos la plataforma completa (web/móvil/escritorio) con roles y flujos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿De verdad no hay gastos de desarrollo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Correcto: modelo por cuota mensual pequeña. El alcance se define por fases."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Incluís facturación Veri*Factu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, como módulo opcional (integrado en el sistema y/o integrable con ERP)."
+          }
+        }
+      ]
+    }
+    </script>
+  </section>
+
+  <!-- CONTACTO (arreglado + lead form) -->
+  <section id="contacto" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Contacto</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        Hablemos de tu <span class="text-green-500">caso</span>
+      </h2>
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+        Cuéntanos tu proceso. Si hay imágenes, documentos o registros manuales, lo convertimos en sistema con control y analítica.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-start">
+      <!-- ✅ Formulario (nuevo, sin backend) -->
+      <div class="card-dark p-8 md:p-12 rounded-2xl border border-gray-800">
+        <h3 class="text-2xl md:text-3xl font-black uppercase text-green-300 mb-4">Pide tu auditoría (15 min)</h3>
+        <p class="text-gray-400 text-sm mb-6">
+          Te respondemos con una propuesta de alcance por fases y estimación de cuota.
+        </p>
+
+        <form id="leadForm" class="space-y-4">
+          <div>
+            <label for="nombre" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Nombre</label>
+            <input id="nombre" name="nombre" type="text" required
+                   class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                   placeholder="Tu nombre" />
+          </div>
+
+          <div>
+            <label for="empresa" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Empresa</label>
+            <input id="empresa" name="empresa" type="text"
+                   class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                   placeholder="Nombre de la empresa (opcional)" />
+          </div>
+
+          <div>
+            <label for="email" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">Email</label>
+            <input id="email" name="email" type="email" required
+                   class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                   placeholder="tu@email.com" />
+          </div>
+
+          <div>
+            <label for="proceso" class="block text-xs uppercase tracking-widest text-gray-400 mb-2">¿Qué quieres automatizar?</label>
+            <textarea id="proceso" name="proceso" rows="4" required
+                      class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                      placeholder="Ej: leer facturas y validar proveedor/importe, estados, exportación a ERP..."></textarea>
+          </div>
+
+          <button type="submit"
+                  class="w-full bg-green-500 text-black px-8 py-4 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-base"
+                  data-cta="form_enviar">
+            Enviar solicitud
+          </button>
+
+          <p class="text-xs text-gray-500">
+            Al enviar, abrirá tu cliente de correo con el mensaje preparado (sin backend).
+            Si quieres captación “real” (CRM), te preparo una versión con endpoint (Formspree/Make/Zapier).
+          </p>
+        </form>
+      </div>
+
+      <!-- CTA lateral -->
+      <div class="card-dark p-8 md:p-12 rounded-2xl border-l-4 border-green-500">
+        <h3 class="text-2xl md:text-3xl font-black uppercase text-green-300 mb-4">¿Listo para automatizar sin inversión inicial?</h3>
+        <div class="space-y-4">
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Entradas (imágenes/voz) y calidad real</p></div>
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Salidas (panel, exportación, integración opcional)</p></div>
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Reglas de negocio, estados y validaciones</p></div>
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Fases + cuota estimada según alcance</p></div>
+        </div>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="mailto:hola@iarabot.es"
+             class="w-full bg-green-500 text-black px-8 py-4 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-base text-center"
+             data-cta="contacto_email">
+            Enviar email
+          </a>
+          <a target="_blank" rel="noopener"
+             href="https://wa.me/34625433667?text=Hola,%20quiero%20una%20auditor%C3%ADa%20de%2015%20min%20para%20un%20sistema%20a%20medida%20con%20cuotas%20mensuales"
+             class="w-full border-2 border-green-500 text-green-400 px-8 py-4 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-base text-center"
+             data-cta="contacto_whatsapp">
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-900 py-12 text-center">
+    <div class="text-2xl font-black mb-4">
+      <span class="text-green-500">IAra</span><span class="text-gray-400">_bot</span>
+    </div>
+    <p class="text-gray-500 text-xs tracking-widest uppercase mb-4">
+      © 2026 – Software a medida con IA (Imagen + Voz) · 0€ desarrollo inicial · Cuotas mensuales.
+    </p>
+    <p class="text-gray-400 text-sm">
+      <a href="mailto:hola@iarabot.es" class="text-green-400 hover:text-green-300 hover:underline" data-cta="footer_email">hola@iarabot.es</a> |
+      <a href="tel:625433667" class="text-green-400 hover:text-green-300 hover:underline" data-cta="footer_tel">625 433 667</a>
+    </p>
+
+    <div class="mt-4 text-xs text-gray-500">
+      <a href="/politica-de-privacidad.html" class="hover:underline">Política de privacidad</a> ·
+      <a href="/politica-de-cookies.html" class="hover:underline">Política de cookies</a> <!-- TODO: crea estas páginas -->
+    </div>
+  </footer>
+
+  <!-- Cookies -->
+  <div id="cookieBanner" class="cookie-banner fixed bottom-0 left-0 right-0 z-50 bg-gray-900 border-t border-gray-800 px-6 py-4 shadow-2xl">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex-1 text-sm text-gray-300">
+        <p class="mb-2">🍪 Utilizamos cookies para mejorar tu experiencia. Al continuar, aceptas su uso.</p>
+        <p class="text-xs text-gray-500">
+          Más información en nuestra <a href="/politica-de-cookies.html" class="text-green-400 hover:underline">Política de Cookies</a>.
+        </p>
+      </div>
+      <div class="flex gap-3">
+        <button onclick="rechazarCookies()" class="px-4 py-2 border border-gray-600 text-gray-300 rounded-lg hover:bg-gray-800 transition text-sm font-medium">
+          Rechazar
+        </button>
+        <button onclick="aceptarCookies()" class="px-6 py-2 bg-green-500 text-black rounded-lg hover:bg-green-400 transition text-sm font-bold">
+          Aceptar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ✅ WhatsApp flotante (ahora sí) -->
+  <a class="whatsapp-button" target="_blank" rel="noopener"
+     href="https://wa.me/34625433667?text=Hola,%20quiero%20una%20auditor%C3%ADa%20de%2015%20min%20para%20un%20sistema%20a%20medida%20con%20cuotas%20mensuales"
+     aria-label="Abrir WhatsApp"
+     data-cta="floating_whatsapp">
+    <svg class="whatsapp-icon" viewBox="0 0 32 32" aria-hidden="true">
+      <path fill="currentColor" d="M19.11 17.37c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.33-1.57-1.49-1.84-.16-.27-.02-.41.12-.54.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.83-2.01-.22-.53-.45-.46-.61-.46l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.95.93-.95 2.27 0 1.34.98 2.64 1.11 2.82.14.18 1.93 2.95 4.69 4.14.66.28 1.18.45 1.58.58.66.21 1.26.18 1.73.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16.04 27.2h-.01c-1.85 0-3.66-.5-5.25-1.45l-.38-.23-3.9 1.02 1.04-3.8-.25-.39a10.88 10.88 0 0 1-1.67-5.78c0-6.02 4.9-10.92 10.93-10.92 2.92 0 5.67 1.14 7.73 3.2a10.86 10.86 0 0 1 3.19 7.73c0 6.02-4.9 10.92-10.93 10.92zm9.34-20.27A12.93 12.93 0 0 0 16.06 3C8.87 3 3.02 8.84 3.02 16.02c0 2.28.6 4.5 1.74 6.45L3 29l6.69-1.75a12.98 12.98 0 0 0 6.37 1.63h.01c7.19 0 13.04-5.84 13.04-13.02a12.95 12.95 0 0 0-3.73-9.93z"/>
+    </svg>
+    <span>WhatsApp</span>
+  </a>
+
+  <script>
+    // Cookies
+    function aceptarCookies() { localStorage.setItem('cookiesAceptadas', 'true'); ocultarBannerCookies(); }
+    function rechazarCookies() { localStorage.setItem('cookiesAceptadas', 'false'); ocultarBannerCookies(); }
+    function ocultarBannerCookies() {
+      const banner = document.getElementById('cookieBanner');
+      banner.classList.remove('show');
+      setTimeout(() => { banner.style.display = 'none'; }, 300);
+    }
+
+    // Video
+    window.addEventListener('DOMContentLoaded', function() {
+      const portadaVideo = document.getElementById('portadaVideo');
+      const videoOverlay = document.getElementById('videoOverlay');
+      setTimeout(function() {
+        if (videoOverlay) videoOverlay.style.opacity = '0';
+        if (portadaVideo) portadaVideo.play().catch(()=>{});
+      }, 800);
+    });
+
+    // Mostrar banner cookies
+    window.addEventListener('DOMContentLoaded', function() {
+      const cookiesAceptadas = localStorage.getItem('cookiesAceptadas');
+      const banner = document.getElementById('cookieBanner');
+      if (!cookiesAceptadas) setTimeout(() => { banner.classList.add('show'); }, 500);
+      else banner.style.display = 'none';
+    });
+
+    // Scroll effects
+    window.addEventListener('scroll', function() {
+      const logo = document.getElementById('logo');
+      const menu = document.getElementById('menu');
+      const scrollPosition = window.scrollY;
+
+      const fadeStart = 0, fadeEnd = 120;
+      let opacity = 1;
+      if (scrollPosition > fadeStart) {
+        opacity = Math.max(0, 1 - (scrollPosition - fadeStart) / (fadeEnd - fadeStart));
+      }
+      logo.style.opacity = opacity;
+      logo.style.display = (opacity === 0) ? 'none' : 'block';
+
+      if (scrollPosition > 50) menu.classList.add('nav-scrolled');
+      else menu.classList.remove('nav-scrolled');
+    });
+
+    // ✅ Tracking de CTAs (GA4)
+    document.addEventListener('click', function(e) {
+      const el = e.target.closest('[data-cta]');
+      if (!el) return;
+      const cta = el.getAttribute('data-cta');
+      if (typeof gtag === 'function') {
+        gtag('event', 'cta_click', { cta_name: cta });
+      }
+    });
+
+    // ✅ Formulario -> mailto prellenado (sin backend)
+    document.getElementById('leadForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const empresa = document.getElementById('empresa').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const proceso = document.getElementById('proceso').value.trim();
+
+      const subject = encodeURIComponent(`Auditoría IAra (15 min) - ${empresa || nombre}`);
+      const body = encodeURIComponent(
+`Hola IAra,
+
+Quiero una auditoría de 15 min.
+
+Nombre: ${nombre}
+Empresa: ${empresa || "-"}
+Email: ${email}
+
+Qué quiero automatizar:
+${proceso}
+
+Gracias.`
+      );
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'lead_submit', { method: 'mailto_form' });
+      }
+
+      window.location.href = `mailto:hola@iarabot.es?subject=${subject}&body=${body}`;
+    });
+  </script>
+
+</body>
+</html>
