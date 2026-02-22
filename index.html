@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IAra | Software con IA a medida (Imagen + Voz) · Sin coste de desarrollo</title>
 
+  <!-- Favicon: pestañas, marcadores, buscadores y compartidos -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico.png" />
+  <link rel="apple-touch-icon" href="favicon.ico.png" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
 
@@ -71,6 +76,7 @@
     }
     .whatsapp-button:hover { background-color: #20BA5A; transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
     .whatsapp-icon { width: 24px; height: 24px; }
+    .icon-ejemplo { width: 40px; height: 40px; color: #39FF14; flex-shrink: 0; }
     @media (max-width: 768px) {
       .whatsapp-button { bottom: 80px; right: 15px; padding: 10px 16px; font-size: 14px; }
       .whatsapp-button span { display: none; }
@@ -121,7 +127,7 @@
             </div>
 
             <h1 class="text-xl md:text-4xl font-black uppercase leading-tight">
-              Automatiza tu operación <span class="text-green-500">con IA</span><br class="hidden md:block" />
+              Automatiza facturas, documentos y procesos <span class="text-green-500">con IA</span><br class="hidden md:block" />
               <span class="text-white/90">software a medida · 0€ desarrollo</span>
             </h1>
 
@@ -259,7 +265,8 @@
     </div>
 
     <div class="grid lg:grid-cols-2 gap-10">
-      <div class="card-dark p-8 rounded-2xl border border-gray-800">
+      <div class="card-dark p-8 rounded-2xl border border-gray-800 relative overflow-hidden" style="background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('captura.png'); background-size: cover; background-position: center;">
+        <div class="relative z-10">
         <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-6">Flujo típico</div>
         <ol class="relative border-s border-gray-800 ps-6 space-y-8">
           <li class="relative">
@@ -283,9 +290,11 @@
             <p class="text-gray-400 text-sm mt-1">Estados, alertas, paneles, KPIs, exportación o integración.</p>
           </li>
         </ol>
+        </div>
       </div>
 
-      <div class="card-dark p-8 rounded-2xl border border-gray-800">
+      <div class="card-dark p-8 rounded-2xl border border-gray-800 relative overflow-hidden" style="background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('equipo.png'); background-size: cover; background-position: center;">
+        <div class="relative z-10">
         <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-4">Entregable real</div>
         <h3 class="text-2xl md:text-3xl font-black uppercase mb-4">
           Un software que tu equipo usa <span class="text-green-500">cada día</span>
@@ -302,6 +311,7 @@
           <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Alertas y vencimientos</span></div>
           <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Paneles y KPIs</span></div>
           <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Integraciones (opcional)</span></div>
+        </div>
         </div>
       </div>
     </div>
@@ -322,27 +332,45 @@
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div class="card-dark p-8 rounded-2xl">
-        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Control documental</h3>
+        <div class="flex items-start gap-4 mb-3">
+          <svg class="icon-ejemplo" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+          <h3 class="text-xl font-bold uppercase text-green-400">Control documental</h3>
+        </div>
         <p class="text-gray-400 text-sm">Facturas, albaranes, tickets, contratos, partes, informes, anexos.</p>
       </div>
       <div class="card-dark p-8 rounded-2xl">
-        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Gastos y compras</h3>
+        <div class="flex items-start gap-4 mb-3">
+          <svg class="icon-ejemplo" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <h3 class="text-xl font-bold uppercase text-green-400">Gastos y compras</h3>
+        </div>
         <p class="text-gray-400 text-sm">Clasificación, categorías, centros de coste, proveedores y reportes.</p>
       </div>
       <div class="card-dark p-8 rounded-2xl">
-        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Vencimientos</h3>
+        <div class="flex items-start gap-4 mb-3">
+          <svg class="icon-ejemplo" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+          <h3 class="text-xl font-bold uppercase text-green-400">Vencimientos</h3>
+        </div>
         <p class="text-gray-400 text-sm">ITV, revisiones, seguros, talleres, garantías, renovaciones y alertas.</p>
       </div>
       <div class="card-dark p-8 rounded-2xl">
-        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Consumos y costes</h3>
+        <div class="flex items-start gap-4 mb-3">
+          <svg class="icon-ejemplo" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          <h3 class="text-xl font-bold uppercase text-green-400">Consumos y costes</h3>
+        </div>
         <p class="text-gray-400 text-sm">Combustible, peajes, parking, mantenimiento y KPIs por periodo.</p>
       </div>
       <div class="card-dark p-8 rounded-2xl">
-        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Agendas por voz</h3>
+        <div class="flex items-start gap-4 mb-3">
+          <svg class="icon-ejemplo" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>
+          <h3 class="text-xl font-bold uppercase text-green-400">Agendas por voz</h3>
+        </div>
         <p class="text-gray-400 text-sm">Creación de tareas/citas por voz con recordatorios y seguimiento.</p>
       </div>
       <div class="card-dark p-8 rounded-2xl border-2 border-green-500">
-        <h3 class="text-xl font-bold mb-3 uppercase text-green-400">Personalizado</h3>
+        <div class="flex items-start gap-4 mb-3">
+          <svg class="icon-ejemplo" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>
+          <h3 class="text-xl font-bold uppercase text-green-400">Personalizado</h3>
+        </div>
         <p class="text-gray-400 text-sm">
           Si tu equipo “mira y decide”, podemos automatizar y medir ese proceso en un sistema a medida.
         </p>
