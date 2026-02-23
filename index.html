@@ -56,6 +56,13 @@
     .cookie-banner { transform: translateY(100%); transition: transform 0.3s ease-in-out; }
     .cookie-banner.show { transform: translateY(0); }
 
+    .nav-dropdown { opacity: 0; visibility: hidden; transform: translateY(-5px); transition: opacity 0.2s, transform 0.2s, visibility 0.2s; }
+    .nav-casos-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    @media (max-width: 767px) {
+      .nav-casos-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+      .nav-dropdown { top: 100%; left: 0; right: auto; min-width: 220px; }
+    }
+
     .whatsapp-button {
       position: fixed;
       bottom: 20px;
@@ -95,10 +102,21 @@
   <!-- Nav -->
   <nav id="menu" class="fixed z-50 overflow-visible right-4 top-4">
     <div class="flex items-center py-2 px-4 relative gap-4 md:gap-12">
-      <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest">
+      <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest items-center">
         <a href="#especializacion" class="hover:text-green-400 transition">Especialización</a>
         <a href="#capas" class="hover:text-green-400 transition">Cómo funciona</a>
-        <a href="#casos" class="hover:text-green-400 transition">Casos</a>
+        <div class="nav-casos-wrap relative">
+          <a href="#casos" class="hover:text-green-400 transition inline-flex items-center gap-1">Casos <span class="text-[10px]">▼</span></a>
+          <div class="nav-dropdown absolute top-full right-0 mt-1 py-2 min-w-[220px] rounded-xl bg-black/95 border border-gray-700 shadow-xl z-50">
+            <a href="automatizacion-facturas.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Facturas</a>
+            <a href="automatizacion-gastos.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Gastos y tickets</a>
+            <a href="automatizacion-albaranes.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Albaranes</a>
+            <a href="agenda-por-voz.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Agenda por voz</a>
+            <a href="automatizacion-verifactu.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Veri*Factu</a>
+            <a href="ocr-documentos-empresa.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">OCR documentos</a>
+            <a href="casos-uso.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Casos de uso</a>
+          </div>
+        </div>
         <a href="#verifactu" class="hover:text-green-400 transition">Veri*Factu</a>
         <a href="#modelo" class="hover:text-green-400 transition">Cuotas</a>
         <a href="#faq" class="hover:text-green-400 transition">FAQ</a>
@@ -231,14 +249,15 @@
           </ul>
         </div>
 
-        <div class="card-dark p-8 rounded-2xl border-l-4 border-green-500">
+        <a href="agenda-por-voz.html" class="card-dark p-8 rounded-2xl border-l-4 border-green-500 block hover:no-underline">
           <h3 class="text-xl font-bold mb-3 uppercase">Voz (si aporta)</h3>
           <p class="text-gray-400 text-sm mb-4">Agendas, registros o creación rápida de tareas por voz.</p>
           <ul class="text-gray-400 text-xs space-y-2">
             <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Comandos + dictado</span></li>
             <li class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Recordatorios y seguimiento</span></li>
           </ul>
-        </div>
+          <span class="inline-block mt-3 text-green-400 text-xs font-bold uppercase tracking-widest">Agenda por voz →</span>
+        </a>
 
         <div class="card-dark p-8 rounded-2xl border-l-4 border-green-500">
           <h3 class="text-xl font-bold mb-3 uppercase">Analítica</h3>
@@ -406,6 +425,7 @@
       <div class="rounded-2xl p-10 border border-gray-200 bg-white flex flex-col items-center justify-center">
         <img src="logo_verifactu.png" alt="VeriFactu" class="h-20 md:h-24 w-auto">
         <div class="text-gray-700 text-xs mt-4 uppercase tracking-widest text-center">Módulo Veri*Factu</div>
+        <a href="automatizacion-verifactu.html" class="mt-5 text-green-600 hover:text-green-700 font-bold text-sm uppercase tracking-widest">Ver más →</a>
       </div>
     </div>
   </section>

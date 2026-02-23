@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Agenda por voz con IA | IAra</title>
+  <meta name="description" content="Agenda por voz con IA. Integrada con Telegram y Google Calendar. Citas, tareas y recordatorios por dictado. 0€ desarrollo. Auditoría gratis 15 min." />
+  <link rel="canonical" href="https://iarabot.es/agenda-por-voz" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Agenda por voz con IA | IAra" />
+  <meta property="og:description" content="Integrada con Telegram y Google Calendar. Dictado y recordatorios por voz. 0€ desarrollo inicial." />
+  <meta property="og:url" content="https://iarabot.es/agenda-por-voz" />
+  <meta property="og:image" content="https://iarabot.es/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <style>
+    body { font-family:'Poppins',sans-serif; background:#0b0b0b; color:#fff; scroll-behavior:smooth; }
+    .card-dark{ background:#121212; border:1px solid #222; transition:.25s; }
+    .card-dark:hover{ border-color:#39FF14; transform:translateY(-4px); }
+    .hero-box{ background:rgba(18,18,18,.45); backdrop-filter:blur(10px); border:1px solid rgba(57,255,20,.35); box-shadow:0 0 18px rgba(57,255,20,.10); }
+    .nav-scrolled{ background:rgba(0,0,0,.85); backdrop-filter:blur(10px); border-radius:12px; padding:8px 16px; }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Agenda por voz con IA",
+    "url":"https://iarabot.es/agenda-por-voz",
+    "about":{"@type":"Service","name":"Agenda por voz con IA (dictado, comandos, recordatorios y seguimiento)"}
+  }
+  </script>
+</head>
+
+<body>
+  <nav id="menu" class="fixed z-50 right-4 top-4">
+    <div class="flex items-center gap-4 md:gap-10 py-2 px-4">
+      <a href="/" class="text-sm uppercase tracking-widest hover:text-green-400">IAra</a>
+      <div class="hidden md:flex gap-6 text-xs uppercase tracking-widest text-gray-300">
+        <a href="#como" class="hover:text-green-400">Cómo funciona</a>
+        <a href="#beneficios" class="hover:text-green-400">Beneficios</a>
+        <a href="#faq" class="hover:text-green-400">FAQ</a>
+      </div>
+      <a href="#contacto" class="bg-green-500 text-black px-5 py-2 rounded-full font-black text-xs uppercase tracking-widest hover:bg-white">Auditoría</a>
+    </div>
+  </nav>
+
+  <header class="relative min-h-[88vh] flex items-end overflow-hidden">
+    <div class="absolute inset-0 bg-no-repeat bg-center" style="background-image: url('persona.png'); background-size: cover; background-position: center center;"></div>
+
+    <div class="relative z-10 w-full max-w-6xl mx-auto px-4 md:px-6 pb-4 md:pb-6">
+      <div class="hero-box rounded-2xl p-6 md:p-10 flex flex-col md:flex-row gap-6 md:gap-10 justify-between">
+        <div class="min-w-0">
+          <div class="text-[10px] md:text-xs uppercase tracking-widest text-green-400 font-bold mb-2">
+            Landing SEO · Voz
+          </div>
+          <h1 class="text-2xl md:text-5xl font-black uppercase leading-tight">
+            <span class="text-green-500">Agenda por voz</span> con IA
+          </h1>
+          <p class="text-gray-200/90 mt-3 max-w-2xl">
+            Citas, tareas y recordatorios por dictado y comandos. Sin teclear. Integrada con <strong>Telegram</strong> y <strong>Google Calendar</strong>. Seguimiento y alertas.
+          </p>
+          <div class="mt-4 text-sm text-gray-300">
+            <span class="text-green-400 font-black">0€</span> desarrollo inicial · cuota mensual · auditoría gratis 15 min
+          </div>
+
+          <div class="mt-5 flex flex-col sm:flex-row gap-3">
+            <a href="#contacto" class="bg-green-500 text-black px-6 py-3 rounded-lg font-black uppercase tracking-wider text-sm hover:bg-white">
+              Pedir auditoría
+            </a>
+            <a href="/#casos" class="border-2 border-green-500 text-green-300 px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-sm hover:bg-green-500/10">
+              Ver más casos
+            </a>
+          </div>
+        </div>
+
+        <div class="w-full md:w-[340px] card-dark rounded-2xl p-6">
+          <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-3">Qué incluye</div>
+          <ul class="text-sm text-gray-300 space-y-2">
+            <li>✓ Dictado libre y comandos</li>
+            <li>✓ Citas y recordatorios por voz</li>
+            <li>✓ Creación rápida de tareas</li>
+            <li>✓ Integrada con <strong>Telegram</strong> y <strong>Google Calendar</strong></li>
+            <li>✓ Alertas y seguimiento</li>
+            <li>✓ Sincronización con tu agenda</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="como" class="max-w-6xl mx-auto px-6 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-4xl font-black uppercase">Cómo funciona</h2>
+      <p class="text-gray-400 mt-3">De la voz a la agenda, sin pasos manuales.</p>
+    </div>
+
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="card-dark rounded-2xl p-6">
+        <div class="text-green-400 font-black">1</div>
+        <h3 class="font-bold uppercase mt-2">Hablas</h3>
+        <p class="text-gray-400 text-sm mt-2">Dictado o comandos tipo “reunión con Juan el martes a las 10”.</p>
+      </div>
+      <div class="card-dark rounded-2xl p-6">
+        <div class="text-green-400 font-black">2</div>
+        <h3 class="font-bold uppercase mt-2">Interpretación</h3>
+        <p class="text-gray-400 text-sm mt-2">La IA extrae fecha, hora, contacto y tipo de evento o tarea.</p>
+      </div>
+      <div class="card-dark rounded-2xl p-6">
+        <div class="text-green-400 font-black">3</div>
+        <h3 class="font-bold uppercase mt-2">Agenda / tareas</h3>
+        <p class="text-gray-400 text-sm mt-2">Se crean citas, recordatorios o tareas en tu sistema.</p>
+      </div>
+      <div class="card-dark rounded-2xl p-6">
+        <div class="text-green-400 font-black">4</div>
+        <h3 class="font-bold uppercase mt-2">Seguimiento</h3>
+        <p class="text-gray-400 text-sm mt-2">Alertas, recordatorios y visibilidad en panel o app.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="beneficios" class="relative bg-gradient-to-b from-gray-900 to-black bg-cover bg-center" style="background-image: linear-gradient(rgba(18, 18, 18, 0.88), rgba(18, 18, 18, 0.88)), url('equipo.png');">
+    <div class="relative z-10 max-w-6xl mx-auto px-6 py-16">
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+        <div class="card-dark rounded-2xl p-8 border-l-4 border-green-500">
+          <h2 class="text-2xl md:text-3xl font-black uppercase">Beneficios típicos</h2>
+          <ul class="mt-4 text-gray-300 space-y-2">
+            <li>✓ Menos tiempo tecleando citas y tareas</li>
+            <li>✓ Registro en movimiento (coche, llamada)</li>
+            <li>✓ Recordatorios y alertas automáticas</li>
+            <li>✓ Integrada con <strong>Telegram</strong> y <strong>Google Calendar</strong></li>
+            <li>✓ Una sola agenda/tablero centralizado</li>
+            <li>✓ <strong>Válida para equipos</strong>: agendas y gestiones compartidas, visibilidad común</li>
+          </ul>
+        </div>
+
+        <div class="card-dark rounded-2xl p-8">
+          <h3 class="text-xl font-black uppercase text-green-400">Para quién encaja</h3>
+          <p class="text-gray-300 mt-3">
+            Profesionales y <strong>equipos</strong> que gestionan muchas citas o tareas y quieren capturarlas por voz: comerciales, directivos, asistentes o cualquiera que priorice manos libres. También encaja para equipos que comparten gestiones, agendas y seguimiento.
+          </p>
+          <div class="mt-6 text-xs uppercase tracking-widest text-gray-500">
+            0€ desarrollo · cuota mensual · por fases
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="max-w-6xl mx-auto px-6 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-4xl font-black uppercase">FAQ</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="card-dark rounded-2xl p-6">
+        <h3 class="font-bold text-green-400">¿Funciona en español?</h3>
+        <p class="text-gray-400 text-sm mt-2">Sí, el sistema se entrena para tu vocabulario y comandos en español (y otros idiomas si lo necesitas).</p>
+      </div>
+      <div class="card-dark rounded-2xl p-6">
+        <h3 class="font-bold text-green-400">¿Incluye app o solo API de voz?</h3>
+        <p class="text-gray-400 text-sm mt-2">Incluye sistema completo: interfaz (web/app), voz, agenda, recordatorios e integración con <strong>Telegram</strong> y <strong>Google Calendar</strong>.</p>
+      </div>
+      <div class="card-dark rounded-2xl p-6">
+        <h3 class="font-bold text-green-400">¿Se integra con Google Calendar y Telegram?</h3>
+        <p class="text-gray-400 text-sm mt-2">Sí. La agenda por voz está integrada con <strong>Google Calendar</strong> y con <strong>Telegram</strong>: dictas por el canal que prefieras y se sincroniza con tu calendario.</p>
+      </div>
+      <div class="card-dark rounded-2xl p-6">
+        <h3 class="font-bold text-green-400">¿Cuánto tarda en estar operativo?</h3>
+        <p class="text-gray-400 text-sm mt-2">Primera versión útil por fases. La auditoría de 15 min define alcance y plazos.</p>
+      </div>
+    </div>
+
+    <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"¿Funciona en español?","acceptedAnswer":{"@type":"Answer","text":"Sí, el sistema se entrena para tu vocabulario y comandos en español (y otros idiomas si lo necesitas)."}},
+        {"@type":"Question","name":"¿Incluye app o solo API de voz?","acceptedAnswer":{"@type":"Answer","text":"Incluye sistema completo: interfaz (web/app), voz, agenda, recordatorios y opcionalmente integración con tu calendario."}},
+        {"@type":"Question","name":"¿Se integra con Google Calendar y Telegram?","acceptedAnswer":{"@type":"Answer","text":"Sí. La agenda por voz está integrada con Google Calendar y con Telegram: dictas por el canal que prefieras y se sincroniza con tu calendario."}},
+        {"@type":"Question","name":"¿Cuánto tarda en estar operativo?","acceptedAnswer":{"@type":"Answer","text":"Primera versión útil por fases. La auditoría de 15 min define alcance y plazos."}}
+      ]
+    }
+    </script>
+  </section>
+
+  <section id="contacto" class="bg-gradient-to-b from-gray-900 to-black">
+    <div class="max-w-6xl mx-auto px-6 py-16">
+      <div class="grid lg:grid-cols-2 gap-8 items-start">
+        <div class="card-dark rounded-2xl p-8 md:p-10 border-l-4 border-green-500">
+          <h2 class="text-2xl md:text-3xl font-black uppercase">Pide auditoría (15 min)</h2>
+          <p class="text-gray-400 mt-3">Te decimos si encaja, alcance por fases y estimación de cuota.</p>
+
+          <form id="leadForm" class="mt-6 space-y-4">
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="nombre">Nombre</label>
+              <input id="nombre" required class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="empresa">Empresa</label>
+              <input id="empresa" class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="email">Email</label>
+              <input id="email" type="email" required class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="proceso">Tu caso (agenda por voz)</label>
+              <textarea id="proceso" rows="4" required class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
+                placeholder="Ej: muchas citas al día, quiero dictar por móvil, integrar con calendario..."></textarea>
+            </div>
+
+            <button id="leadBtn" type="submit" class="w-full bg-green-500 text-black px-6 py-4 rounded-lg font-black uppercase tracking-wider hover:bg-white">
+              Enviar
+            </button>
+            <p id="leadMsg" class="text-sm mt-2 hidden"></p>
+          </form>
+        </div>
+
+        <div class="card-dark rounded-2xl p-8 md:p-10">
+          <h3 class="text-xl font-black uppercase text-green-400">Alternativas rápidas</h3>
+          <div class="mt-5 flex flex-col gap-3">
+            <a class="bg-green-500 text-black px-6 py-3 rounded-lg font-black uppercase tracking-wider text-sm text-center hover:bg-white"
+               href="mailto:hola@iarabot.es?subject=Agenda%20por%20voz%20-%20auditoría">Email</a>
+            <a class="border-2 border-green-500 text-green-300 px-6 py-3 rounded-lg font-bold uppercase tracking-wider text-sm text-center hover:bg-green-500/10"
+               target="_blank" rel="noopener"
+               href="https://wa.me/34625433667?text=Hola,%20quiero%20agenda%20por%20voz%20con%20IA.%20Auditor%C3%ADa%2015%20min">
+              WhatsApp
+            </a>
+          </div>
+          <p class="text-gray-500 text-xs mt-6">0€ desarrollo inicial · cuota mensual · por fases</p>
+        </div>
+      </div>
+
+      <div class="text-center text-xs text-gray-600 mt-10">
+        <a href="/" class="hover:underline">Volver a IAra</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-gray-900 py-10 text-center">
+    <div class="text-2xl font-black"><span class="text-green-500">IAra</span><span class="text-gray-400">_bot</span></div>
+    <p class="text-gray-500 text-xs tracking-widest uppercase mt-3">© 2026 · Software a medida con IA</p>
+  </footer>
+
+  <script>
+    emailjs.init("TU_PUBLIC_KEY");
+
+    window.addEventListener('scroll', () => {
+      const menu = document.getElementById('menu');
+      if (window.scrollY > 50) menu.classList.add('nav-scrolled'); else menu.classList.remove('nav-scrolled');
+    });
+
+    document.getElementById('leadForm')?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('leadBtn');
+      const msg = document.getElementById('leadMsg');
+      const originalText = btn.textContent;
+
+      btn.disabled = true; btn.textContent = "Enviando...";
+      msg.className = "text-sm mt-2 hidden"; msg.textContent = "";
+
+      const templateParams = {
+        nombre: document.getElementById('nombre').value.trim(),
+        empresa: document.getElementById('empresa').value.trim() || "-",
+        email: document.getElementById('email').value.trim(),
+        proceso: document.getElementById('proceso').value.trim()
+      };
+
+      try {
+        const SERVICE_ID = "service_p8clbak";
+        const TEMPLATE_ID = "template_8dl1y4o";
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+
+        msg.textContent = "✅ Enviado. Te respondemos en breve.";
+        msg.className = "text-sm mt-2 text-green-400";
+        msg.classList.remove('hidden');
+        document.getElementById('leadForm').reset();
+      } catch (err) {
+        console.error(err);
+        msg.textContent = "❌ Error al enviar. Prueba WhatsApp o email.";
+        msg.className = "text-sm mt-2 text-red-400";
+        msg.classList.remove('hidden');
+      } finally {
+        btn.disabled = false; btn.textContent = originalText;
+      }
+    });
+  </script>
+</body>
+</html>
