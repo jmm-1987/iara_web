@@ -3,22 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IAra | Software con IA a medida (Imagen + Voz) · Sin coste de desarrollo</title>
-  <meta name="description" content="Automatiza facturas, documentos y procesos con IA. OCR, validación, agenda por voz y Veri*Factu. 0€ desarrollo inicial, cuota mensual. Auditoría gratis en 15 min." />
+
+  <!-- ✅ CAMBIO: título y descripción más orientados a “resultado” (empresa final) -->
+  <title>IAra | Automatización de facturas, tickets y albaranes con IA · 0€ desarrollo</title>
+  <meta name="description" content="Convierte facturas, tickets y albaranes en datos automáticamente (OCR + validación + flujo + KPIs). Software a medida sin coste de desarrollo inicial. Auditoría gratis en 15 min." />
+
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="https://iarabot.es/" />
+
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="IAra | Software con IA a medida · 0€ desarrollo" />
-  <meta property="og:description" content="Automatiza facturas, documentos y procesos con IA. OCR, voz, Veri*Factu. Sin coste de desarrollo. Auditoría gratis." />
+  <meta property="og:title" content="IAra | Automatiza facturas, tickets y albaranes con IA · 0€ desarrollo" />
+  <meta property="og:description" content="OCR + validación + flujo + KPIs. Software a medida sin coste de desarrollo inicial. Auditoría gratis." />
   <meta property="og:url" content="https://iarabot.es/" />
   <meta property="og:image" content="https://iarabot.es/og-image.jpg" />
   <meta property="og:locale" content="es_ES" />
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="IAra | Software con IA a medida · 0€ desarrollo" />
-  <meta name="twitter:description" content="Automatiza facturas, documentos y procesos con IA. Auditoría gratis 15 min." />
+  <meta name="twitter:title" content="IAra | Automatiza facturas, tickets y albaranes con IA · 0€ desarrollo" />
+  <meta name="twitter:description" content="OCR + validación + flujo + KPIs. Auditoría gratis 15 min." />
   <meta name="twitter:image" content="https://iarabot.es/og-image.jpg" />
 
-  <!-- Favicon: pestañas, marcadores, buscadores y compartidos -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico.png" />
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico.png" />
   <link rel="apple-touch-icon" href="favicon.ico.png" />
@@ -26,7 +31,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700;900&display=swap" rel="stylesheet">
 
-  <!-- ✅ EmailJS SDK -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <!-- Google tag (gtag.js) -->
@@ -49,21 +53,38 @@
     .logo-fade { transition: opacity 0.3s ease; }
     .logo-fade-in { animation: fadeInLogo 1s ease-out forwards; opacity: 0; }
     .nav-scrolled {
-      background-color: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 8px 16px;
       transition: all 0.3s ease;
+    }
+    @media (min-width: 768px) {
+      .nav-scrolled {
+        background-color: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        padding: 8px 16px;
+      }
     }
 
     .hero-box {
-      background: rgba(18, 18, 18, 0.35);
+      background: rgba(18, 18, 18, 0.55);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(57, 255, 20, 0.35);
       box-shadow: 0 0 18px rgba(57, 255, 20, 0.10);
     }
     @media (min-width: 768px) {
-      .hero-box { background: rgba(18, 18, 18, 0.45); }
+      .hero-box { background: rgba(18, 18, 18, 0.50); }
+    }
+    
+    .hero-text {
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes heroContentFadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content-fade {
+      opacity: 0;
+      animation: heroContentFadeIn 0.8s ease-out 1s forwards;
     }
 
     .cookie-banner { transform: translateY(100%); transition: transform 0.3s ease-in-out; }
@@ -75,6 +96,16 @@
       .nav-casos-wrap:hover .nav-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
       .nav-dropdown { top: 100%; left: 0; right: auto; min-width: 220px; }
     }
+
+    /* Menú móvil hamburguesa */
+    .nav-mobile-overlay { opacity: 0; visibility: hidden; transition: opacity 0.25s, visibility 0.25s; }
+    .nav-mobile-overlay.open { opacity: 1; visibility: visible; }
+    .nav-mobile-panel { transform: translateX(100%); transition: transform 0.25s ease-out; }
+    .nav-mobile-panel.open { transform: translateX(0); }
+    .hamburger-line { transition: transform 0.25s, opacity 0.25s; }
+    .hamburger[aria-expanded="true"] .hamburger-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
+    .hamburger[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .whatsapp-button {
       position: fixed;
@@ -97,6 +128,21 @@
     .whatsapp-button:hover { background-color: #20BA5A; transform: scale(1.05); box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6); }
     .whatsapp-icon { width: 24px; height: 24px; }
     .icon-ejemplo { width: 40px; height: 40px; color: #39FF14; flex-shrink: 0; }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(57,255,20,.35);
+      background: rgba(18,18,18,.55);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: rgba(255,255,255,.85);
+    }
+
     @media (max-width: 768px) {
       .whatsapp-button { bottom: 80px; right: 15px; padding: 10px 16px; font-size: 14px; }
       .whatsapp-button span { display: none; }
@@ -110,7 +156,7 @@
     "@type": "Organization",
     "name": "IAra",
     "url": "https://iarabot.es",
-    "description": "Software con IA a medida: automatización de facturas, documentos, gastos, agenda por voz y Veri*Factu. 0€ desarrollo inicial."
+    "description": "Software con IA a medida para empresas: automatización de facturas, tickets y albaranes (OCR + validación + flujo + KPIs). 0€ desarrollo inicial."
   }
   </script>
   <script type="application/ld+json">
@@ -120,6 +166,18 @@
     "name": "IAra",
     "url": "https://iarabot.es",
     "potentialAction": { "@type": "SearchAction", "target": "https://iarabot.es/#contacto", "query-input": "required name=auditoria" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Automatización documental con IA",
+    "provider": { "@type": "Organization", "name": "IAra" },
+    "areaServed": "ES",
+    "serviceType": "OCR + validación + flujos + analítica",
+    "description": "Extracción automática de datos desde facturas, tickets y albaranes; validación con reglas; estados, roles, auditoría y KPIs en un software a medida."
   }
   </script>
 </head>
@@ -137,6 +195,7 @@
       <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest items-center">
         <a href="#especializacion" class="hover:text-green-400 transition">Especialización</a>
         <a href="#capas" class="hover:text-green-400 transition">Cómo funciona</a>
+        <a href="#prueba" class="hover:text-green-400 transition">Demo</a>
         <div class="nav-casos-wrap relative">
           <a href="#casos" class="hover:text-green-400 transition inline-flex items-center gap-1">Casos <span class="text-[10px]">▼</span></a>
           <div class="nav-dropdown absolute top-full right-0 mt-1 py-2 min-w-[220px] rounded-xl bg-black/95 border border-gray-700 shadow-xl z-50">
@@ -153,9 +212,40 @@
         <a href="#modelo" class="hover:text-green-400 transition">Cuotas</a>
         <a href="#faq" class="hover:text-green-400 transition">FAQ</a>
       </div>
-      <a href="#contacto" class="bg-green-500 text-black px-6 py-2 rounded-full font-bold hover:bg-white transition text-sm" data-cta="nav_contacto">CONTACTO</a>
+      <a href="#contacto" class="hidden md:inline-block bg-green-500 text-black px-6 py-2 rounded-full font-bold hover:bg-white transition text-sm" data-cta="nav_contacto">CONTACTO</a>
+      <button type="button" class="md:hidden hamburger flex flex-col justify-center gap-2 w-10 h-10 transition" aria-expanded="false" aria-controls="nav-mobile-panel" aria-label="Abrir menú" id="nav-hamburger">
+        <span class="hamburger-line block w-7 h-1 bg-white rounded"></span>
+        <span class="hamburger-line block w-7 h-1 bg-white rounded"></span>
+        <span class="hamburger-line block w-7 h-1 bg-white rounded"></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Panel móvil (menú hamburguesa) -->
+  <div id="nav-mobile-overlay" class="nav-mobile-overlay fixed inset-0 z-[60] md:hidden pointer-events-none" aria-hidden="true"></div>
+  <div id="nav-mobile-panel" class="nav-mobile-panel fixed top-0 right-0 z-[70] w-[280px] max-w-[85vw] h-full bg-gray-900 border-l border-gray-700 shadow-2xl md:hidden flex flex-col pt-20 pb-6 px-4" aria-hidden="true">
+    <button type="button" id="nav-mobile-close" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-lg border border-gray-600 text-gray-300 hover:border-green-500 hover:text-white hover:bg-gray-800/50 transition aria-label="Cerrar menú">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <nav class="flex flex-col gap-1 text-sm font-medium uppercase tracking-widest">
+      <a href="#" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Inicio</a>
+      <a href="#especializacion" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Especialización</a>
+      <a href="#capas" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Cómo funciona</a>
+      <a href="#prueba" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Demo</a>
+      <a href="#casos" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Casos</a>
+      <a href="automatizacion-facturas.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Facturas</a>
+      <a href="automatizacion-gastos.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Gastos y tickets</a>
+      <a href="automatizacion-albaranes.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Albaranes</a>
+      <a href="agenda-por-voz.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Agenda por voz</a>
+      <a href="automatizacion-verifactu.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Veri*Factu</a>
+      <a href="ocr-documentos-empresa.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">OCR documentos</a>
+      <a href="casos-uso.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Casos de uso</a>
+      <a href="#verifactu" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Veri*Factu</a>
+      <a href="#modelo" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Cuotas</a>
+      <a href="#faq" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">FAQ</a>
+    </nav>
+    <a href="#contacto" class="nav-mobile-link mt-4 bg-green-500 text-black px-4 py-3 rounded-full font-bold hover:bg-white transition text-center text-sm" data-cta="nav_contacto">CONTACTO</a>
+  </div>
 
   <!-- HERO -->
   <header class="relative min-h-screen overflow-hidden">
@@ -166,45 +256,67 @@
       </video>
     </div>
 
-    <div id="videoOverlay" class="absolute inset-0 bg-black/70 z-10 transition-opacity duration-700"></div>
+    <div id="videoOverlay" class="absolute inset-0 z-10 transition-opacity duration-700" style="background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0.5) 100%);"></div>
 
-    <div class="absolute z-20 left-0 right-0 bottom-3 md:bottom-10">
-      <div class="w-full max-w-6xl mx-auto px-3 md:px-6">
-        <div class="hero-box rounded-2xl p-4 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-6">
-          <div class="min-w-0">
-            <div class="text-[10px] md:text-xs uppercase tracking-widest text-green-400 font-bold mb-2">
-              IAra · Software a medida con IA
-            </div>
+    <div class="absolute z-20 left-0 right-0 bottom-3 md:bottom-10 hero-content-fade">
+      <div class="w-full max-w-5xl mx-auto px-3 md:px-6">
+        <div class="hero-box rounded-xl p-3 md:p-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-4">
+          <div class="min-w-0 hero-text">
+            <!-- ✅ NUEVO: “badge” de enfoque -->
+            <!--<div class="badge mb-3">
+              <span class="text-green-400 font-black">IAra</span>
+              <span class="text-white/70">·</span>
+              <span>Automatización documental</span>
+              <span class="text-white/70">·</span>
+              <span class="text-green-400 font-bold">0€ dev</span>
+            </div>-->
 
-            <h1 class="text-xl md:text-4xl font-black uppercase leading-tight">
-              Automatiza facturas, documentos y procesos <span class="text-green-500">con IA</span><br class="hidden md:block" />
-              <span class="text-white/90">software a medida · 0€ desarrollo</span>
+            <!-- ✅ CAMBIO: titular más “dolor+beneficio” -->
+            <h1 class="text-lg md:text-2xl font-black uppercase leading-tight">
+              Deja de copiar datos.<br class="hidden md:block" />
+              <span class="text-green-500">Automatiza</span> facturas, tickets y albaranes
+              <span class="text-white/90">con IA</span>
             </h1>
 
             <p class="text-gray-200/90 text-xs md:text-base mt-3 max-w-xl">
-              Convertimos <span class="text-white font-semibold">documentos e imágenes</span> en datos y flujo:
-              validación, estados y <span class="text-white font-semibold">KPIs</span>.
+              Convertimos documentos e imágenes en <span class="text-white font-semibold">datos + flujo</span>:
+              validación, estados, aprobaciones y <span class="text-white font-semibold">KPIs</span> en un software que tu equipo usa cada día.
             </p>
 
-            <div class="mt-3 text-xs md:text-sm text-gray-300">
-              <span class="text-green-400 font-bold">Auditoría gratis</span> en 15 min · Propuesta por fases
+            <div class="mt-2 text-[10px] md:text-xs text-gray-300">
+              <span class="text-green-400 font-bold">Auditoría gratis</span> · Te damos un plan por fases + estimación de ahorro
             </div>
           </div>
 
-          <div class="flex flex-col md:flex-row gap-2 md:gap-3 w-full md:w-auto">
+          <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto shrink-0">
             <a href="#contacto"
-               class="w-full md:w-auto bg-green-500 text-black px-4 md:px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-xs md:text-sm text-center"
+               class="w-full md:w-auto bg-green-500 text-black px-3 md:px-5 py-2 md:py-2.5 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-[10px] md:text-xs text-center"
                data-cta="hero_auditoria">
               Auditoría gratis
             </a>
 
-            <a href="#casos"
-               class="w-full md:w-auto border-2 border-green-500 text-green-300 px-4 md:px-6 py-3 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-xs md:text-sm text-center"
-               data-cta="hero_ver_casos">
-              Ver casos
+            <!-- ✅ CAMBIO: segundo CTA ahora lleva a “prueba visual” -->
+            <a href="#prueba"
+               class="w-full md:w-auto border-2 border-green-500 text-green-300 px-3 md:px-5 py-2 md:py-2.5 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-[10px] md:text-xs text-center"
+               data-cta="hero_ver_demo">
+              Ver demo
             </a>
           </div>
         </div>
+
+        <!-- ✅ NUEVO: “links de entrada” debajo del hero (muy útil para Ads + SEO) -->
+        <div class="mt-3 flex flex-col md:flex-row gap-2">
+          <a href="automatizacion-facturas.html" class="card-dark px-3 py-2 rounded-lg text-xs text-gray-200 hover:text-white border border-gray-800">
+            → Automatización de <span class="text-green-400 font-bold">facturas</span>
+          </a>
+          <a href="automatizacion-gastos.html" class="card-dark px-3 py-2 rounded-lg text-xs text-gray-200 hover:text-white border border-gray-800">
+            → Automatización de <span class="text-green-400 font-bold">gastos y tickets</span>
+          </a>
+          <a href="automatizacion-albaranes.html" class="card-dark px-3 py-2 rounded-lg text-xs text-gray-200 hover:text-white border border-gray-800">
+            → Automatización de <span class="text-green-400 font-bold">albaranes</span>
+          </a>
+        </div>
+
       </div>
     </div>
   </header>
@@ -242,21 +354,23 @@
           Especialización
         </div>
         <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic leading-tight">
-          Construimos el sistema <span class="text-green-500">como tú trabajas</span>
+          No es “leer imágenes”. Es <span class="text-green-500">operar</span> con ellas.
         </h2>
+
+        <!-- ✅ CAMBIO: copy más orientada a “empresa final / operación” -->
         <p class="text-gray-300 text-lg">
-          La clave no es “leer imágenes”: es convertir esa lectura en un flujo real dentro de un software.
-          Por eso entregamos plataforma completa (web/móvil/escritorio) con usuarios, roles, estados, histórico y analítica.
+          La lectura (OCR) es el inicio. Lo valioso es que esa lectura se convierta en un flujo real:
+          validación, aprobaciones, estados, histórico y KPIs dentro de un software que encaja con tu forma de trabajar.
         </p>
 
         <div class="mt-8 card-dark p-6 rounded-2xl border border-gray-800">
-          <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-2">Lo que incluye el servicio</div>
+          <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-2">Lo que entregamos</div>
           <div class="grid sm:grid-cols-2 gap-3 text-sm text-gray-200">
             <div>✓ Software (panel/app) incluido</div>
             <div>✓ IA de imagen (OCR + interpretación)</div>
             <div>✓ Reglas de negocio y validación</div>
+            <div>✓ Estados, aprobaciones y alertas</div>
             <div>✓ Dashboards, KPIs y reportes</div>
-            <div>✓ Alertas, estados y aprobaciones</div>
             <div>✓ Cuotas mensuales (0€ dev)</div>
           </div>
         </div>
@@ -316,54 +430,105 @@
     </div>
 
     <div class="grid lg:grid-cols-2 gap-10">
-      <div class="card-dark p-8 rounded-2xl border border-gray-800 relative overflow-hidden" style="background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('captura.png'); background-size: cover; background-position: center;">
+      <div class="card-dark p-8 rounded-2xl border border-gray-800 relative overflow-hidden"
+           style="background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('captura.png'); background-size: cover; background-position: center;">
         <div class="relative z-10">
-        <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-6">Flujo típico</div>
-        <ol class="relative border-s border-gray-800 ps-6 space-y-8">
-          <li class="relative">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
-            <h3 class="font-black uppercase">1) Captura</h3>
-            <p class="text-gray-400 text-sm mt-1">Móvil, escáner, email, carpeta, cámara… lo que ya usas.</p>
-          </li>
-          <li class="relative">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
-            <h3 class="font-black uppercase">2) Interpretación</h3>
-            <p class="text-gray-400 text-sm mt-1">OCR + detección + clasificación + extracción de campos.</p>
-          </li>
-          <li class="relative">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
-            <h3 class="font-black uppercase">3) Validación</h3>
-            <p class="text-gray-400 text-sm mt-1">Reglas, tolerancias, duplicidades y revisión opcional.</p>
-          </li>
-          <li class="relative">
-            <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
-            <h3 class="font-black uppercase">4) Control + analítica</h3>
-            <p class="text-gray-400 text-sm mt-1">Estados, alertas, paneles, KPIs, exportación o integración.</p>
-          </li>
-        </ol>
+          <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-6">Flujo típico</div>
+          <ol class="relative border-s border-gray-800 ps-6 space-y-8">
+            <li class="relative">
+              <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+              <h3 class="font-black uppercase">1) Captura</h3>
+              <p class="text-gray-400 text-sm mt-1">Móvil, escáner, email, carpeta, cámara… lo que ya usas.</p>
+            </li>
+            <li class="relative">
+              <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+              <h3 class="font-black uppercase">2) Interpretación</h3>
+              <p class="text-gray-400 text-sm mt-1">OCR + detección + clasificación + extracción de campos.</p>
+            </li>
+            <li class="relative">
+              <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+              <h3 class="font-black uppercase">3) Validación</h3>
+              <p class="text-gray-400 text-sm mt-1">Reglas, tolerancias, duplicidades y revisión opcional.</p>
+            </li>
+            <li class="relative">
+              <span class="absolute -start-3 top-0 w-6 h-6 rounded-full bg-green-500/20 border border-green-500"></span>
+              <h3 class="font-black uppercase">4) Control + analítica</h3>
+              <p class="text-gray-400 text-sm mt-1">Estados, alertas, paneles, KPIs, exportación o integración.</p>
+            </li>
+          </ol>
         </div>
       </div>
 
-      <div class="card-dark p-8 rounded-2xl border border-gray-800 relative overflow-hidden" style="background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('equipo.png'); background-size: cover; background-position: center;">
+      <div class="card-dark p-8 rounded-2xl border border-gray-800 relative overflow-hidden"
+           style="background-image: linear-gradient(rgba(18, 18, 18, 0.85), rgba(18, 18, 18, 0.85)), url('equipo.png'); background-size: cover; background-position: center;">
         <div class="relative z-10">
-        <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-4">Entregable real</div>
-        <h3 class="text-2xl md:text-3xl font-black uppercase mb-4">
-          Un software que tu equipo usa <span class="text-green-500">cada día</span>
-        </h3>
-        <p class="text-gray-300">
-          No es una demo: es un sistema con pantallas, roles, estados, histórico y analítica.
-          La IA vive dentro del software, y el software se adapta a tu proceso.
-        </p>
+          <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-4">Entregable real</div>
+          <h3 class="text-2xl md:text-3xl font-black uppercase mb-4">
+            Un software que tu equipo usa <span class="text-green-500">cada día</span>
+          </h3>
+          <p class="text-gray-300">
+            No es una demo: es un sistema con pantallas, roles, estados, histórico y analítica.
+            La IA vive dentro del software, y el software se adapta a tu proceso.
+          </p>
 
-        <div class="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-gray-200">
-          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Usuarios y permisos</span></div>
-          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Estados y flujos</span></div>
-          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Histórico y auditoría</span></div>
-          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Alertas y vencimientos</span></div>
-          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Paneles y KPIs</span></div>
-          <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Integraciones (opcional)</span></div>
+          <div class="mt-6 grid sm:grid-cols-2 gap-3 text-sm text-gray-200">
+            <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Usuarios y permisos</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Estados y flujos</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Histórico y auditoría</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Alertas y vencimientos</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Paneles y KPIs</span></div>
+            <div class="flex items-start gap-2"><span class="text-green-400 mt-1">✓</span><span>Integraciones (opcional)</span></div>
+          </div>
         </div>
-        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prueba" class="max-w-7xl mx-auto px-6 py-20 bg-gradient-to-b from-gray-900 to-black">
+    <div class="text-center mb-12">
+      <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Demo</div>
+      <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic">
+        Verlo en pantalla <span class="text-green-500">cambia todo</span>
+      </h2>
+      <p class="text-gray-300 text-lg max-w-3xl mx-auto">
+        
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <div class="card-dark p-6 rounded-2xl border border-gray-800">
+        <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-3">1) Documento</div>
+        <img src="captura_factura.png" alt="Ejemplo de factura" class="rounded-xl border border-gray-800 w-full h-56 object-cover bg-black/30" />
+        <p class="text-gray-400 text-xs mt-3">
+          Captura de documento: factura, ticket o albarán.
+        </p>
+      </div>
+
+      <div class="card-dark p-6 rounded-2xl border border-gray-800">
+        <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-3">2) Datos extraídos</div>
+        <img src="datos_extraidos.png" alt="Datos extraídos" class="rounded-xl border border-gray-800 w-full h-56 object-cover bg-black/30" />
+        <p class="text-gray-400 text-xs mt-3">
+          Campos, normalización, detección de proveedor y totales.
+        </p>
+      </div>
+
+      <div class="card-dark p-6 rounded-2xl border border-gray-800">
+        <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-3">3) Control y KPIs</div>
+        <img src="kpis.png" alt="Panel de KPIs" class="rounded-xl border border-gray-800 w-full h-56 object-cover bg-black/30" />
+        <p class="text-gray-400 text-xs mt-3">
+          Estados, alertas, aprobaciones y reporting por periodo.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 text-center">
+      <a href="#contacto"
+         class="inline-block bg-green-500 text-black px-8 py-4 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-base"
+         data-cta="demo_pedir_demo">
+        Quiero verlo con mi caso
+      </a>
+      <div class="text-xs text-gray-500 mt-3">
+        Ideal si nos envías 2–3 ejemplos (factura/ticket/albarán) para calibrar el caso.
       </div>
     </div>
   </section>
@@ -376,7 +541,7 @@
         Ejemplos (no límites): <span class="text-green-500">lo adaptamos a tu proceso</span>
       </h2>
       <p class="text-gray-300 text-lg max-w-3xl mx-auto">
-        Documentos, gastos, flota, controles, inventario, inspecciones, pantallas, incidencias…
+        Documentos, compras, inventario, inspecciones, incidencias…
         Si hay información visual, podemos convertirla en datos y operativa.
       </p>
     </div>
@@ -535,15 +700,23 @@
       </div>
       <div class="card-dark p-8 rounded-2xl">
         <h3 class="text-lg font-bold text-green-400 mb-2">¿Incluye el software donde se gestiona todo?</h3>
-        <p class="text-gray-400 text-sm">Sí. Entregamos la plataforma completa (web/móvil/escritorio) con roles y flujos.</p>
+        <p class="text-gray-400 text-sm">Sí. Entregamos la plataforma completa (web/móvil/escritorio) con roles, estados y auditoría.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-green-400 mb-2">¿Funciona con mi ERP o mi contabilidad?</h3>
+        <p class="text-gray-400 text-sm">Normalmente sí: exportación, APIs o integración a medida según el sistema que ya uses.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-green-400 mb-2">¿Qué pasa si la IA duda?</h3>
+        <p class="text-gray-400 text-sm">Definimos reglas y validaciones: cuando hay duda, se marca para revisión y queda trazado.</p>
+      </div>
+      <div class="card-dark p-8 rounded-2xl">
+        <h3 class="text-lg font-bold text-green-400 mb-2">¿Cuánto tarda en estar operativo?</h3>
+        <p class="text-gray-400 text-sm">Depende del alcance, pero el objetivo es entregar una primera automatización útil en pocas semanas.</p>
       </div>
       <div class="card-dark p-8 rounded-2xl">
         <h3 class="text-lg font-bold text-green-400 mb-2">¿De verdad no hay gastos de desarrollo?</h3>
-        <p class="text-gray-400 text-sm">Correcto: modelo por cuota mensual pequeña. El alcance se define por fases.</p>
-      </div>
-      <div class="card-dark p-8 rounded-2xl">
-        <h3 class="text-lg font-bold text-green-400 mb-2">¿Incluís facturación Veri*Factu?</h3>
-        <p class="text-gray-400 text-sm">Sí, como módulo opcional (integrado en el sistema y/o integrable con ERP).</p>
+        <p class="text-gray-400 text-sm">Correcto: modelo por cuota mensual. El alcance se define por fases.</p>
       </div>
     </div>
   </section>
@@ -563,9 +736,9 @@
     <div class="grid lg:grid-cols-2 gap-8 items-start">
       <!-- FORM -->
       <div class="card-dark p-8 md:p-12 rounded-2xl border border-gray-800">
-        <h3 class="text-2xl md:text-3xl font-black uppercase text-green-300 mb-4">Pide tu auditoría (15 min)</h3>
+        <h3 class="text-2xl md:text-3xl font-black uppercase text-green-300 mb-4">Pide tu auditoría</h3>
         <p class="text-gray-400 text-sm mb-6">
-          Te respondemos con una propuesta de alcance por fases y estimación de cuota.
+          Te respondemos con un plan por fases + estimación de ahorro y cuota.
         </p>
 
         <form id="leadForm" class="space-y-4">
@@ -594,7 +767,7 @@
             <label class="block text-xs uppercase tracking-widest text-gray-400 mb-2" for="proceso">¿Qué quieres automatizar?</label>
             <textarea id="proceso" name="proceso" rows="4" required
                       class="w-full bg-black/40 border border-gray-700 rounded-xl px-4 py-3 text-white outline-none focus:border-green-500"
-                      placeholder="Ej: leer facturas y validar proveedor/importe, estados, exportación a ERP..."></textarea>
+                      placeholder="Ej: 300 facturas/mes por email + tickets por móvil. Necesitamos extracción de campos, validación (duplicados/importe) y estados de aprobación."></textarea>
           </div>
 
           <button id="leadBtn" type="submit"
@@ -615,10 +788,10 @@
       <div class="card-dark p-8 md:p-12 rounded-2xl border-l-4 border-green-500">
         <h3 class="text-2xl md:text-3xl font-black uppercase text-green-300 mb-4">¿Listo para automatizar sin inversión inicial?</h3>
         <div class="space-y-4">
-          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Entradas (imágenes/voz) y calidad real</p></div>
-          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Salidas (panel, exportación, integración opcional)</p></div>
-          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Reglas de negocio, estados y validaciones</p></div>
-          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Fases + cuota estimada según alcance</p></div>
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Entradas: documentos (PDF/imagen) y/o voz</p></div>
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Salidas: panel, reportes, exportación o integración</p></div>
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Reglas, estados, validación y auditoría</p></div>
+          <div class="flex items-start gap-3"><span class="text-green-400 mt-1">✔</span><p class="text-gray-300">Plan por fases + cuota estimada según alcance</p></div>
         </div>
 
         <div class="mt-8 flex flex-col sm:flex-row gap-4">
@@ -634,6 +807,12 @@
             WhatsApp
           </a>
         </div>
+
+        <!-- ✅ NUEVO: checklist rápido para cualificar -->
+        <div class="mt-8 text-xs text-gray-500">
+          <div class="uppercase tracking-widest text-gray-400 mb-2">Para ir más rápido</div>
+          Envíanos 2–3 ejemplos (anónimos si quieres): una factura PDF, un ticket foto y/o un albarán.
+        </div>
       </div>
     </div>
   </section>
@@ -642,7 +821,7 @@
   <footer class="border-t border-gray-900 py-12 text-center">
     <a href="index.html" class="inline-block"><img src="logoo.png" alt="IAra" class="h-16 md:h-20 w-auto mx-auto" /></a>
     <p class="text-gray-500 text-xs tracking-widest uppercase mb-4 mt-4">
-      © 2026 – Software a medida con IA (Imagen + Voz) · 0€ desarrollo inicial · Cuotas mensuales.
+      © 2026 – Automatización documental con IA · 0€ desarrollo inicial · Cuotas mensuales.
     </p>
     <p class="text-gray-400 text-sm">
       <a href="mailto:hola@iarabot.es" class="text-green-400 hover:text-green-300 hover:underline">hola@iarabot.es</a> |
@@ -679,7 +858,7 @@
   </a>
 
   <script>
-    // ✅ EmailJS init (OBLIGATORIO: cambia TU_PUBLIC_KEY)
+    // ✅ EmailJS init
     (function(){
       emailjs.init("topNg38j9LTlBzeSQ");
     })();
@@ -711,6 +890,38 @@
       else banner.style.display = 'none';
     });
 
+    // Menú hamburguesa (móvil)
+    (function() {
+      var hamburger = document.getElementById('nav-hamburger');
+      var overlay = document.getElementById('nav-mobile-overlay');
+      var panel = document.getElementById('nav-mobile-panel');
+      function openMenu() {
+        hamburger.setAttribute('aria-expanded', 'true');
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        panel.classList.add('open');
+        panel.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeMenu() {
+        hamburger.setAttribute('aria-expanded', 'false');
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+      hamburger.addEventListener('click', function() {
+        if (hamburger.getAttribute('aria-expanded') === 'true') closeMenu();
+        else openMenu();
+      });
+      overlay.addEventListener('click', closeMenu);
+      document.getElementById('nav-mobile-close').addEventListener('click', closeMenu);
+      panel.querySelectorAll('.nav-mobile-link').forEach(function(link) {
+        link.addEventListener('click', closeMenu);
+      });
+    })();
+
     // Scroll effects
     window.addEventListener('scroll', function() {
       const logo = document.getElementById('logo');
@@ -737,7 +948,7 @@
       if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_name: cta });
     });
 
-    // ✅ Formulario -> EmailJS
+    // Formulario -> EmailJS
     document.getElementById('leadForm')?.addEventListener('submit', async function(e) {
       e.preventDefault();
 
@@ -760,17 +971,14 @@
       };
 
       try {
-        // ✅ Este es tu service ID (ya puesto)
         const SERVICE_ID = "service_p8clbak";
-
-        // 🔥 OBLIGATORIO: cambia esto por tu TEMPLATE_ID de EmailJS
         const TEMPLATE_ID = "template_8dl1y4o";
 
         await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
 
         if (typeof gtag === 'function') gtag('event', 'lead_submit', { method: 'emailjs' });
 
-        msg.textContent = "✅ Enviado. Te respondemos en breve.";
+        msg.textContent = "Enviado. Te respondemos en breve.";
         msg.className = "text-sm mt-2 text-green-400";
         msg.classList.remove('hidden');
         this.reset();
