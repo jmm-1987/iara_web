@@ -44,6 +44,7 @@
     .neon-border { border: 1px solid #39FF14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.18); }
     .card-dark { background: #121212; border: 1px solid #222; transition: 0.3s; }
     .card-dark:hover { border-color: #39FF14; transform: translateY(-5px); }
+    .marca-card { background: #0b0b0b; border: 2px solid #39FF14; border-radius: 1rem; padding: 1.5rem; box-shadow: 0 0 20px rgba(57, 255, 20, 0.08); }
 
     @keyframes fadeInLogo { from { opacity: 0; transform: translateX(-20px);} to { opacity: 1; transform: translateX(0);} }
     .logo-fade { transition: opacity 0.3s ease; }
@@ -172,7 +173,6 @@
         <a href="#especializacion" class="hover:text-green-400 transition">Especialización</a>
         <a href="#capas" class="hover:text-green-400 transition">Cómo funciona</a>
         <a href="#calculadora" class="hover:text-green-400 transition">Ahorro</a>
-        <a href="#prueba" class="hover:text-green-400 transition">Demo</a>
         <div class="nav-casos-wrap relative">
           <a href="#casos" class="hover:text-green-400 transition inline-flex items-center gap-1">Casos <span class="text-[10px]">▼</span></a>
           <div class="nav-dropdown absolute top-full right-0 mt-1 py-2 min-w-[220px] rounded-xl bg-black/95 border border-gray-700 shadow-xl z-50">
@@ -183,6 +183,7 @@
             <a href="casos-uso.html" class="block px-4 py-2.5 text-sm text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Casos de uso</a>
           </div>
         </div>
+        <a href="proyectos.html" class="hover:text-green-400 transition">Proyectos</a>
         <a href="#modelo" class="hover:text-green-400 transition">Opciones de pago</a>
         <a href="#faq" class="hover:text-green-400 transition">FAQ</a>
       </div>
@@ -208,8 +209,8 @@
       <a href="#especializacion" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Especialización</a>
       <a href="#capas" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Cómo funciona</a>
       <a href="#calculadora" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Ahorro</a>
-      <a href="#prueba" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Demo</a>
       <a href="#casos" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Casos</a>
+      <a href="proyectos.html" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Proyectos</a>
       <a href="automatizacion-facturas.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Facturas</a>
       <a href="automatizacion-gastos.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Gastos y tickets</a>
       <a href="agenda-por-voz.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Agenda por voz</a>
@@ -837,14 +838,17 @@
 
   <!-- Footer -->
   <footer class="border-t border-gray-900 py-12">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-      <div class="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-center sm:text-left">
-        <a href="https://www.linkedin.com/in/jonatan-murillo-348040336" target="_blank" rel="noopener" class="shrink-0 hover:opacity-90 transition" aria-label="LinkedIn de Jonatan Murillo">
-          <img src="yogrande.png" alt="Jonatan Murillo" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-green-500/50 shadow-lg ring-2 ring-gray-800" />
-        </a>
-        <div>
-          <p class="text-gray-500 text-xs uppercase tracking-widest mb-0.5">Creado por</p>
-          <p class="text-white font-black text-lg md:text-xl flex items-center justify-center sm:justify-start gap-2">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col gap-8 md:gap-12">
+      <div class="marca-card flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6">
+        <div class="flex flex-col items-center sm:items-start shrink-0">
+          <a href="https://www.linkedin.com/in/jonatan-murillo-348040336" target="_blank" rel="noopener" class="hover:opacity-90 transition" aria-label="LinkedIn de Jonatan Murillo">
+            <img src="yogrande.png" alt="Jonatan Murillo" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-2 ring-green-500 shadow-lg" />
+          </a>
+          <span class="mt-2 px-3 py-1 rounded-full bg-green-500 text-white text-xs font-bold uppercase tracking-wider">IAra</span>
+        </div>
+        <div class="text-center sm:text-left flex-1">
+          <p class="text-gray-500 text-xs uppercase tracking-widest mb-1">Detrás de la marca</p>
+          <p class="text-white font-black text-lg md:text-xl flex items-center justify-center sm:justify-start gap-2 flex-wrap">
             Jonatan Murillo
             <a href="https://www.linkedin.com/in/jonatan-murillo-348040336" target="_blank" rel="noopener" class="text-[#0A66C2] hover:opacity-80 transition inline-flex" aria-label="LinkedIn de Jonatan Murillo">
               <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -852,11 +856,10 @@
               </svg>
             </a>
           </p>
-          <p class="text-gray-400 text-sm">Automatización documental con IA y desarrollos personalizados</p>
+          <p class="text-gray-300 text-sm mt-1">Diseño sistemas con IA que sustituyen horas tecleando por decisiones con datos. Sin humo, con entregables reales.</p>
         </div>
       </div>
-
-      <div class="text-center md:text-right">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 text-center md:text-right">
         <a href="index.html" class="inline-block"><img src="logoo.png" alt="IAra" class="h-14 md:h-16 w-auto mx-auto md:ml-auto md:mr-0" /></a>
         <p class="text-gray-500 text-xs tracking-widest uppercase mt-3 mb-1">
           © 2026
