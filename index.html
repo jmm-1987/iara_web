@@ -225,7 +225,7 @@
   <!-- HERO -->
   <header class="relative min-h-screen overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <video id="portadaVideo" class="w-full h-full object-cover" muted loop playsinline>
+      <video id="portadaVideo" class="w-full h-full object-cover" muted playsinline>
         <source src="Video_Listo.mp4" type="video/mp4">
         Tu navegador no soporta el elemento de video.
       </video>
@@ -875,10 +875,38 @@
     window.addEventListener('DOMContentLoaded', function() {
       const portadaVideo = document.getElementById('portadaVideo');
       const videoOverlay = document.getElementById('videoOverlay');
+      if (!portadaVideo) return;
+
+      // Guardamos el vídeo inicial para poder volver a su primer fotograma
+      const PRIMER_VIDEO_SRC = 'Video_Listo.mp4';
+
+      // Primer fade + reproducción del primer vídeo
       setTimeout(function() {
         if (videoOverlay) videoOverlay.style.opacity = '0';
-        if (portadaVideo) portadaVideo.play().catch(()=>{});
+        portadaVideo.play().catch(()=>{});
       }, 800);
+
+      // Cuando termine el primer vídeo, reproducir videoimagenes.mp4 una vez
+      portadaVideo.addEventListener('ended', function handleFirstEnd() {
+        portadaVideo.removeEventListener('ended', handleFirstEnd);
+
+        portadaVideo.src = 'videoimagenes.mp4';
+        portadaVideo.load();
+        portadaVideo.play().catch(()=>{});
+
+        // Cuando termine el segundo vídeo, volvemos al primer fotograma del primer vídeo
+        portadaVideo.addEventListener('ended', function handleSecondEnd() {
+          portadaVideo.removeEventListener('ended', handleSecondEnd);
+          portadaVideo.src = PRIMER_VIDEO_SRC;
+          portadaVideo.load();
+          const setFirstFrame = function() {
+            try { portadaVideo.currentTime = 0; } catch(e) {}
+            portadaVideo.removeEventListener('loadedmetadata', setFirstFrame);
+          };
+          portadaVideo.addEventListener('loadedmetadata', setFirstFrame);
+          // No reproducimos de nuevo: se queda estático en el primer fotograma
+        });
+      });
     });
 
     // Mostrar banner cookies
