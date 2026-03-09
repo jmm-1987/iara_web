@@ -172,7 +172,7 @@
       <div class="hidden md:flex gap-8 text-sm font-medium uppercase tracking-widest items-center">
         <a href="#especializacion" class="hover:text-green-400 transition">Especialización</a>
         <a href="#capas" class="hover:text-green-400 transition">Cómo funciona</a>
-        <a href="#calculadora" class="hover:text-green-400 transition">Ahorro</a>
+          <a href="#personalizacion" class="hover:text-green-400 transition">Personalización</a>
         <div class="nav-casos-wrap relative">
           <a href="#casos" class="hover:text-green-400 transition inline-flex items-center gap-1">Casos <span class="text-[10px]">▼</span></a>
           <div class="nav-dropdown absolute top-full right-0 mt-1 py-2 min-w-[220px] rounded-xl bg-black/95 border border-gray-700 shadow-xl z-50">
@@ -208,7 +208,7 @@
       <a href="#" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Inicio</a>
       <a href="#especializacion" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Especialización</a>
       <a href="#capas" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Cómo funciona</a>
-      <a href="#calculadora" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Ahorro</a>
+      <a href="#personalizacion" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Personalización</a>
       <a href="#casos" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Casos</a>
       <a href="proyectos.html" class="nav-mobile-link py-3 px-3 rounded-lg text-gray-200 hover:bg-green-500/20 hover:text-green-400 transition">Proyectos</a>
       <a href="automatizacion-facturas.html" class="nav-mobile-link py-2 pl-6 pr-3 rounded-lg text-gray-400 hover:text-green-400 transition text-xs">Facturas</a>
@@ -249,10 +249,10 @@
           </div>
 
           <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto shrink-0">
-            <a href="#calculadora"
+            <a href="#contacto"
                class="w-full md:w-auto bg-green-500 text-black px-3 md:px-5 py-2 md:py-2.5 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-[10px] md:text-xs text-center"
-               data-cta="hero_calcular_coste">
-              Calcular coste
+               data-cta="hero_auditoria">
+              Auditoría gratis
             </a>
 
             <a href="#prueba"
@@ -278,84 +278,6 @@
       </div>
     </div>
   </header>
-
-  <!-- CALCULADORA (coste hora ref. 11,5€) -->
-  <section id="calculadora" class="sec-green-tint max-w-7xl mx-auto px-6 py-16 md:py-20">
-    <div class="grid lg:grid-cols-2 gap-10 items-start">
-      <div>
-        <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">
-          Calculadora
-        </div>
-        <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic leading-tight">
-          Calcula el <span class="text-green-500">coste real</span> de teclear
-        </h2>
-        <p class="text-gray-300 text-lg max-w-xl">
-          ¿Cuántas horas al día dedicas (o dedica tu equipo) a introducir datos? Selecciona y ves el coste diario, mensual y anual.
-        </p>
-  
-        <div class="mt-6 card-dark p-6 rounded-2xl border border-gray-800">
-          <div class="text-xs uppercase tracking-widest text-green-400 font-bold mb-2">Qué incluye</div>
-          <div class="text-sm text-gray-200 grid sm:grid-cols-2 gap-2">
-            <div>✓ Abrir / descargar</div>
-            <div>✓ Leer y localizar datos</div>
-            <div>✓ Teclear en ERP/Excel</div>
-            <div>✓ Validar y corregir</div>
-          </div>
-        </div>
-      </div>
-  
-      <div class="card-dark rounded-2xl p-8 md:p-10 border border-gray-800">
-        <h3 class="text-2xl font-black uppercase text-green-300 mb-2">Calculadora por horas</h3>
-        <p class="text-gray-400 text-sm mb-4">Horas al día introduciendo datos:</p>
-  
-        <div class="flex flex-wrap items-center gap-2 mb-6">
-          <input id="calc_hours" type="hidden" value="1">
-          <button type="button" data-hours-preset="1"
-            class="calc-hours-btn calc-selected">1 h</button>
-          <button type="button" data-hours-preset="2"
-            class="calc-hours-btn">2 h</button>
-          <button type="button" data-hours-preset="3"
-            class="calc-hours-btn">3 h</button>
-          <button type="button" data-hours-preset="4"
-            class="calc-hours-btn">4 h</button>
-        </div>
-  
-        <div class="space-y-3">
-          <div class="flex justify-between items-center py-2 border-b border-gray-800">
-            <span class="text-gray-400 text-sm">Coste diario</span>
-            <span id="out_diario" class="text-xl font-black text-green-400">—</span>
-          </div>
-          <div class="flex justify-between items-center py-2 border-b border-gray-800">
-            <span class="text-gray-400 text-sm">Coste mensual</span>
-            <span id="out_mensual" class="text-xl font-black text-green-400">—</span>
-          </div>
-          <div class="flex justify-between items-center py-2">
-            <span class="text-gray-400 text-sm">Coste anual</span>
-            <span id="out_anual" class="text-xl font-black text-green-400">—</span>
-          </div>
-        </div>
-  
-        <p class="mt-4 text-[10px] text-gray-500">* 11,5€/hora y 20 días laborables/mes como referencia. En auditoría lo ajustamos.</p>
-
-        <div class="mt-6 flex flex-col sm:flex-row gap-3">
-          <a href="#contacto"
-             class="w-full bg-green-500 text-black px-6 py-3 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-sm text-center"
-             data-cta="calc_pedir_auditoria">
-            Pedir auditoría
-          </a>
-          <a href="#prueba"
-             class="w-full border-2 border-green-500 text-green-400 px-6 py-3 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-sm text-center"
-             data-cta="calc_ver_demo">
-            Ver demo
-          </a>
-        </div>
-  
-        <div class="mt-4 text-xs text-gray-500">
-          Consejo: si puedes, envíanos 2–3 ejemplos (anonimizados si quieres) para afinar reglas.
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ESPECIALIZACIÓN -->
   <section id="especializacion" class="sec-gradient max-w-7xl mx-auto px-6 py-20">
@@ -643,6 +565,40 @@
           <h3 class="text-xl font-bold uppercase text-green-400">Personalizado</h3>
         </div>
         <p class="text-gray-400 text-sm">Si tu equipo “mira y decide”, lo convertimos en sistema: reglas, estados, control y KPIs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIS PROYECTOS -->
+  <section id="mis-proyectos" class="sec-lighter max-w-7xl mx-auto px-6 py-20">
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="inline-block px-4 py-1 border border-green-500 text-green-500 text-xs font-bold uppercase tracking-widest mb-4">Mis proyectos</div>
+        <h2 class="text-3xl md:text-5xl font-black mb-6 uppercase italic leading-tight">
+          Producto real, <span class="text-green-500">proyectos reales</span>
+        </h2>
+        <p class="text-gray-300 text-lg max-w-xl">
+          Aquí puedes ver algunos de mis últimos trabajos: software a medida, automatizaciones y sistemas en producción.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3">
+          <a href="proyectos.html"
+             class="w-full sm:w-auto bg-green-500 text-black px-8 py-4 rounded-lg font-black hover:bg-white transition uppercase tracking-wider text-base text-center"
+             data-cta="home_mis_proyectos">
+            Ver proyectos
+          </a>
+          <a href="#contacto"
+             class="w-full sm:w-auto border-2 border-green-500 text-green-300 px-8 py-4 rounded-lg font-bold hover:bg-green-500/10 transition uppercase tracking-wider text-base text-center"
+             data-cta="home_proyectos_contacto">
+            Hablemos de tu caso
+          </a>
+        </div>
+      </div>
+
+      <div class="card-dark p-4 md:p-6 rounded-2xl border border-gray-800">
+        <a href="proyectos.html" data-cta="home_mis_proyectos_imagen">
+          <img src="proyectos.png" alt="Mis proyectos" class="rounded-xl border border-gray-800 w-full h-72 md:h-[360px] object-cover bg-black/30 hover:opacity-95 transition" />
+        </a>
       </div>
     </div>
   </section>
@@ -991,69 +947,21 @@
       if (typeof gtag === 'function') gtag('event', 'cta_click', { cta_name: cta });
     });
 
-    // Calculadora (coste hora ref. 11,5€)
-    (function () {
-      var COSTE_HORA = 11.5;
-
-      function formatEUR(n) {
-        try {
-          return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(n);
-        } catch (e) {
-          return (Math.round(n)).toString() + " €";
-        }
+    // Secciones (hash) -> evento en GA4
+    (function() {
+      function getSection() {
+        const h = window.location.hash || "";
+        if (!h || h.length < 2) return null;
+        return h.slice(1);
       }
-
-      var DIAS_MES = 20;
-
-      function updateBtnStates(containerClass, valueAttr, currentVal) {
-        var btns = document.querySelectorAll('.' + containerClass);
-        for (var i = 0; i < btns.length; i++) {
-          var isSelected = String(btns[i].getAttribute(valueAttr)) === String(currentVal);
-          btns[i].classList.toggle('calc-selected', isSelected);
-        }
+      function trackSectionView() {
+        const section = getSection();
+        if (!section) return;
+        if (typeof gtag === 'function') gtag('event', 'section_view', { section_name: section });
       }
-
-      function recalc() {
-        var hoursEl = document.getElementById('calc_hours');
-        if (!hoursEl) return;
-
-        var hoursPerDay = Math.max(1, Math.min(4, parseInt(hoursEl.value, 10) || 1));
-        var costDaily = hoursPerDay * COSTE_HORA;
-        var costMonthly = costDaily * DIAS_MES;
-        var costAnnual = costMonthly * 12;
-
-        var outDiario = document.getElementById('out_diario');
-        var outMensual = document.getElementById('out_mensual');
-        var outAnual = document.getElementById('out_anual');
-
-        if (outDiario) outDiario.textContent = formatEUR(costDaily);
-        if (outMensual) outMensual.textContent = formatEUR(costMonthly);
-        if (outAnual) outAnual.textContent = formatEUR(costAnnual);
-      }
-
-      function initCalc() {
-        var hoursEl = document.getElementById('calc_hours');
-        if (!hoursEl) return;
-
-        var btns = document.querySelectorAll('[data-hours-preset]');
-        for (var i = 0; i < btns.length; i++) {
-          btns[i].addEventListener('click', function () {
-            var v = parseInt(this.getAttribute('data-hours-preset'), 10) || 1;
-            hoursEl.value = Math.max(1, Math.min(4, v));
-            updateBtnStates('calc-hours-btn', 'data-hours-preset', hoursEl.value);
-            recalc();
-          });
-        }
-
-        updateBtnStates('calc-hours-btn', 'data-hours-preset', hoursEl.value);
-        recalc();
-      }
-
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCalc);
-      } else {
-        initCalc();
-      }
+      window.addEventListener('hashchange', trackSectionView);
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', trackSectionView);
+      else trackSectionView();
     })();
 
     // Formulario -> EmailJS (concatena volumen dentro del texto libre)
