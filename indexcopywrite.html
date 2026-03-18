@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IAraBot | Automatización documental</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #07110a;
+      --bg-2: #0d1710;
+      --bg-3: #111d15;
+      --bg-4: #0a0f0b;
+      --card: rgba(255,255,255,0.05);
+      --card-2: rgba(255,255,255,0.07);
+      --line: rgba(255,255,255,0.08);
+      --text: #f7faf7;
+      --muted: rgba(235, 241, 236, 0.84);
+      --muted-2: rgba(235, 241, 236, 0.58);
+      /* Verde menos intenso (más “premium”) */
+      --accent: #22c55e;
+      --accent-soft: #bbf7d0;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(57,255,20,0.08), transparent 16%),
+        radial-gradient(circle at 80% 8%, rgba(57,255,20,0.05), transparent 12%),
+        linear-gradient(180deg, #07110a, #0a120c);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 92px 0;
+      position: relative;
+    }
+
+    .section-alt {
+      background:
+        radial-gradient(circle at 15% 10%, rgba(57,255,20,0.05), transparent 20%),
+        linear-gradient(180deg, var(--bg-2), var(--bg-3));
+    }
+
+    .section-dark {
+      background:
+        radial-gradient(circle at 85% 15%, rgba(57,255,20,0.04), transparent 16%),
+        linear-gradient(180deg, var(--bg-4), #060906);
+    }
+
+    .section-soft {
+      background:
+        radial-gradient(circle at 50% 0%, rgba(57,255,20,0.06), transparent 22%),
+        linear-gradient(180deg, #101814, #0c110e);
+    }
+
+    .section-head {
+      max-width: 860px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 14px;
+      border: 1px solid rgba(57,255,20,0.12);
+      border-radius: 999px;
+      background: rgba(57,255,20,0.06);
+      color: var(--accent-soft);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.015);
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(57,255,20,0.11);
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      letter-spacing: -0.045em;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6.4vw, 5.4rem);
+      font-weight: 900;
+      line-height: 0.98;
+      text-transform: uppercase;
+      max-width: 13.5ch;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 0.98;
+      text-transform: uppercase;
+      max-width: 14ch;
+    }
+
+    h3 {
+      font-size: clamp(1.08rem, 1.5vw, 1.35rem);
+      font-weight: 800;
+      line-height: 1.08;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 1rem;
+    }
+
+    .lead {
+      font-size: clamp(1.02rem, 1.2vw, 1.14rem);
+      max-width: 62ch;
+    }
+
+    .strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    #logo {
+      position: fixed;
+      z-index: 60;
+      left: 16px;
+      top: 16px;
+    }
+
+    #logo img {
+      height: 34px;
+      width: auto;
+      opacity: 0.92;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.18));
+    }
+
+    .hero {
+      min-height: auto;
+      display: flex;
+      align-items: center;
+      padding: 22px 0 64px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(57,255,20,0.06), transparent 18%),
+        linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-copy {
+      max-width: 820px;
+    }
+
+    .hero-topmark {
+      height: 100px;
+      width: auto;
+      opacity: 1;
+      margin-bottom: 2px;
+    }
+
+    .hero-copy .lead + .lead {
+      margin-top: 14px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+      margin-bottom: 20px;
+    }
+
+    .hero-micro {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      color: var(--muted-2);
+      font-size: 13px;
+    }
+
+    .hero-micro span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-micro i {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    /* Hero micro-items: entrada secuencial izq->der */
+    .hero-micro span {
+      opacity: 0;
+      transform: translateY(6px);
+      animation: microIn 900ms cubic-bezier(.21,.96,.32,1) forwards;
+    }
+    .hero-micro span:nth-child(1) { animation-delay: 0.20s; }
+    .hero-micro span:nth-child(2) { animation-delay: 0.55s; }
+    .hero-micro span:nth-child(3) { animation-delay: 0.90s; }
+    .hero-micro span:nth-child(4) { animation-delay: 1.25s; }
+    .hero-micro span:nth-child(5) { animation-delay: 1.60s; }
+    .hero-micro span:nth-child(6) { animation-delay: 1.95s; }
+
+    @keyframes microIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .founder-card {
+      margin-top: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .founder-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .founder-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 2px solid rgba(34,197,94,0.55);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      flex-shrink: 0;
+    }
+    .founder-kicker {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+      margin-bottom: 3px;
+    }
+    .founder-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 28ch;
+    }
+    .founder-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-top: 4px;
+      max-width: 64ch;
+    }
+    .founder-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.18);
+      color: #0A66C2;
+      transition: opacity .2s ease, transform .2s ease, border-color .2s ease;
+      flex-shrink: 0;
+    }
+    .founder-link:hover { opacity: 0.9; transform: translateY(-1px); border-color: rgba(34,197,94,0.22); }
+
+    .hero-card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
+        radial-gradient(circle at 90% 0%, rgba(57,255,20,0.08), transparent 25%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .mock-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .mock-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mock-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.18);
+    }
+
+    .stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .stack-item {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .stack-item small {
+      display: block;
+      color: var(--accent-soft);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .stack-item strong {
+      display: block;
+      font-size: 1rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .stack-item p {
+      font-size: 0.94rem;
+      line-height: 1.7;
+    }
+
+    /* Hero SaaS visual (columna derecha) */
+    .hero-visual {
+      position: relative;
+      isolation: isolate;
+    }
+    .hero-owl {
+      position: absolute;
+      top: -18px;
+      right: -10px;
+      width: 130px;
+      height: auto;
+      z-index: 3;
+      filter: drop-shadow(0 14px 28px rgba(0,0,0,0.35)) drop-shadow(0 0 18px rgba(34,197,94,0.18));
+      pointer-events: none;
+    }
+    .hero-owl-glow {
+      position: absolute;
+      top: 6px;
+      right: 10px;
+      width: 148px;
+      height: 148px;
+      border-radius: 999px;
+      background: radial-gradient(circle at center, rgba(34,197,94,0.20), rgba(34,197,94,0) 65%);
+      filter: blur(10px);
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .saas-panel {
+      position: relative;
+      z-index: 1;
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        linear-gradient(180deg, rgba(12,12,12,0.78), rgba(10,10,10,0.58)),
+        radial-gradient(circle at 90% 0%, rgba(34,197,94,0.12), transparent 38%);
+      box-shadow:
+        0 24px 80px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.04);
+      backdrop-filter: blur(14px);
+      overflow: hidden;
+    }
+    .saas-panel::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(circle at 10% 0%, rgba(34,197,94,0.10), transparent 40%);
+      pointer-events: none;
+      opacity: 0.7;
+    }
+
+    .saas-head {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .saas-head-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .saas-head-title {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(229,231,235,0.72);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .saas-live {
+      color: rgba(187,247,208,0.92);
+      text-shadow: 0 0 18px rgba(34,197,94,0.22);
+      animation: liveText 1.35s ease-in-out infinite;
+    }
+    .saas-pill {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(187,247,208,0.92);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(34,197,94,0.35);
+      background: rgba(34,197,94,0.10);
+    }
+    .saas-dots {
+      display: flex;
+      gap: 7px;
+      opacity: 0.85;
+    }
+    .saas-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      animation: liveDot 1.05s ease-in-out infinite;
+    }
+    .saas-dots span:nth-child(2) { animation-delay: 0.18s; }
+    .saas-dots span:nth-child(3) { animation-delay: 0.36s; }
+
+    @keyframes liveDot {
+      0%, 60%, 100% {
+        background: rgba(255,255,255,0.14);
+        box-shadow: none;
+        transform: translateY(0);
+      }
+      25% {
+        background: rgba(34,197,94,0.95);
+        box-shadow: 0 0 0 6px rgba(34,197,94,0.12), 0 0 18px rgba(34,197,94,0.18);
+        transform: translateY(-1px);
+      }
+    }
+
+    @keyframes liveText {
+      0%, 100% { opacity: 0.88; text-shadow: 0 0 10px rgba(34,197,94,0.16); }
+      50% { opacity: 1; text-shadow: 0 0 22px rgba(34,197,94,0.26); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .saas-live, .saas-dots span { animation: none !important; }
+      .flow-badge-in { animation: none !important; }
+      .flow-badge-ia { animation: none !important; }
+      .flow-badge-ok { animation: none !important; }
+      .hero-micro span { animation: none !important; opacity: 1 !important; transform: none !important; }
+    }
+
+    .saas-flow {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .flow-block {
+      border-radius: 20px;
+      padding: 16px 16px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      position: relative;
+      overflow: hidden;
+    }
+    .flow-block::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.70), rgba(0,0,0,0.55));
+      pointer-events: none;
+      z-index: 0;
+    }
+    .flow-block::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0%, rgba(34,197,94,0.10), transparent 48%);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.8;
+    }
+    .flow-block > * { position: relative; z-index: 1; }
+
+    .flow-bg-entrada { background-image: url('captura.png'); background-size: cover; background-position: center; }
+    .flow-bg-procesado { background-image: url('datos_extraidos.png'); background-size: cover; background-position: center; }
+    .flow-bg-resultado { background-image: url('panelkpis.png'); background-size: cover; background-position: center; }
+    .flow-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .flow-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 900;
+      color: rgba(255,255,255,0.92);
+    }
+    .flow-badge {
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 10px;
+      border-radius: 999px;
+      color: rgba(255,255,255,0.90);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+    }
+    .flow-badge-in {
+      color: rgba(255,255,255,0.92);
+      border-color: rgba(255, 92, 61, 0.55);
+      background: linear-gradient(180deg, rgba(255, 92, 61, 0.22), rgba(255, 139, 61, 0.10));
+      box-shadow: 0 0 0 1px rgba(255, 92, 61, 0.10), 0 0 22px rgba(255, 92, 61, 0.16);
+      animation: badgeBlink 0.95s ease-in-out infinite;
+    }
+    .flow-badge-ia {
+      color: rgba(10, 10, 10, 0.92);
+      border-color: rgba(245, 158, 11, 0.55);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.90), rgba(163, 230, 53, 0.72));
+      box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.12), 0 0 18px rgba(163, 230, 53, 0.10);
+      animation: badgePulse 1.25s ease-in-out infinite;
+      animation-delay: 0.12s;
+    }
+    .flow-badge-ok {
+      color: rgba(0, 0, 0, 0.90);
+      border-color: rgba(34, 197, 94, 0.55);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.92), rgba(16, 185, 129, 0.72));
+      box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.12), 0 0 18px rgba(34, 197, 94, 0.12);
+      animation: badgePulse 1.35s ease-in-out infinite;
+      animation-delay: 0.24s;
+    }
+
+    @keyframes badgeBlink {
+      0%, 100% { opacity: 0.65; filter: saturate(1); }
+      50% { opacity: 1; filter: saturate(1.2); }
+    }
+    @keyframes badgePulse {
+      0%, 100% { transform: translateY(0); filter: saturate(1); }
+      50% { transform: translateY(-1px); filter: saturate(1.15); }
+    }
+    .flow-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .flow-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(0,0,0,0.18);
+    }
+    .flow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.85);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.10);
+      margin-top: 4px;
+      flex-shrink: 0;
+    }
+    .flow-text {
+      font-size: 12.5px;
+      line-height: 1.35;
+      color: rgba(229,231,235,0.80);
+    }
+    .flow-text strong {
+      color: rgba(255,255,255,0.92);
+      font-weight: 800;
+    }
+
+    .saas-metrics {
+      position: relative;
+      z-index: 2;
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .metric {
+      border-radius: 18px;
+      padding: 12px 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .metric strong {
+      font-size: 16px;
+      color: rgba(255,255,255,0.96);
+    }
+    .metric span {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(229,231,235,0.62);
+      white-space: nowrap;
+    }
+
+    @media (max-width: 980px) {
+      .saas-flow { grid-template-columns: 1fr; }
+      .saas-metrics { grid-template-columns: 1fr; }
+      .hero-owl { right: 6px; top: -14px; width: 96px; }
+      .hero-owl-glow { right: 14px; top: 2px; width: 112px; height: 112px; }
+      .saas-panel { padding: 18px; }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 18px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease;
+      min-height: 48px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 10px 30px rgba(34,197,94,0.16);
+    }
+
+    .btn-primary:hover {
+      background: #fff;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: rgba(34,197,94,0.70);
+      color: var(--accent-soft);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(34,197,94,0.08);
+    }
+
+    /* Botón Telegram: fondo más transparente para no tapar logos */
+    .btn-telegram {
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-color: rgba(34,197,94,0.45);
+      box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+    }
+    .btn-telegram:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(34,197,94,0.60);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .story-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.028));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      transition: transform .24s ease, border-color .24s ease, background .24s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(57,255,20,0.45);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    }
+
+    /* En secciones con imagen de fondo: cards más transparentes */
+    .section-alt .card {
+      background: rgba(0,0,0,0.18);
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.18);
+    }
+    .section-alt .card:hover {
+      background: rgba(0,0,0,0.22);
+      border-color: rgba(34,197,94,0.28);
+    }
+
+    .card p {
+      margin-top: 10px;
+      font-size: 0.97rem;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      margin-bottom: 14px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(57,255,20,0.14);
+      color: var(--accent-soft);
+      background: rgba(57,255,20,0.05);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .quote {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+        radial-gradient(circle at 50% 0%, rgba(57,255,20,0.07), transparent 30%);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 34px 26px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .quote p {
+      font-size: clamp(1.18rem, 2.2vw, 1.75rem);
+      line-height: 1.45;
+      color: var(--text);
+      max-width: 38ch;
+      margin: 0 auto;
+    }
+
+    .step {
+      min-height: 210px;
+    }
+
+    .step-no {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #000;
+      font-weight: 900;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .benefit-card {
+      min-height: 220px;
+    }
+
+    .list {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+    }
+
+    .list li {
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--accent-soft);
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(255,255,255,0.025);
+    }
+
+    .dual-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .terminal {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: #0d0f0d;
+      margin-top: 18px;
+    }
+
+    .terminal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .terminal-body {
+      padding: 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px;
+      color: #e8e8e8;
+      line-height: 1.8;
+    }
+
+    .terminal-line {
+      display: flex;
+      gap: 10px;
+      white-space: pre-wrap;
+    }
+
+    .prompt {
+      color: var(--accent);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.22rem;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .cta-box {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
+        radial-gradient(circle at 20% 0%, rgba(57,255,20,0.06), transparent 26%);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-copy {
+      max-width: 560px;
+    }
+
+    .cta-copy p + p {
+      margin-top: 12px;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.09);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 15px 16px;
+      font: inherit;
+      outline: none;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #98a2b3;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 34px 20px 42px;
+      color: #9ca3af;
+      border-top: 1px solid #151515;
+      font-size: 14px;
+      background: linear-gradient(180deg, #090b09, #050605);
+    }
+
+    .footer-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .footer-logos img:first-child {
+      height: 15px;
+      width: auto;
+      opacity: 0.88;
+    }
+
+    .footer-logos img:last-child {
+      height: 22px;
+      width: auto;
+      opacity: 0.95;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .dual-panel,
+      .cta-box,
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-card {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(var(--max), calc(100% - 22px));
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+
+      .hero {
+        padding: 18px 0 42px;
+      }
+
+      h1 {
+        font-size: clamp(2.4rem, 9.2vw, 3.5rem);
+        max-width: 100%;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+
+      h2 {
+        font-size: clamp(1.75rem, 7vw, 2.35rem);
+        max-width: 100%;
+      }
+
+      p,
+      .lead {
+        font-size: 0.98rem;
+        line-height: 1.7;
+      }
+
+      #logo img {
+        height: 28px;
+      }
+
+      .hero-topmark {
+        height: 80px;
+        margin-bottom: 0px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      .btn {
+        width: 100%;
+        min-height: 48px;
+        font-size: 11px;
+      }
+
+      .hero-card,
+      .card,
+      .quote,
+      .cta-box {
+        padding: 18px;
+        border-radius: 20px;
+      }
+
+      .hero-micro {
+        gap: 10px 14px;
+        font-size: 12px;
+      }
+
+      .stack-item {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <img src="logo_solo_texto.png" alt="IAra" class="hero-topmark" />
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Automatización documental para empresas
+        </div>
+
+        <h1>Tus documentos no deberían depender de que alguien los abra y los teclee.</h1>
+
+        <p class="lead" style="margin-top:22px;">
+          Si tu equipo, o tú, dedicáis horas a revisar facturas, tickets, albaranes, partes de trabajo, documentos técnicos… o cualquier documento que llega por email, en foto o en PDF, no tenéis un sistema: tenéis trabajo manual disfrazado de rutina.
+        </p>
+
+        <p class="lead">
+          <span class="strong">IAraBot convierte ese caos en un flujo estable.</span>
+          Entra una imagen. Sale información útil. Sale control.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
+             class="btn btn-secondary btn-telegram"
+             style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+            <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
+            <span style="flex:1; text-align:center;">Seguir canal de Telegram</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
+              <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero-micro">
+          <span><i></i>Email</span>
+          <span><i></i>Reenvío</span>
+          <span><i></i>Telegram</span>
+          <span><i></i>Conceptos guardados</span>
+          <span><i></i>Vencimientos</span>
+          <span><i></i>Avisos</span>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-owl-glow"></div>
+        <img class="hero-owl" src="buhosolo.png" alt="IAraBot" />
+
+        <div class="saas-panel" aria-label="Panel de control IAraBot">
+          <div class="saas-head">
+            <div class="saas-head-left">
+              <div class="saas-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+              <div class="saas-head-title saas-live">En vivo</div>
+            </div>
+            <!-- pill derecha eliminado para no tapar el búho -->
+          </div>
+
+          <div class="saas-flow">
+            <div class="flow-block flow-bg-entrada">
+              <div class="flow-kicker">
+                <div class="flow-title">Entrada</div>
+                <div class="flow-badge flow-badge-in">IN</div>
+              </div>
+              <ul class="flow-list">
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text"><strong>Email</strong> recibido</span></li>
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text">Foto por <strong>Telegram</strong></span></li>
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text"><strong>Reenvío</strong> automático</span></li>
+              </ul>
+            </div>
+
+            <div class="flow-block flow-bg-procesado">
+              <div class="flow-kicker">
+                <div class="flow-title">Procesado</div>
+                <div class="flow-badge flow-badge-ia">IA</div>
+              </div>
+              <ul class="flow-list">
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text"><strong>Extracción</strong> de datos</span></li>
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text"><strong>Conceptos</strong> detectados</span></li>
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text"><strong>Validación</strong> aplicada</span></li>
+              </ul>
+            </div>
+
+            <div class="flow-block flow-bg-resultado">
+              <div class="flow-kicker">
+                <div class="flow-title">Resultado</div>
+                <div class="flow-badge flow-badge-ok">OK</div>
+              </div>
+              <ul class="flow-list">
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text"><strong>KPIs</strong> actualizados</span></li>
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text">Aviso de <strong>vencimiento</strong> enviado</span></li>
+                <li class="flow-item"><span class="flow-dot"></span><span class="flow-text">Documento <strong>indexado</strong></span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="saas-metrics" aria-label="Métricas rápidas">
+            <div class="metric"><strong id="metricDocsHoy">24</strong><span>docs hoy</span></div>
+            <div class="metric"><strong id="metricVencimientos">3</strong><span>vencimientos</span></div>
+            <div class="metric"><strong>OK</strong><span>búsqueda lista</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" style="background-image: linear-gradient(rgba(11,11,11,0.50), rgba(11,11,11,0.50)), url('desastre.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="container">
+      <div class="section-head">
+        <h2>Una bandeja de entrada no es un proceso.</h2>
+      </div>
+
+      <div class="story-grid">
+        <div class="card">
+          <p>
+            Que los documentos lleguen no significa que el sistema funcione. Significa que alguien tiene que abrirlos, revisarlos, decidir qué hacer con ellos, sacar los datos y pasarlos a otro sitio.
+          </p>
+        </div>
+
+        <div class="card">
+          <p>
+            Y ese “alguien” puede ser una persona de tu equipo. O puedes ser tú. Porque en muchas empresas no solo pierde tiempo administración. También lo pierde el dueño, el gerente o quien termina resolviendo el caos.
+          </p>
+        </div>
+
+        <div class="card">
+          <p class="strong">
+            Eso no es control. Eso es dependencia manual.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head">
+        <h2>El problema no es la factura. Es todo lo que pasa después.</h2>
+        <p>
+          Si en tu empresa dedicáis horas a esto cada semana, no necesitáis más disciplina. Necesitáis un sistema.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="tag">Llega por email</div>
+          <h3>Descargas, renombras, reenvías, dejas para luego.</h3>
+          <p>
+            El documento entra, pero no avanza. Se mueve de una persona a otra y acaba dependiendo de memoria, tiempo y orden manual.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Llega en papel</div>
+          <h3>Fotos, mensajes, pérdidas, retrasos.</h3>
+          <p>
+            Alguien le hace una foto. La manda. Se revisa tarde. O entra mal. Y el papel sigue mandando demasiado.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Llega el cierre</div>
+          <h3>Y toca perseguir datos y reconstruir lo que faltaba.</h3>
+          <p>
+            El problema no es solo meter el dato. Es encontrarlo luego, revisar conceptos y llegar a tiempo a cada vencimiento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="quote">
+        <p>“Si tu equipo, o tú, dedicáis horas a documentos manuales, conceptos sueltos o vencimientos que se os pasan, eso ya se puede automatizar.”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>No vendemos OCR. Vendemos orden.</h2>
+        <p>
+          Leer documentos es lo mínimo. Lo importante es convertirlos en datos útiles, conceptos consultables, vencimientos controlados y trazabilidad real dentro de un sistema que sí sirve para operar.
+        </p>
+      </div>
+
+      <div class="card" style="background-image: linear-gradient(rgba(11,11,11,0.62), rgba(11,11,11,0.62)), url('salecontrol.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <h3>Entra una imagen. Sale control.</h3>
+        <p>
+          Lo valioso no es que una máquina lea un PDF. Lo valioso es que tu empresa deje de depender de personas abriendo archivos, tecleando líneas de concepto, buscando facturas antiguas o acordándose de cabeza de cuándo vencía algo.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="flujo">
+    <div class="container">
+      <div class="section-head">
+        <h2>Cómo funciona</h2>
+        <p>
+          No te pedimos que cambies por completo cómo trabajas. El flujo se adapta a tu operativa y además deja todo guardado para recuperarlo después en segundos.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card step">
+          <div class="step-no">1</div>
+          <h3>Entrada</h3>
+          <p>Email, reenvío o Telegram. El documento entra por donde ya entra hoy.</p>
+        </div>
+
+        <div class="card step">
+          <div class="step-no">2</div>
+          <h3>Procesado</h3>
+          <p>Extraemos datos, conceptos, fechas, importes y vencimientos con la lógica real de tu negocio.</p>
+        </div>
+
+        <div class="card step">
+          <div class="step-no">3</div>
+          <h3>Salida</h3>
+          <p>Queda guardado, se puede buscar al instante y se notifican vencimientos por Telegram o email.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="canales">
+    <div class="container">
+      <div class="section-head">
+        <h2>Tres puertas de entrada. Un mismo orden al final.</h2>
+        <p>
+          Da igual si el documento llega por correo, por reenvío o por una foto. Lo importante es que termine convertido en dato fiable y fácil de recuperar.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="tag">Canal 1</div>
+          <h3>Email</h3>
+          <p>Recibes la factura y el flujo puede arrancar ahí mismo. Sin descargar veinte adjuntos ni mover PDFs de carpeta en carpeta.</p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Canal 2</div>
+          <h3>Cuenta dedicada</h3>
+          <p>Creamos una dirección específica para centralizar documentos sin cambiar cómo trabaja tu equipo.</p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Canal 3</div>
+          <h3>Telegram</h3>
+          <p>Cuando el documento es físico, una foto basta. El papel deja de ser una excusa para quedarse fuera del sistema.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-head">
+        <h2>Lo que además queda resuelto</h2>
+        <p>
+          No solo se lee la factura. También se conserva lo importante para trabajar con ello después.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="tag">Búsqueda fácil</div>
+          <h3>Guardado automático para encontrarlo todo en segundos.</h3>
+          <p>
+            Datos clave, conceptos, importes, proveedor, fecha y resto de información quedan almacenados automáticamente para una búsqueda posterior mucho más fácil.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Conceptos</div>
+          <h3>También almacenamos las líneas y conceptos de las facturas.</h3>
+          <p>
+            No solo guardas el documento completo. También puedes conservar el detalle útil para revisar, buscar y entender qué se facturó realmente.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Vencimientos</div>
+          <h3>Control de vencimientos sin depender de acordarte.</h3>
+          <p>
+            Detectamos fechas de vencimiento y las guardamos dentro del flujo para que no se queden escondidas en el PDF o en la cabeza de alguien.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tag">Alertas</div>
+          <h3>Notificación anticipada por Telegram y por email.</h3>
+          <p>
+            Podemos avisar con antelación antes de un vencimiento para que no llegues tarde, tanto por Telegram como por correo electrónico.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="telegram">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-copy">
+          <div class="tag">CTA clave</div>
+          <h2 style="max-width: 13ch;">¿Todavía no quieres una demo? Perfecto.</h2>
+          <p class="lead" style="margin-top:16px;">
+            Mira el sistema funcionando.
+          </p>
+          <p>
+            He creado un canal de Telegram donde enseño demostraciones reales de funcionalidades, automatizaciones y casos de uso.
+          </p>
+          <p>
+            Para que veas cómo entra una factura, cómo se guardan conceptos, cómo se controlan vencimientos y cómo se notifica antes de que haya un problema.
+          </p>
+          <p>
+            Sin llamada. Sin compromiso. Sin humo.
+          </p>
+
+          <div class="hero-actions" style="margin-top:22px; margin-bottom:0;">
+            <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
+               class="btn btn-secondary btn-telegram"
+               style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+              <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
+              <span style="flex:1; text-align:center;">Entrar al canal</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
+                <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
+              </svg>
+            </a>
+            <a href="#contacto" class="btn btn-secondary">Pedir demo</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin:0;">
+          <h3>Lo que verás dentro</h3>
+          <ul class="list">
+            <li>Cómo entra una factura al sistema</li>
+            <li>Cómo se procesan conceptos y líneas</li>
+            <li>Cómo se busca documentación guardada</li>
+            <li>Cómo se detectan y controlan vencimientos</li>
+            <li>Cómo funcionan los avisos por Telegram y email</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Beneficios</h2>
+        <p>
+          Automatizar no es solo ahorrar tiempo. Es dejar de depender de procesos frágiles y empezar a confiar en la información que utilizas para operar.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card benefit-card">
+          <h3>Menos trabajo manual</h3>
+          <p>Tu equipo, o tú, dejáis de perder horas en tareas repetitivas que no deberían seguir haciéndose a mano.</p>
+        </div>
+
+        <div class="card benefit-card">
+          <h3>Más rapidez al encontrar información</h3>
+          <p>Todo queda almacenado y preparado para búsquedas posteriores sin rebuscar entre correos, carpetas o PDFs antiguos.</p>
+        </div>
+
+        <div class="card benefit-card">
+          <h3>Más control sobre pagos y vencimientos</h3>
+          <p>Sabes qué entra, qué vence y cuándo conviene actuar, con avisos por Telegram o email antes de llegar tarde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="personalizacion">
+    <div class="container dual-panel">
+      <div class="card" style="margin:0;">
+        <div class="tag">Personalización</div>
+        <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); max-width: 15ch;">No es una herramienta. Es un sistema.</h2>
+        <p style="margin-top:16px;">
+          Definimos reglas, campos, conceptos, validaciones, vencimientos y flujos adaptados a tu negocio.
+        </p>
+        <p style="margin-top:12px;">
+          Cada empresa recibe documentos distintos, tiene excepciones distintas y necesita salidas distintas. IAraBot no te obliga a encajar en una plantilla cerrada.
+        </p>
+
+        <div class="badges">
+          <span class="badge">Facturas</span>
+          <span class="badge">Tickets</span>
+          <span class="badge">Albaranes</span>
+          <span class="badge">Conceptos</span>
+          <span class="badge">Vencimientos</span>
+          <span class="badge">Avisos</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin:0;">
+        <h3>Ejemplo de salida</h3>
+        <p style="margin-top:12px;">
+          Lo que tú ves al final no es magia. Es estructura.
+        </p>
+
+        <div class="terminal">
+          <div class="terminal-top">
+            <span>flujo_documental.log</span>
+            <div class="mock-dots"><span></span><span></span><span></span></div>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-line"><span class="prompt">></span><span>Email recibido: factura_proveedor_042.pdf</span></div>
+            <div class="terminal-line"><span class="prompt">></span><span>Extracción: proveedor, fecha, base, IVA, total</span></div>
+            <div class="terminal-line"><span class="prompt">></span><span>Conceptos guardados: hosting / mantenimiento / soporte</span></div>
+            <div class="terminal-line"><span class="prompt">></span><span>Vencimiento detectado: 2026-04-15</span></div>
+            <div class="terminal-line"><span class="prompt">></span><span>Notificación programada: Telegram + email</span></div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>- horas</strong>
+            <span>de trabajo administrativo repetitivo</span>
+          </div>
+          <div class="stat">
+            <strong>+ búsqueda</strong>
+            <span>de documentos y conceptos</span>
+          </div>
+          <div class="stat">
+            <strong>+ control</strong>
+            <span>sobre vencimientos y avisos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-head">
+        <h2>Antes de hablar, míralo.</h2>
+        <p>
+          En el canal de Telegram ves vídeos informativos y ejemplos reales. Puedes ver cómo funciona, preguntar dudas (también sobre personalización) y hacerte una idea de cómo encajaría en tu negocio.
+        </p>
+      </div>
+
+      <div class="hero-actions" style="margin-top:0; margin-bottom:0;">
+        <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
+           class="btn btn-secondary btn-telegram"
+           style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; max-width:520px;">
+          <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
+          <span style="flex:1; text-align:center;">Seguir canal de Telegram</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
+            <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
+          </svg>
+        </a>
+        <a href="#contacto" class="btn btn-primary">Pedir demo</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>Si tú, o tu equipo, seguís pasando datos a mano…</h2>
+        <p>
+          No es porque lo estéis haciendo mal. Es porque ya no debería hacerse así.
+        </p>
+      </div>
+
+      <div class="card">
+        <p class="lead">
+          Si recibes facturas, tickets, albaranes, partes de trabajo, documentos técnicos… en imagen, PDF o foto, ya tienes una parte del negocio que se puede ordenar mejor. Y si además quieres buscar conceptos, controlar vencimientos y recibir avisos antes de tiempo, todavía más.
+        </p>
+        <div class="hero-actions" style="margin-top:22px; margin-bottom:0;">
+          <a href="#contacto" class="btn btn-primary">Quiero una demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft" id="contacto">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-copy">
+          <div class="tag">Quién está detrás</div>
+          <h2 style="max-width: 18ch;">Canal + proyecto: la parte humana</h2>
+
+          <div class="founder-card" style="margin-top: 16px;" aria-label="Quién está detrás del canal y del proyecto">
+            <div class="founder-left">
+              <a href="https://www.linkedin.com/in/jonatan-murillo-348040336" target="_blank" rel="noopener" aria-label="LinkedIn de Jonatan Murillo">
+                <img src="yogrande.png" alt="Jonatan Murillo" class="founder-avatar" />
+              </a>
+              <div style="min-width:0;">
+                <div class="founder-kicker">Quién está detrás del canal y del proyecto</div>
+                <div class="founder-name">
+                  Jonatan Murillo
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:#0A66C2; flex-shrink:0;">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                  </svg>
+                </div>
+                <div class="founder-desc">En el canal verás vídeos informativos del producto, podrás preguntar dudas y ver cómo lo personalizaríamos para tu negocio.</div>
+              </div>
+            </div>
+            <a class="founder-link" href="https://www.linkedin.com/in/jonatan-murillo-348040336" target="_blank" rel="noopener" aria-label="Abrir LinkedIn de Jonatan Murillo">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="card" style="margin:0;">
+          <div class="tag">Telegram</div>
+          <h3 style="margin-top:10px; text-transform:none; letter-spacing:0; line-height:1.2;">Mira el sistema funcionando (demos reales)</h3>
+          <p style="margin-top:12px;">
+            Prefiero que lo veas primero: vídeos informativos, ejemplos y automatizaciones.
+            Por ese medio puedes ver cómo funcionaría en tu negocio, preguntar dudas y entender opciones de personalización.
+          </p>
+
+          <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
+             class="btn btn-secondary btn-telegram"
+             style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:18px; width:100%;">
+            <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
+            <span style="flex:1; text-align:center;">Seguir canal de Telegram</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
+              <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
+            </svg>
+          </a>
+
+          <a href="#telegram" class="btn btn-secondary" style="width:100%; margin-top:10px;">Ver demos en esta página</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="footer-logos">
+      <img src="logo_solo_texto.png" alt="IAra" />
+      <img src="logoo.png" alt="IAra" />
+    </div>
+    IAraBot · Automatización documental
+  </div>
+
+  <script>
+    (function () {
+      function randInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function tick() {
+        var docsEl = document.getElementById('metricDocsHoy');
+        var vencEl = document.getElementById('metricVencimientos');
+        if (!docsEl || !vencEl) return;
+
+        // Rangos razonables para efecto "en vivo"
+        var docs = randInt(12, 48);
+        var venc = randInt(0, 9);
+
+        docsEl.style.transition = 'opacity 220ms ease';
+        vencEl.style.transition = 'opacity 220ms ease';
+        docsEl.style.opacity = '0.55';
+        vencEl.style.opacity = '0.55';
+
+        setTimeout(function () {
+          docsEl.textContent = String(docs);
+          vencEl.textContent = String(venc);
+          docsEl.style.opacity = '1';
+          vencEl.style.opacity = '1';
+        }, 220);
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () {
+          tick();
+          setInterval(tick, 2000);
+        });
+      } else {
+        tick();
+        setInterval(tick, 2000);
+      }
+    })();
+  </script>
+</body>
+</html>
