@@ -759,12 +759,12 @@
     /* Sección premium: "¿Esto es lo que hay?" */
     .esto-premium-layout {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 18px;
-      align-items: center;
-      justify-items: center;
+      align-items: start;
+      justify-items: stretch;
       margin-top: 18px;
-      text-align: center;
+      text-align: left;
     }
 
     .esto-claims {
@@ -1689,7 +1689,7 @@
              class="btn btn-secondary btn-telegram"
              style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
             <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
-            <span style="flex:1; text-align:center;">Seguir canal de Telegram</span>
+            <span style="flex:1; text-align:center;">Ver demos en Telegram</span>
             <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
               <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
             </svg>
@@ -1912,52 +1912,83 @@
 
   <section class="section section-soft">
     <div class="container reveal-up" style="--reveal-delay:0.05s;">
-      <div class="quote">
-        <p>“Si tu equipo, o tú, dedicáis horas a documentos manuales, conceptos sueltos o vencimientos que se os pasan, eso ya se puede automatizar.”</p>
+      <div class="section-head">
+        <h2>El documento entra, pero no avanza.</h2>
+        <p class="lead" style="margin-top:10px;">
+          Acaba en descargas, reenvíos, carpetas o “lo miramos luego”. Y el problema no es leer: es llegar a tiempo.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal-up" style="--reveal-delay:0.10s;">
+          <h3 style="text-transform:none; letter-spacing:-0.02em;">Entras por email</h3>
+          <p>Descargas, renombras, reenvías y lo dejas para luego.</p>
+        </div>
+
+        <div class="card reveal-up" style="--reveal-delay:0.16s;">
+          <h3 style="text-transform:none; letter-spacing:-0.02em;">Entras por papel</h3>
+          <p>Foto o escaneo: entra tarde o entra mal.</p>
+        </div>
+
+        <div class="card reveal-up" style="--reveal-delay:0.22s;">
+          <h3 style="text-transform:none; letter-spacing:-0.02em;">Entras al cierre</h3>
+          <p>Toca perseguir datos, revisar conceptos y controlar vencimientos.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section section-soft">
-    <div class="container reveal-up">
+  <section class="section section-alt">
+    <div class="container reveal-up" style="--reveal-delay:0.05s;">
       <div class="section-head">
-        <h2>Lo que además queda resuelto</h2>
+        <h2>IAraBot lo ordena en el mismo flujo.</h2>
         <p>
-          No solo se lee la factura. También se conserva lo importante para trabajar con ello después.
+          Lo que entra por email, Telegram o foto termina convirtiéndose en datos consultables y un sistema con trazabilidad.
         </p>
       </div>
 
-      <div class="grid-2">
-        <div class="card">
-          <div class="tag">Búsqueda fácil</div>
-          <h3>Guardado automático para encontrarlo todo en segundos.</h3>
-          <p>
-            Datos clave, conceptos, importes, proveedor, fecha y resto de información quedan almacenados automáticamente para una búsqueda posterior mucho más fácil.
-          </p>
+      <div class="card reveal-up" style="--reveal-delay:0.10s; background: rgba(0,0,0,0.18); border-color: rgba(255,255,255,0.08);">
+        <div class="tag">De entrada a control</div>
+        <h3 style="text-transform:none; letter-spacing:-0.02em; line-height:1.15;">Extracción que termina en control</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
+          <span class="badge" style="background:rgba(34,197,94,0.06); border-color:rgba(34,197,94,0.35);">Conceptos guardados</span>
+          <span class="badge" style="background:rgba(34,197,94,0.06); border-color:rgba(34,197,94,0.35);">Vencimientos detectados</span>
+          <span class="badge" style="background:rgba(34,197,94,0.06); border-color:rgba(34,197,94,0.35);">Avisos automáticos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark" id="flujo">
+    <div class="container reveal-up" style="--reveal-delay:0.05s;">
+      <div class="section-head">
+        <h2>Cómo funciona</h2>
+        <p>
+          No te pedimos que cambies por completo cómo trabajas. El flujo se adapta a tu operativa y deja todo guardado para recuperarlo en segundos.
+        </p>
+      </div>
+
+      <div class="flow-timeline">
+        <div class="flow-step">
+          <div class="flow-step-no">1</div>
+          <h3>Entrada</h3>
+          <p>Email, reenvío o Telegram. El documento entra por donde ya entra hoy.</p>
         </div>
 
-        <div class="card">
-          <div class="tag">Conceptos</div>
-          <h3>También almacenamos las líneas y conceptos de las facturas.</h3>
-          <p>
-            No solo guardas el documento completo. También puedes conservar el detalle útil para revisar, buscar y entender qué se facturó realmente.
-          </p>
+        <div class="flow-line"></div>
+
+        <div class="flow-step">
+          <div class="flow-step-no">2</div>
+          <h3>Procesado</h3>
+          <p>Extraemos datos, conceptos, fechas, importes y vencimientos con la lógica de tu negocio.</p>
         </div>
 
-        <div class="card">
-          <div class="tag">Vencimientos</div>
-          <h3>Control de vencimientos sin depender de acordarte.</h3>
-          <p>
-            Detectamos fechas de vencimiento y las guardamos dentro del flujo para que no se queden escondidas en el PDF o en la cabeza de alguien.
-          </p>
-        </div>
+        <div class="flow-line"></div>
 
-        <div class="card">
-          <div class="tag">Alertas</div>
-          <h3>Notificación anticipada por Telegram y por email.</h3>
-          <p>
-            Podemos avisar con antelación antes de un vencimiento para que no llegues tarde, tanto por Telegram como por correo electrónico.
-          </p>
+        <div class="flow-step">
+          <div class="flow-step-no">3</div>
+          <h3>Resultado</h3>
+          <p>Queda guardado, se puede buscar al instante y se notifican vencimientos por Telegram o email.</p>
         </div>
       </div>
     </div>
@@ -1998,7 +2029,7 @@
                   <path d="M20 6L9 17L4 12" />
                 </svg>
               </span>
-              <div class="esto-claim-title">Parte de tu realidad</div>
+              <div class="esto-claim-title">Se adapta a ti</div>
             </div>
             <div class="esto-claim-desc">
               Primero entiendo qué documentos manejas, qué excepciones tenéis y qué información quieres bajo control.
@@ -2022,153 +2053,56 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-dark" id="telegram">
-    <div class="container reveal-up">
-      <div class="cta-box" style="--reveal-delay:0.05s;">
-        <div class="cta-copy">
-          <div class="tag">Canal de Telegram</div>
-          <h2 style="max-width: 13ch;">¿Todavía no quieres una demo? Perfecto.</h2>
-          <p class="lead" style="margin-top:16px;">
-            Mira el sistema funcionando.
-          </p>
-          <p>
-            He creado un canal de Telegram donde enseño demostraciones reales de funcionalidades, automatizaciones y casos de uso.
-          </p>
-          <p>
-            Para que veas cómo entra una factura, cómo se guardan conceptos, cómo se controlan vencimientos y cómo se notifica antes de que haya un problema.
-          </p>
-          <p>
-            Sin llamada. Sin compromiso. Sin humo.
-          </p>
-
-          <div class="hero-actions" style="margin-top:22px; margin-bottom:0;">
-            <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
-               class="btn btn-secondary btn-telegram"
-               style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-              <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
-              <span style="flex:1; text-align:center;">Entrar al canal</span>
-              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
-                <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
-              </svg>
-            </a>
+        <div class="esto-promise" id="esto-promise-card" aria-label="Coste inicial y tiempo de puesta en marcha">
+          <div class="esto-promise-kicker">Modelo de servicio</div>
+          <div class="esto-promise-title">Coste inicial asumible + cuota mensual baja</div>
+          <div class="esto-promise-sub">
+            Primer sistema funcionando en menos de 1 mes.
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-soft" id="personalizacion">
-    <div class="container dual-panel reveal-up">
-      <div class="card" style="margin:0;">
-        <div class="tag">Personalización</div>
-        <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); max-width: 15ch;">No es una herramienta. Es un sistema.</h2>
-        <p style="margin-top:16px;">
-          Definimos reglas, campos, conceptos, validaciones, vencimientos y flujos adaptados a tu negocio.
-        </p>
-        <p style="margin-top:12px;">
-          Cada empresa recibe documentos distintos, tiene excepciones distintas y necesita salidas distintas. IAraBot no te obliga a encajar en una plantilla cerrada.
-        </p>
-
-        <div class="badges">
-          <span class="badge">Facturas</span>
-          <span class="badge">Tickets</span>
-          <span class="badge">Albaranes</span>
-          <span class="badge">Conceptos</span>
-          <span class="badge">Vencimientos</span>
-          <span class="badge">Avisos</span>
-        </div>
-      </div>
-
-      <div class="card" style="margin:0;">
-        <h3>Ejemplo de salida</h3>
-        <p style="margin-top:12px;">
-          Lo que tú ves al final no es magia. Es estructura.
-        </p>
-
-        <div class="terminal">
-          <div class="terminal-top">
-            <span>flujo_documental.log</span>
-            <div class="mock-dots"><span></span><span></span><span></span></div>
-          </div>
-          <div class="terminal-body">
-            <div class="terminal-line"><span class="prompt">></span><span>Email recibido: factura_proveedor_042.pdf</span></div>
-            <div class="terminal-line"><span class="prompt">></span><span>Extracción: proveedor, fecha, base, IVA, total</span></div>
-            <div class="terminal-line"><span class="prompt">></span><span>Conceptos guardados: hosting / mantenimiento / soporte</span></div>
-            <div class="terminal-line"><span class="prompt">></span><span>Vencimiento detectado: 2026-04-15</span></div>
-            <div class="terminal-line"><span class="prompt">></span><span>Notificación programada: Telegram + email</span></div>
-          </div>
+          <ul class="esto-promise-list">
+            <li>Arranque con coste inicial asumible</li>
+            <li>Cuota mensual baja y sostenible</li>
+            <li>Listo para operar antes de que se repita el caos</li>
+          </ul>
         </div>
 
-        <div class="stats">
-          <div class="stat">
-            <strong>- horas</strong>
-            <span>de trabajo administrativo repetitivo</span>
-          </div>
-          <div class="stat">
-            <strong>+ búsqueda</strong>
-            <span>de documentos y conceptos</span>
-          </div>
-          <div class="stat">
-            <strong>+ control</strong>
-            <span>sobre vencimientos y avisos</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container reveal-up">
-      <div class="section-head">
-        <h2>Qué ganas cuando dejas de hacerlo a mano</h2>
-        <p>
-          Automatizar no es solo ahorrar tiempo. Es dejar de depender de procesos frágiles y empezar a confiar en la información con la que operas.
-        </p>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <h3>Menos trabajo manual</h3>
-          <p>Tu equipo, o tú, dejáis de perder horas en tareas repetitivas.</p>
-        </div>
-
-        <div class="card">
-          <h3>Más rapidez al encontrar información</h3>
-          <p>Todo queda almacenado y preparado para búsquedas posteriores.</p>
-        </div>
-
-        <div class="card">
-          <h3>Más control sobre pagos y vencimientos</h3>
-          <p>Sabes qué entra, qué vence y cuándo conviene actuar.</p>
-        </div>
-
-        <div class="card">
-          <h3>Más tranquilidad</h3>
-          <p>Menos dependencia de memoria, correos sueltos o tareas que alguien “hará luego”.</p>
-        </div>
-      </div>
-
-      <div class="card" style="margin-top:18px;">
-        <p class="lead">
-          Si recibes facturas, tickets, albaranes, partes de trabajo o documentos técnicos en imagen, PDF o foto, ya tienes una parte del negocio que se puede ordenar mejor.
-        </p>
-        <div class="hero-actions" style="margin-top:22px; margin-bottom:0;">
-          <a href="#contacto" class="btn btn-primary">Quiero una demo</a>
-        </div>
       </div>
     </div>
   </section>
 
   <section class="section section-soft" id="contacto">
     <div class="container reveal-up">
-      <div class="cta-box">
+      <div class="cta-box" style="grid-template-columns: 1fr;">
         <div class="cta-copy">
           <div class="tag">Quién está detrás</div>
           <h2 style="max-width: 18ch;">Canal + proyecto: la parte humana</h2>
+
+          <div class="section-head" style="margin-top:18px; margin-bottom:0; max-width: 860px;">
+            <h3 style="text-transform:none; letter-spacing:-0.02em; line-height:1.2; margin:0; font-size:1.55rem;">
+              ¿Listo para ver IAraBot en acción?
+            </h3>
+            <p class="lead" style="margin-top:10px;">
+              Entras, miras demos reales y pides demo si encaja.
+            </p>
+
+            <div class="hero-actions" style="margin-top:18px; margin-bottom:0;">
+              <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
+                 class="btn btn-secondary btn-telegram"
+                 style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%;">
+                <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
+                <span style="flex:1; text-align:center;">Ver demos en Telegram</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
+                  <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
+                </svg>
+              </a>
+
+              <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
+                 class="btn btn-primary"
+                 style="width:100%;">
+                Pedir demo
+              </a>
+            </div>
+          </div>
 
           <div class="founder-card" style="margin-top: 16px;" aria-label="Quién está detrás del canal y del proyecto">
             <div class="founder-left">
@@ -2192,27 +2126,6 @@
               </svg>
             </a>
           </div>
-        </div>
-
-        <div class="card" style="margin:0;">
-          <div class="tag">Telegram</div>
-          <h3 style="margin-top:10px; text-transform:none; letter-spacing:0; line-height:1.2;">Mira el sistema funcionando (demos reales)</h3>
-          <p style="margin-top:12px;">
-            Prefiero que lo veas primero: vídeos informativos, ejemplos y automatizaciones.
-            Por ese medio puedes ver cómo funcionaría en tu negocio, preguntar dudas y entender opciones de personalización.
-          </p>
-
-          <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
-             class="btn btn-secondary btn-telegram"
-             style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:18px; width:100%;">
-            <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
-            <span style="flex:1; text-align:center;">Seguir canal de Telegram</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
-              <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
-            </svg>
-          </a>
-
-          <a href="#telegram" class="btn btn-secondary" style="width:100%; margin-top:10px;">Ver demos en esta página</a>
         </div>
       </div>
     </div>
@@ -2297,6 +2210,7 @@
 
       var answer = document.getElementById('esto-answer');
       var claimsWrap = document.getElementById('esto-body');
+      var promise = document.getElementById('esto-promise-card');
       if (!answer || !claimsWrap) return;
 
       function runSequence() {
@@ -2313,6 +2227,12 @@
               claims[idx].classList.add('is-visible');
             }, 2000 + (idx * 650));
           })(i);
+        }
+
+        if (promise) {
+          setTimeout(function () {
+            promise.classList.add('is-visible');
+          }, 2000 + ((claims.length - 1) * 650) + 350);
         }
 
       }
