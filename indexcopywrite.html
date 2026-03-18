@@ -247,11 +247,13 @@
     }
 
     .founder-avatar {
-      width: 52px;
-      height: 52px;
+      width: 52px !important;
+      height: 52px !important;
       aspect-ratio: 1 / 1;
-      border-radius: 999px;
+      border-radius: 999px !important;
       object-fit: cover;
+      /* Asegura recorte circular incluso si el layout/imagen provoca deformación */
+      clip-path: circle(50% at 50% 50%);
       border: 2px solid rgba(34,197,94,0.55);
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       flex-shrink: 0;
@@ -1217,6 +1219,88 @@
       }
     }
 
+    /* Bloques "entra pero no avanza" - estilo conversión */
+    .entrada-card {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .entrada-card::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(34,197,94,0.22), transparent 55%),
+        radial-gradient(circle at 90% 10%, rgba(56,189,248,0.18), transparent 50%);
+      opacity: 0;
+      transform: translateY(10px) scale(1.02);
+      transition: opacity 500ms ease, transform 600ms cubic-bezier(.21,.96,.32,1);
+      pointer-events: none;
+    }
+
+    .reveal-up.is-visible.entrada-card::before {
+      opacity: 1;
+      transform: translateY(0) scale(1.02);
+    }
+
+    .entrada-email {
+      border-color: rgba(56,189,248,0.28);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+    }
+
+    .entrada-paper {
+      border-color: rgba(251,191,36,0.28);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+    }
+
+    .entrada-closure {
+      border-color: rgba(34,197,94,0.30);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+    }
+
+    .flujo-card {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(34,197,94,0.24);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(34,197,94,0.18), transparent 40%),
+        linear-gradient(180deg, rgba(15,23,42,0.70), rgba(15,23,42,0.96));
+    }
+
+    .flujo-card::after {
+      content: "";
+      position: absolute;
+      inset: -20% -20% auto -20%;
+      height: 120%;
+      background: radial-gradient(circle at 50% 30%, rgba(34,197,94,0.22), transparent 58%);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 550ms ease, transform 650ms cubic-bezier(.21,.96,.32,1);
+      pointer-events: none;
+    }
+
+    .reveal-up.is-visible.flujo-card::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .flujo-badge {
+      opacity: 0;
+      transform: translateY(10px) scale(0.99);
+      transition:
+        opacity 500ms cubic-bezier(.21,.96,.32,1),
+        transform 650ms cubic-bezier(.21,.96,.32,1);
+      transition-delay: var(--bdelay, 0ms);
+      will-change: opacity, transform;
+    }
+
+    .reveal-up.is-visible.flujo-card .flujo-badge {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
     .problem-split {
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
@@ -1920,17 +2004,17 @@
       </div>
 
       <div class="grid-3">
-        <div class="card reveal-up" style="--reveal-delay:0.10s;">
+        <div class="card reveal-up entrada-card entrada-email" style="--reveal-delay:0.10s;">
           <h3 style="text-transform:none; letter-spacing:-0.02em;">Entras por email</h3>
           <p>Descargas, renombras, reenvías y lo dejas para luego.</p>
         </div>
 
-        <div class="card reveal-up" style="--reveal-delay:0.16s;">
+        <div class="card reveal-up entrada-card entrada-paper" style="--reveal-delay:0.16s;">
           <h3 style="text-transform:none; letter-spacing:-0.02em;">Entras por papel</h3>
           <p>Foto o escaneo: entra tarde o entra mal.</p>
         </div>
 
-        <div class="card reveal-up" style="--reveal-delay:0.22s;">
+        <div class="card reveal-up entrada-card entrada-closure" style="--reveal-delay:0.22s;">
           <h3 style="text-transform:none; letter-spacing:-0.02em;">Entras al cierre</h3>
           <p>Toca perseguir datos, revisar conceptos y controlar vencimientos.</p>
         </div>
@@ -1947,13 +2031,13 @@
         </p>
       </div>
 
-      <div class="card reveal-up" style="--reveal-delay:0.10s; background: rgba(0,0,0,0.18); border-color: rgba(255,255,255,0.08);">
+      <div class="card reveal-up flujo-card" style="--reveal-delay:0.10s;">
         <div class="tag">De entrada a control</div>
         <h3 style="text-transform:none; letter-spacing:-0.02em; line-height:1.15;">Extracción que termina en control</h3>
         <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:14px;">
-          <span class="badge" style="background:rgba(34,197,94,0.06); border-color:rgba(34,197,94,0.35);">Conceptos guardados</span>
-          <span class="badge" style="background:rgba(34,197,94,0.06); border-color:rgba(34,197,94,0.35);">Vencimientos detectados</span>
-          <span class="badge" style="background:rgba(34,197,94,0.06); border-color:rgba(34,197,94,0.35);">Avisos automáticos</span>
+          <span class="badge flujo-badge" style="--bdelay:0.08s;">Conceptos guardados</span>
+          <span class="badge flujo-badge" style="--bdelay:0.14s;">Vencimientos detectados</span>
+          <span class="badge flujo-badge" style="--bdelay:0.20s;">Avisos automáticos</span>
         </div>
       </div>
     </div>
