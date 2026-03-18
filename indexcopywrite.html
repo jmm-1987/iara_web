@@ -15,12 +15,10 @@
       --bg-3: #111d15;
       --bg-4: #0a0f0b;
       --card: rgba(255,255,255,0.05);
-      --card-2: rgba(255,255,255,0.07);
       --line: rgba(255,255,255,0.08);
       --text: #f7faf7;
       --muted: rgba(235, 241, 236, 0.84);
       --muted-2: rgba(235, 241, 236, 0.58);
-      /* Verde menos intenso (más “premium”) */
       --accent: #22c55e;
       --accent-soft: #bbf7d0;
       --shadow: 0 18px 60px rgba(0, 0, 0, 0.28);
@@ -30,34 +28,22 @@
       --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(57,255,20,0.08), transparent 16%),
-        radial-gradient(circle at 80% 8%, rgba(57,255,20,0.05), transparent 12%),
+        radial-gradient(circle at top left, rgba(34,197,94,0.08), transparent 16%),
+        radial-gradient(circle at 80% 8%, rgba(34,197,94,0.05), transparent 12%),
         linear-gradient(180deg, #07110a, #0a120c);
       overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
 
     .container {
       width: min(var(--max), calc(100% - 32px));
@@ -71,19 +57,19 @@
 
     .section-alt {
       background:
-        radial-gradient(circle at 15% 10%, rgba(57,255,20,0.05), transparent 20%),
+        radial-gradient(circle at 15% 10%, rgba(34,197,94,0.05), transparent 20%),
         linear-gradient(180deg, var(--bg-2), var(--bg-3));
     }
 
     .section-dark {
       background:
-        radial-gradient(circle at 85% 15%, rgba(57,255,20,0.04), transparent 16%),
+        radial-gradient(circle at 85% 15%, rgba(34,197,94,0.04), transparent 16%),
         linear-gradient(180deg, var(--bg-4), #060906);
     }
 
     .section-soft {
       background:
-        radial-gradient(circle at 50% 0%, rgba(57,255,20,0.06), transparent 22%),
+        radial-gradient(circle at 50% 0%, rgba(34,197,94,0.06), transparent 22%),
         linear-gradient(180deg, #101814, #0c110e);
     }
 
@@ -97,9 +83,9 @@
       align-items: center;
       gap: 10px;
       padding: 9px 14px;
-      border: 1px solid rgba(57,255,20,0.12);
+      border: 1px solid rgba(34,197,94,0.12);
       border-radius: 999px;
-      background: rgba(57,255,20,0.06);
+      background: rgba(34,197,94,0.06);
       color: var(--accent-soft);
       font-size: 11px;
       font-weight: 700;
@@ -114,7 +100,7 @@
       height: 8px;
       border-radius: 999px;
       background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(57,255,20,0.11);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.11);
     }
 
     h1, h2, h3 {
@@ -162,20 +148,6 @@
       font-weight: 700;
     }
 
-    #logo {
-      position: fixed;
-      z-index: 60;
-      left: 16px;
-      top: 16px;
-    }
-
-    #logo img {
-      height: 34px;
-      width: auto;
-      opacity: 0.92;
-      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.18));
-    }
-
     .hero {
       min-height: auto;
       display: flex;
@@ -184,7 +156,7 @@
       position: relative;
       overflow: hidden;
       background:
-        radial-gradient(circle at 80% 10%, rgba(57,255,20,0.06), transparent 18%),
+        radial-gradient(circle at 80% 10%, rgba(34,197,94,0.06), transparent 18%),
         linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0));
     }
 
@@ -230,7 +202,17 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: microIn 900ms cubic-bezier(.21,.96,.32,1) forwards;
     }
+
+    .hero-micro span:nth-child(1) { animation-delay: 0.20s; }
+    .hero-micro span:nth-child(2) { animation-delay: 0.55s; }
+    .hero-micro span:nth-child(3) { animation-delay: 0.90s; }
+    .hero-micro span:nth-child(4) { animation-delay: 1.25s; }
+    .hero-micro span:nth-child(5) { animation-delay: 1.60s; }
+    .hero-micro span:nth-child(6) { animation-delay: 1.95s; }
 
     .hero-micro i {
       width: 7px;
@@ -239,19 +221,6 @@
       background: var(--accent);
       display: inline-block;
     }
-
-    /* Hero micro-items: entrada secuencial izq->der */
-    .hero-micro span {
-      opacity: 0;
-      transform: translateY(6px);
-      animation: microIn 900ms cubic-bezier(.21,.96,.32,1) forwards;
-    }
-    .hero-micro span:nth-child(1) { animation-delay: 0.20s; }
-    .hero-micro span:nth-child(2) { animation-delay: 0.55s; }
-    .hero-micro span:nth-child(3) { animation-delay: 0.90s; }
-    .hero-micro span:nth-child(4) { animation-delay: 1.25s; }
-    .hero-micro span:nth-child(5) { animation-delay: 1.60s; }
-    .hero-micro span:nth-child(6) { animation-delay: 1.95s; }
 
     @keyframes microIn {
       from { opacity: 0; transform: translateY(6px); }
@@ -269,21 +238,25 @@
       border: 1px solid rgba(255,255,255,0.08);
       background: rgba(255,255,255,0.03);
     }
+
     .founder-left {
       display: flex;
       align-items: center;
       gap: 12px;
       min-width: 0;
     }
+
     .founder-avatar {
       width: 52px;
       height: 52px;
+      aspect-ratio: 1 / 1;
       border-radius: 999px;
       object-fit: cover;
       border: 2px solid rgba(34,197,94,0.55);
       box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       flex-shrink: 0;
     }
+
     .founder-kicker {
       font-size: 10px;
       letter-spacing: 0.14em;
@@ -291,6 +264,7 @@
       color: var(--muted-2);
       margin-bottom: 3px;
     }
+
     .founder-name {
       display: inline-flex;
       align-items: center;
@@ -304,6 +278,7 @@
       text-overflow: ellipsis;
       max-width: 28ch;
     }
+
     .founder-desc {
       font-size: 13px;
       color: var(--muted);
@@ -311,6 +286,7 @@
       margin-top: 4px;
       max-width: 64ch;
     }
+
     .founder-link {
       display: inline-flex;
       align-items: center;
@@ -324,84 +300,18 @@
       transition: opacity .2s ease, transform .2s ease, border-color .2s ease;
       flex-shrink: 0;
     }
-    .founder-link:hover { opacity: 0.9; transform: translateY(-1px); border-color: rgba(34,197,94,0.22); }
 
-    .hero-card {
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025)),
-        radial-gradient(circle at 90% 0%, rgba(57,255,20,0.08), transparent 25%);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 22px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
+    .founder-link:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      border-color: rgba(34,197,94,0.22);
     }
 
-    .mock-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 16px;
-      color: var(--muted);
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-
-    .mock-dots {
-      display: flex;
-      gap: 8px;
-    }
-
-    .mock-dots span {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.18);
-    }
-
-    .stack {
-      display: grid;
-      gap: 12px;
-    }
-
-    .stack-item {
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 18px;
-      padding: 18px;
-    }
-
-    .stack-item small {
-      display: block;
-      color: var(--accent-soft);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .stack-item strong {
-      display: block;
-      font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
-
-    .stack-item p {
-      font-size: 0.94rem;
-      line-height: 1.7;
-    }
-
-    /* Hero SaaS visual (columna derecha) */
     .hero-visual {
       position: relative;
       isolation: isolate;
     }
+
     .hero-owl {
       position: absolute;
       top: -18px;
@@ -412,6 +322,7 @@
       filter: drop-shadow(0 14px 28px rgba(0,0,0,0.35)) drop-shadow(0 0 18px rgba(34,197,94,0.18));
       pointer-events: none;
     }
+
     .hero-owl-glow {
       position: absolute;
       top: 6px;
@@ -441,6 +352,7 @@
       backdrop-filter: blur(14px);
       overflow: hidden;
     }
+
     .saas-panel::after {
       content: "";
       position: absolute;
@@ -461,12 +373,14 @@
       margin-bottom: 16px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+
     .saas-head-left {
       display: flex;
       align-items: center;
       gap: 10px;
       min-width: 0;
     }
+
     .saas-head-title {
       font-size: 11px;
       letter-spacing: 0.12em;
@@ -476,27 +390,19 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
     .saas-live {
       color: rgba(187,247,208,0.92);
       text-shadow: 0 0 18px rgba(34,197,94,0.22);
       animation: liveText 1.35s ease-in-out infinite;
     }
-    .saas-pill {
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(187,247,208,0.92);
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(34,197,94,0.35);
-      background: rgba(34,197,94,0.10);
-    }
+
     .saas-dots {
       display: flex;
       gap: 7px;
       opacity: 0.85;
     }
+
     .saas-dots span {
       width: 10px;
       height: 10px;
@@ -504,6 +410,7 @@
       background: rgba(255,255,255,0.16);
       animation: liveDot 1.05s ease-in-out infinite;
     }
+
     .saas-dots span:nth-child(2) { animation-delay: 0.18s; }
     .saas-dots span:nth-child(3) { animation-delay: 0.36s; }
 
@@ -525,14 +432,6 @@
       50% { opacity: 1; text-shadow: 0 0 22px rgba(34,197,94,0.26); }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      .saas-live, .saas-dots span { animation: none !important; }
-      .flow-badge-in { animation: none !important; }
-      .flow-badge-ia { animation: none !important; }
-      .flow-badge-ok { animation: none !important; }
-      .hero-micro span { animation: none !important; opacity: 1 !important; transform: none !important; }
-    }
-
     .saas-flow {
       position: relative;
       z-index: 2;
@@ -540,6 +439,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
+
     .flow-block {
       border-radius: 20px;
       padding: 16px 16px 14px;
@@ -548,6 +448,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .flow-block::before {
       content: "";
       position: absolute;
@@ -556,6 +457,7 @@
       pointer-events: none;
       z-index: 0;
     }
+
     .flow-block::after {
       content: "";
       position: absolute;
@@ -565,11 +467,12 @@
       z-index: 0;
       opacity: 0.8;
     }
-    .flow-block > * { position: relative; z-index: 1; }
 
+    .flow-block > * { position: relative; z-index: 1; }
     .flow-bg-entrada { background-image: url('captura.png'); background-size: cover; background-position: center; }
     .flow-bg-procesado { background-image: url('datos_extraidos.png'); background-size: cover; background-position: center; }
     .flow-bg-resultado { background-image: url('panelkpis.png'); background-size: cover; background-position: center; }
+
     .flow-kicker {
       display: flex;
       align-items: center;
@@ -577,6 +480,7 @@
       gap: 10px;
       margin-bottom: 10px;
     }
+
     .flow-title {
       font-size: 11px;
       text-transform: uppercase;
@@ -584,6 +488,7 @@
       font-weight: 900;
       color: rgba(255,255,255,0.92);
     }
+
     .flow-badge {
       font-size: 10px;
       font-weight: 900;
@@ -595,6 +500,7 @@
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.04);
     }
+
     .flow-badge-in {
       color: rgba(255,255,255,0.92);
       border-color: rgba(255, 92, 61, 0.55);
@@ -602,6 +508,7 @@
       box-shadow: 0 0 0 1px rgba(255, 92, 61, 0.10), 0 0 22px rgba(255, 92, 61, 0.16);
       animation: badgeBlink 0.95s ease-in-out infinite;
     }
+
     .flow-badge-ia {
       color: rgba(10, 10, 10, 0.92);
       border-color: rgba(245, 158, 11, 0.55);
@@ -610,6 +517,7 @@
       animation: badgePulse 1.25s ease-in-out infinite;
       animation-delay: 0.12s;
     }
+
     .flow-badge-ok {
       color: rgba(0, 0, 0, 0.90);
       border-color: rgba(34, 197, 94, 0.55);
@@ -623,10 +531,12 @@
       0%, 100% { opacity: 0.65; filter: saturate(1); }
       50% { opacity: 1; filter: saturate(1.2); }
     }
+
     @keyframes badgePulse {
       0%, 100% { transform: translateY(0); filter: saturate(1); }
       50% { transform: translateY(-1px); filter: saturate(1.15); }
     }
+
     .flow-list {
       display: grid;
       gap: 10px;
@@ -634,6 +544,7 @@
       padding: 0;
       list-style: none;
     }
+
     .flow-item {
       display: flex;
       align-items: flex-start;
@@ -643,6 +554,7 @@
       border: 1px solid rgba(255,255,255,0.06);
       background: rgba(0,0,0,0.18);
     }
+
     .flow-dot {
       width: 8px;
       height: 8px;
@@ -652,11 +564,13 @@
       margin-top: 4px;
       flex-shrink: 0;
     }
+
     .flow-text {
       font-size: 12.5px;
       line-height: 1.35;
       color: rgba(229,231,235,0.80);
     }
+
     .flow-text strong {
       color: rgba(255,255,255,0.92);
       font-weight: 800;
@@ -670,6 +584,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
+
     .metric {
       border-radius: 18px;
       padding: 12px 14px;
@@ -680,24 +595,18 @@
       justify-content: space-between;
       gap: 10px;
     }
+
     .metric strong {
       font-size: 16px;
       color: rgba(255,255,255,0.96);
     }
+
     .metric span {
       font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(229,231,235,0.62);
       white-space: nowrap;
-    }
-
-    @media (max-width: 980px) {
-      .saas-flow { grid-template-columns: 1fr; }
-      .saas-metrics { grid-template-columns: 1fr; }
-      .hero-owl { right: 6px; top: -14px; width: 96px; }
-      .hero-owl-glow { right: 14px; top: 2px; width: 112px; height: 112px; }
-      .saas-panel { padding: 18px; }
     }
 
     .btn {
@@ -716,9 +625,7 @@
       min-height: 48px;
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-    }
+    .btn:hover { transform: translateY(-2px); }
 
     .btn-primary {
       background: var(--accent);
@@ -726,9 +633,7 @@
       box-shadow: 0 10px 30px rgba(34,197,94,0.16);
     }
 
-    .btn-primary:hover {
-      background: #fff;
-    }
+    .btn-primary:hover { background: #fff; }
 
     .btn-secondary {
       background: transparent;
@@ -736,11 +641,8 @@
       color: var(--accent-soft);
     }
 
-    .btn-secondary:hover {
-      background: rgba(34,197,94,0.08);
-    }
+    .btn-secondary:hover { background: rgba(34,197,94,0.08); }
 
-    /* Botón Telegram: fondo más transparente para no tapar logos */
     .btn-telegram {
       background: rgba(255,255,255,0.04);
       color: var(--text);
@@ -748,6 +650,7 @@
       box-shadow: 0 14px 40px rgba(0,0,0,0.18);
       backdrop-filter: blur(10px);
     }
+
     .btn-telegram:hover {
       background: rgba(255,255,255,0.06);
       border-color: rgba(34,197,94,0.60);
@@ -783,17 +686,17 @@
 
     .card:hover {
       transform: translateY(-4px);
-      border-color: rgba(57,255,20,0.45);
+      border-color: rgba(34,197,94,0.45);
       background:
         linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
     }
 
-    /* En secciones con imagen de fondo: cards más transparentes */
     .section-alt .card {
       background: rgba(0,0,0,0.18);
       border-color: rgba(255,255,255,0.08);
       box-shadow: 0 12px 36px rgba(0,0,0,0.18);
     }
+
     .section-alt .card:hover {
       background: rgba(0,0,0,0.22);
       border-color: rgba(34,197,94,0.28);
@@ -810,9 +713,9 @@
       margin-bottom: 14px;
       padding: 7px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(57,255,20,0.14);
+      border: 1px solid rgba(34,197,94,0.14);
       color: var(--accent-soft);
-      background: rgba(57,255,20,0.05);
+      background: rgba(34,197,94,0.05);
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.13em;
@@ -822,7 +725,7 @@
     .quote {
       background:
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
-        radial-gradient(circle at 50% 0%, rgba(57,255,20,0.07), transparent 30%);
+        radial-gradient(circle at 50% 0%, rgba(34,197,94,0.07), transparent 30%);
       border: 1px solid var(--line);
       border-radius: 24px;
       padding: 34px 26px;
@@ -838,13 +741,544 @@
       margin: 0 auto;
     }
 
-    .step {
-      min-height: 210px;
+    /* Animaciones suaves al hacer scroll */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(22px);
+      transition:
+        opacity 700ms cubic-bezier(.21,.96,.32,1),
+        transform 700ms cubic-bezier(.21,.96,.32,1);
+      transition-delay: var(--reveal-delay, 0s);
     }
 
-    .step-no {
-      width: 38px;
-      height: 38px;
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Sección premium: "¿Esto es lo que hay?" */
+    .esto-premium-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
+      justify-items: center;
+      margin-top: 18px;
+      text-align: center;
+    }
+
+    .esto-claims {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      justify-items: center;
+    }
+
+    .esto-claim {
+      position: relative;
+      padding: 10px 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      overflow: visible;
+
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 650ms cubic-bezier(.21,.96,.32,1),
+        transform 650ms cubic-bezier(.21,.96,.32,1);
+    }
+
+    .esto-claim.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .esto-claim-title {
+      font-weight: 900;
+      letter-spacing: -0.01em;
+      color: rgba(235,245,239,0.98);
+      font-size: 1.02rem;
+      margin-bottom: 0;
+    }
+
+    .esto-claim-desc {
+      color: rgba(209,213,219,0.9);
+      line-height: 1.7;
+      font-size: 0.98rem;
+      text-align: center;
+    }
+
+    .esto-claim-title-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+      justify-content: center;
+    }
+
+    .esto-check {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .esto-check path {
+      fill: none;
+      stroke: rgba(34,197,94,0.95);
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      opacity: 0;
+    }
+
+    .esto-claim.is-visible .esto-check path {
+      opacity: 1;
+      animation: draw-hand-check 600ms cubic-bezier(.21,.96,.32,1) forwards;
+      animation-delay: var(--check-delay, 0ms);
+    }
+
+    @keyframes draw-hand-check {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .esto-claim-circle {
+      display: none;
+    }
+
+    .esto-claim-circle path {
+      fill: none;
+      stroke: rgba(34,197,94,0.70);
+      stroke-width: 2.1;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+
+      stroke-dasharray: 1400;
+      stroke-dashoffset: 1400;
+      opacity: 0;
+    }
+
+    .esto-claim.is-visible .esto-claim-circle path {
+      animation: draw-hand-circle 900ms cubic-bezier(.21,.96,.32,1) forwards;
+      animation-delay: var(--circle-delay, 0ms);
+      opacity: 1;
+    }
+
+    @keyframes draw-hand-circle {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .esto-promise {
+      border-radius: 26px;
+      padding: 18px 18px 16px;
+      border: 1px solid rgba(34,197,94,0.22);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(34,197,94,0.18), transparent 45%),
+        linear-gradient(180deg, rgba(15,23,42,0.84), rgba(15,23,42,0.96));
+      box-shadow:
+        0 24px 80px rgba(0,0,0,0.45),
+        0 0 0 1px rgba(255,255,255,0.04);
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 650ms cubic-bezier(.21,.96,.32,1),
+        transform 650ms cubic-bezier(.21,.96,.32,1);
+    }
+
+    .esto-promise.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .esto-promise-kicker {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 900;
+      color: rgba(187,247,208,0.92);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .esto-promise-kicker::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.92);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.12);
+    }
+
+    .esto-promise-title {
+      font-size: 1.28rem;
+      font-weight: 950;
+      letter-spacing: -0.02em;
+      color: rgba(235,245,239,0.98);
+      margin-bottom: 10px;
+    }
+
+    .esto-promise-sub {
+      color: rgba(209,213,219,0.9);
+      line-height: 1.65;
+      font-size: 0.98rem;
+      margin-bottom: 14px;
+    }
+
+    .esto-promise-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .esto-promise-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: rgba(229,231,235,0.9);
+      line-height: 1.55;
+      font-size: 0.96rem;
+    }
+
+    .esto-promise-list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      margin-top: 4px;
+      background: rgba(34,197,94,0.9);
+      box-shadow: 0 0 0 6px rgba(34,197,94,0.10);
+      flex-shrink: 0;
+    }
+
+    .intake-visual {
+      margin-top: 30px;
+      position: relative;
+      border-radius: 28px;
+      padding: 32px 26px 26px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(34,197,94,0.12), transparent 45%),
+        radial-gradient(circle at 90% 0%, rgba(34,197,94,0.12), transparent 45%),
+        linear-gradient(180deg, rgba(15,23,20,0.96), rgba(7,12,9,0.98));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow:
+        0 24px 80px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(15,23,42,0.55);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .intake-visual::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(34,197,94,0.12), transparent 55%),
+        radial-gradient(circle at 88% 0%, rgba(34,197,94,0.16), transparent 55%);
+      opacity: 0.7;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .intake-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 26px;
+    }
+
+    .intake-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 16px 15px 14px;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      box-shadow:
+        0 18px 45px rgba(0,0,0,0.65),
+        0 0 0 1px rgba(15,23,42,0.7);
+      transform-origin: center;
+      opacity: 0;
+      transform: translateY(18px) scale(0.98) rotate(var(--tilt, 0deg));
+      animation: intakeIn 900ms cubic-bezier(.21,.96,.32,1) forwards,
+                 intakeFloat 10s ease-in-out infinite;
+      animation-delay: var(--delay, 0s);
+      overflow: hidden;
+    }
+
+    .intake-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .intake-card-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .intake-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(15,23,42,0.96);
+      box-shadow: 0 0 0 1px rgba(148,163,184,0.7), 0 10px 20px rgba(0,0,0,0.55);
+      flex-shrink: 0;
+    }
+
+    .intake-icon svg {
+      width: 14px;
+      height: 14px;
+      display: block;
+    }
+
+    .intake-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(226,232,240,0.92);
+      white-space: nowrap;
+    }
+
+    .intake-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      color: rgba(226,232,240,0.85);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .intake-body {
+      font-size: 12px;
+      line-height: 1.55;
+      color: rgba(209,213,219,0.9);
+    }
+
+    .intake-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .intake-chip {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 10px;
+      color: rgba(209,213,219,0.88);
+      background: rgba(15,23,42,0.9);
+    }
+
+    .intake-card--email {
+      --tilt: -4deg;
+      /* Tercer golpe: email */
+      --delay: 0.30s;
+      background:
+        linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96)),
+        radial-gradient(circle at 0% 0%, rgba(56,189,248,0.10), transparent 55%);
+    }
+
+    .intake-card--whatsapp {
+      --tilt: 3deg;
+      /* Cuarto golpe: WhatsApp */
+      --delay: 0.45s;
+      background:
+        linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96)),
+        radial-gradient(circle at 100% 0%, rgba(34,197,94,0.18), transparent 55%);
+    }
+
+    .intake-card--paper {
+      --tilt: -2deg;
+      /* Segundo golpe: reenviado / papel */
+      --delay: 0.15s;
+      background:
+        linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96)),
+        radial-gradient(circle at 0% 100%, rgba(251,191,36,0.15), transparent 55%);
+    }
+
+    .intake-card--pdf {
+      --tilt: 4deg;
+      /* Primer golpe: PDF / reenvío */
+      --delay: 0s;
+      background:
+        linear-gradient(145deg, rgba(15,23,42,0.98), rgba(15,23,42,0.96)),
+        radial-gradient(circle at 100% 100%, rgba(248,113,113,0.18), transparent 55%);
+    }
+
+    .intake-meta {
+      border-radius: 18px;
+      padding: 16px 18px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background:
+        linear-gradient(180deg, rgba(15,23,42,0.92), rgba(15,23,42,0.98));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intake-meta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 0% 50%, rgba(34,197,94,0.20), transparent 60%),
+        radial-gradient(circle at 100% 50%, rgba(52,211,153,0.14), transparent 60%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .intake-meta-main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .intake-meta-kicker {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(209,213,219,0.8);
+      margin-bottom: 4px;
+    }
+
+    .intake-meta-title {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--accent-soft);
+    }
+
+    .intake-meta-sub {
+      font-size: 12px;
+      color: rgba(209,213,219,0.85);
+      margin-top: 4px;
+    }
+
+    .intake-meta-pill {
+      position: relative;
+      z-index: 1;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #022c22;
+      background: linear-gradient(135deg, #22c55e, #a3e635);
+      box-shadow:
+        0 14px 40px rgba(34,197,94,0.35),
+        0 0 0 1px rgba(21,128,61,0.5);
+      white-space: nowrap;
+    }
+
+    @keyframes intakeIn {
+      from {
+        opacity: 0;
+        /* Caen desde arriba */
+        transform: translateY(-26px) scale(0.98) rotate(var(--tilt, 0deg));
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(var(--tilt, 0deg));
+      }
+    }
+
+    @keyframes intakeFloat {
+      0%, 100% {
+        transform: translateY(0) scale(1) rotate(var(--tilt, 0deg));
+      }
+      50% {
+        transform: translateY(-6px) scale(1.01) rotate(calc(var(--tilt, 0deg) * 1.1));
+      }
+    }
+
+    .problem-split {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .problem-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .problem-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 14px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .problem-item span {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(34,197,94,0.12);
+      color: var(--accent-soft);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .problem-item strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .problem-item p {
+      margin: 0;
+    }
+
+    .flow-timeline {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr 80px 1fr;
+      align-items: center;
+      gap: 0;
+    }
+
+    .flow-step {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .flow-step-no {
+      width: 40px;
+      height: 40px;
       display: grid;
       place-items: center;
       border-radius: 12px;
@@ -852,7 +1286,13 @@
       color: #000;
       font-weight: 900;
       margin-bottom: 14px;
-      font-size: 14px;
+    }
+
+    .flow-line {
+      height: 2px;
+      background: linear-gradient(90deg, rgba(34,197,94,0.15), rgba(34,197,94,0.55), rgba(34,197,94,0.15));
+      margin: 0 10px;
+      border-radius: 999px;
     }
 
     .benefit-card {
@@ -934,9 +1374,7 @@
       white-space: pre-wrap;
     }
 
-    .prompt {
-      color: var(--accent);
-    }
+    .prompt { color: var(--accent); }
 
     .stats {
       display: grid;
@@ -971,7 +1409,7 @@
       gap: 22px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025)),
-        radial-gradient(circle at 20% 0%, rgba(57,255,20,0.06), transparent 26%);
+        radial-gradient(circle at 20% 0%, rgba(34,197,94,0.06), transparent 26%);
       border: 1px solid var(--line);
       border-radius: 28px;
       padding: 28px;
@@ -1044,13 +1482,26 @@
       opacity: 0.95;
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .saas-live, .saas-dots span,
+      .flow-badge-in, .flow-badge-ia, .flow-badge-ok,
+      .hero-micro span {
+        animation: none !important;
+      }
+      .hero-micro span {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+
     @media (max-width: 980px) {
       .hero-grid,
       .grid-3,
       .grid-2,
       .dual-panel,
       .cta-box,
-      .stats {
+      .stats,
+      .problem-split {
         grid-template-columns: 1fr;
       }
 
@@ -1058,8 +1509,50 @@
         min-height: auto;
       }
 
-      .hero-card {
+      .hero-card,
+      .saas-flow,
+      .saas-metrics {
         max-width: none;
+      }
+
+      .saas-flow {
+        grid-template-columns: 1fr;
+      }
+
+      .saas-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-owl {
+        right: 6px;
+        top: -14px;
+        width: 96px;
+      }
+
+      .hero-owl-glow {
+        right: 14px;
+        top: 2px;
+        width: 112px;
+        height: 112px;
+      }
+
+      .saas-panel {
+        padding: 18px;
+      }
+
+      .flow-timeline {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .flow-line {
+        height: 32px;
+        width: 2px;
+        margin: 0 auto;
+      }
+
+      .esto-premium-layout {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1094,13 +1587,9 @@
         line-height: 1.7;
       }
 
-      #logo img {
-        height: 28px;
-      }
-
       .hero-topmark {
         height: 80px;
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
 
       .hero-actions {
@@ -1131,11 +1620,48 @@
       .stack-item {
         padding: 16px;
       }
+
+      /* Ajustes sección entradas en móvil */
+      .intake-visual {
+        margin-top: 22px;
+        padding: 22px 16px 18px;
+        border-radius: 22px;
+      }
+
+      .intake-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .intake-card {
+        padding: 14px 12px 12px;
+        border-radius: 16px;
+        /* Quitar inclinación agresiva en móvil */
+        --tilt: 0deg;
+        animation-duration: 700ms, 9s;
+      }
+
+      .intake-body {
+        font-size: 11.5px;
+      }
+
+      .intake-chip-row {
+        gap: 4px;
+      }
+
+      .intake-meta {
+        margin-top: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .intake-meta-pill {
+        align-self: flex-start;
+      }
     }
   </style>
 </head>
 <body>
-  
 
   <section class="hero">
     <div class="container hero-grid">
@@ -1190,7 +1716,6 @@
               <div class="saas-dots" aria-hidden="true"><span></span><span></span><span></span></div>
               <div class="saas-head-title saas-live">En vivo</div>
             </div>
-            <!-- pill derecha eliminado para no tapar el búho -->
           </div>
 
           <div class="saas-flow">
@@ -1242,7 +1767,7 @@
   </section>
 
   <section class="section section-alt" style="background-image: linear-gradient(rgba(11,11,11,0.50), rgba(11,11,11,0.50)), url('desastre.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-    <div class="container">
+    <div class="container reveal-up">
       <div class="section-head">
         <h2>Una bandeja de entrada no es un proceso.</h2>
       </div>
@@ -1270,132 +1795,131 @@
   </section>
 
   <section class="section section-dark">
-    <div class="container">
+    <div class="container reveal-up" style="--reveal-delay:0.05s;">
       <div class="section-head">
-        <h2>El problema no es la factura. Es todo lo que pasa después.</h2>
+        <h2>Da igual cómo llegue. Lo importante es que entre.</h2>
         <p>
-          Si en tu empresa dedicáis horas a esto cada semana, no necesitáis más disciplina. Necesitáis un sistema.
+          Algunas facturas llegan por email, otras por WhatsApp, otras en papel o como un PDF reenviado. IAraBot las recoge todas y las hace entrar en el mismo flujo ordenado.
         </p>
       </div>
 
-      <div class="grid-3">
-        <div class="card">
-          <div class="tag">Llega por email</div>
-          <h3>Descargas, renombras, reenvías, dejas para luego.</h3>
-          <p>
-            El documento entra, pero no avanza. Se mueve de una persona a otra y acaba dependiendo de memoria, tiempo y orden manual.
-          </p>
+      <div class="intake-visual reveal-up" aria-label="Diferentes canales de entrada hacia un mismo sistema" style="--reveal-delay:0.12s;">
+        <div class="intake-grid">
+          <!-- 1º PDF / Reenvío -->
+          <div class="intake-card intake-card--pdf">
+            <div class="intake-card-header">
+              <div class="intake-card-header-left">
+                <span class="intake-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="4" y="3" width="16" height="18" rx="2.4" stroke="rgba(248,250,252,0.95)" stroke-width="1.4"/>
+                    <path d="M8 8h8M8 11h5M8 14h6" stroke="rgba(148,163,184,0.95)" stroke-width="1.2" stroke-linecap="round"/>
+                    <text x="8" y="19" font-size="5" fill="rgba(248,250,252,0.95)" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">PDF</text>
+                  </svg>
+                </span>
+                <span class="intake-label">PDF / Reenvío</span>
+              </div>
+            </div>
+            <div class="intake-body">
+              Descarga aquí tu factura_042
+              <div class="intake-chip-row">
+                <span class="intake-chip">PDF firmado</span>
+                <span class="intake-chip">portal proveedor</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2º Papel / reenviado físico -->
+          <div class="intake-card intake-card--paper">
+            <div class="intake-card-header">
+              <div class="intake-card-header-left">
+                <span class="intake-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M7 4.5C7 3.7 7.7 3 8.5 3H15l4 4v12c0 .8-.7 1.5-1.5 1.5h-9c-.8 0-1.5-.7-1.5-1.5v-15Z" stroke="rgba(251,191,36,0.95)" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="M15 3v4h4" stroke="rgba(251,191,36,0.95)" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="M9 11h6M9 14h4" stroke="rgba(251,191,36,0.95)" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="intake-label">Papel</span>
+              </div>
+            </div>
+            <div class="intake-body">
+              Factura obra.
+              <div class="intake-chip-row">
+                <span class="intake-chip">albarán obra</span>
+                <span class="intake-chip">parte de trabajo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3º Email -->
+          <div class="intake-card intake-card--email">
+            <div class="intake-card-header">
+              <div class="intake-card-header-left">
+                <span class="intake-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="5" width="18" height="14" rx="2.4" stroke="rgba(148,163,184,0.95)" stroke-width="1.4"/>
+                    <path d="M5 7.5L12 12.2L19 7.5" stroke="rgba(148,163,184,0.95)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="intake-label">Email</span>
+              </div>
+            </div>
+            <div class="intake-body">
+              Adjunto factura por los servicios...
+              <div class="intake-chip-row">
+                <span class="intake-chip">factura_042.pdf</span>
+                <span class="intake-chip">proveedor@empresa.com</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4º WhatsApp -->
+          <div class="intake-card intake-card--whatsapp">
+            <div class="intake-card-header">
+              <div class="intake-card-header-left">
+                <span class="intake-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3.2C7.6 3.2 4 6.5 4 10.5c0 1.4.4 2.6 1.2 3.8L4 20l3.9-1.1c1.1.6 2.3.9 3.6.9 4.4 0 8-3.3 8-7.4S16.4 3.2 12 3.2Z" stroke="rgba(74,222,128,0.9)" stroke-width="1.4" stroke-linejoin="round"/>
+                    <path d="M9.4 9.4c-.1-.3-.2-.6-.5-.6-.2 0-.5 0-.7.1-.2.2-.6.5-.6 1.1 0 .6.4 1.2.5 1.3.1.2 1 1.6 2.5 2.2 1.2.5 1.4.4 1.7.4.3 0 .9-.3 1-0.7.1-.4.1-.7.1-.7 0-.1-.1-.1-.3-.2-.2 0-.9-.4-1-.4-.1 0-.2-.1-.4.1-.1.2-.4.5-.4.6-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.5-1-.5-.5-.8-1.1-.9-1.3-.1-.2 0-.3.1-.4.1-.1.2-.3.2-.4 0-.1 0-.2-.1-.3-.1-.2-.5-1.2-.7-1.6Z" fill="rgba(74,222,128,0.9)"/>
+                  </svg>
+                </span>
+                <span class="intake-label">WhatsApp</span>
+              </div>
+            </div>
+            <div class="intake-body">
+              Hola! Te paso la factura...
+              <div class="intake-chip-row">
+                <span class="intake-chip">foto_factura.jpg</span>
+                <span class="intake-chip">“Te paso esto”</span>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <div class="tag">Llega en papel</div>
-          <h3>Fotos, mensajes, pérdidas, retrasos.</h3>
-          <p>
-            Alguien le hace una foto. La manda. Se revisa tarde. O entra mal. Y el papel sigue mandando demasiado.
-          </p>
-        </div>
-
-        <div class="card">
-          <div class="tag">Llega el cierre</div>
-          <h3>Y toca perseguir datos y reconstruir lo que faltaba.</h3>
-          <p>
-            El problema no es solo meter el dato. Es encontrarlo luego, revisar conceptos y llegar a tiempo a cada vencimiento.
-          </p>
+        <div class="intake-meta">
+          <div class="intake-meta-main">
+            <div class="intake-meta-kicker">Destino</div>
+            <div class="intake-meta-title">Una sola entrada. Un solo sistema.</div>
+            <div class="intake-meta-sub">
+              Da igual desde dónde llegue el documento: todos terminan en el mismo flujo de extracción, validación y control de vencimientos.
+            </div>
+          </div>
+          <div class="intake-meta-pill">Todo acaba aquí</div>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section section-soft">
-    <div class="container">
+    <div class="container reveal-up" style="--reveal-delay:0.05s;">
       <div class="quote">
         <p>“Si tu equipo, o tú, dedicáis horas a documentos manuales, conceptos sueltos o vencimientos que se os pasan, eso ya se puede automatizar.”</p>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-head">
-        <h2>No vendemos OCR. Vendemos orden.</h2>
-        <p>
-          Leer documentos es lo mínimo. Lo importante es convertirlos en datos útiles, conceptos consultables, vencimientos controlados y trazabilidad real dentro de un sistema que sí sirve para operar.
-        </p>
-      </div>
-
-      <div class="card" style="background-image: linear-gradient(rgba(11,11,11,0.62), rgba(11,11,11,0.62)), url('salecontrol.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
-        <h3>Entra una imagen. Sale control.</h3>
-        <p>
-          Lo valioso no es que una máquina lea un PDF. Lo valioso es que tu empresa deje de depender de personas abriendo archivos, tecleando líneas de concepto, buscando facturas antiguas o acordándose de cabeza de cuándo vencía algo.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-dark" id="flujo">
-    <div class="container">
-      <div class="section-head">
-        <h2>Cómo funciona</h2>
-        <p>
-          No te pedimos que cambies por completo cómo trabajas. El flujo se adapta a tu operativa y además deja todo guardado para recuperarlo después en segundos.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card step">
-          <div class="step-no">1</div>
-          <h3>Entrada</h3>
-          <p>Email, reenvío o Telegram. El documento entra por donde ya entra hoy.</p>
-        </div>
-
-        <div class="card step">
-          <div class="step-no">2</div>
-          <h3>Procesado</h3>
-          <p>Extraemos datos, conceptos, fechas, importes y vencimientos con la lógica real de tu negocio.</p>
-        </div>
-
-        <div class="card step">
-          <div class="step-no">3</div>
-          <h3>Salida</h3>
-          <p>Queda guardado, se puede buscar al instante y se notifican vencimientos por Telegram o email.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt" id="canales">
-    <div class="container">
-      <div class="section-head">
-        <h2>Tres puertas de entrada. Un mismo orden al final.</h2>
-        <p>
-          Da igual si el documento llega por correo, por reenvío o por una foto. Lo importante es que termine convertido en dato fiable y fácil de recuperar.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="tag">Canal 1</div>
-          <h3>Email</h3>
-          <p>Recibes la factura y el flujo puede arrancar ahí mismo. Sin descargar veinte adjuntos ni mover PDFs de carpeta en carpeta.</p>
-        </div>
-
-        <div class="card">
-          <div class="tag">Canal 2</div>
-          <h3>Cuenta dedicada</h3>
-          <p>Creamos una dirección específica para centralizar documentos sin cambiar cómo trabaja tu equipo.</p>
-        </div>
-
-        <div class="card">
-          <div class="tag">Canal 3</div>
-          <h3>Telegram</h3>
-          <p>Cuando el documento es físico, una foto basta. El papel deja de ser una excusa para quedarse fuera del sistema.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <section class="section section-soft">
-    <div class="container">
+    <div class="container reveal-up">
       <div class="section-head">
         <h2>Lo que además queda resuelto</h2>
         <p>
@@ -1439,11 +1963,74 @@
     </div>
   </section>
 
+  <section class="section section-soft">
+    <div class="container" id="section-esto-es-lo-que-hay">
+      <div class="section-head">
+        <h2 style="max-width:none; text-align:center; font-size:clamp(2.4rem, 5vw, 3.4rem); color:#8CF442;">
+          ¿Esto es lo que hay?
+        </h2>
+        <p id="esto-answer" style="margin-top:12px; text-align:center; font-size:1.05rem; opacity:0; transition:opacity 500ms ease;">
+          <span class="strong">No. Esto no es lo que hay.</span>
+        </p>
+      </div>
+
+      <div class="esto-premium-layout" id="esto-premium-layout" aria-label="Respuesta premium: no es lo que hay">
+        <div class="esto-claims" id="esto-body">
+          <div class="esto-claim">
+            <div class="esto-claim-title-row">
+              <span class="esto-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" />
+                </svg>
+              </span>
+              <div class="esto-claim-title">No es un software genérico</div>
+            </div>
+            <div class="esto-claim-desc">
+              No es el típico programa que pagas hoy y mañana intentas forzar dentro de tu empresa aunque no encaje.
+              IAraBot se adapta a cómo trabajas ahora y a lo que necesitas controlar.
+            </div>
+          </div>
+
+          <div class="esto-claim">
+            <div class="esto-claim-title-row">
+              <span class="esto-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" />
+                </svg>
+              </span>
+              <div class="esto-claim-title">Parte de tu realidad</div>
+            </div>
+            <div class="esto-claim-desc">
+              Primero entiendo qué documentos manejas, qué excepciones tenéis y qué información quieres bajo control.
+              Con eso construimos reglas, conceptos, flujos y vencimientos con sentido para tu negocio.
+            </div>
+          </div>
+
+          <div class="esto-claim">
+            <div class="esto-claim-title-row">
+              <span class="esto-check" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" />
+                </svg>
+              </span>
+              <div class="esto-claim-title">Sin proyecto eterno</div>
+            </div>
+            <div class="esto-claim-desc">
+              No hablamos de un desarrollo desde cero con meses de espera y presupuestos absurdos.
+              Con un coste inicial asumible y una cuota mensual baja, en menos de un mes puedes tenerlo funcionando.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="section section-dark" id="telegram">
-    <div class="container">
-      <div class="cta-box">
+    <div class="container reveal-up">
+      <div class="cta-box" style="--reveal-delay:0.05s;">
         <div class="cta-copy">
-          <div class="tag">CTA clave</div>
+          <div class="tag">Canal de Telegram</div>
           <h2 style="max-width: 13ch;">¿Todavía no quieres una demo? Perfecto.</h2>
           <p class="lead" style="margin-top:16px;">
             Mira el sistema funcionando.
@@ -1468,54 +2055,14 @@
                 <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
               </svg>
             </a>
-            <a href="#contacto" class="btn btn-secondary">Pedir demo</a>
           </div>
-        </div>
-
-        <div class="card" style="margin:0;">
-          <h3>Lo que verás dentro</h3>
-          <ul class="list">
-            <li>Cómo entra una factura al sistema</li>
-            <li>Cómo se procesan conceptos y líneas</li>
-            <li>Cómo se busca documentación guardada</li>
-            <li>Cómo se detectan y controlan vencimientos</li>
-            <li>Cómo funcionan los avisos por Telegram y email</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-head">
-        <h2>Beneficios</h2>
-        <p>
-          Automatizar no es solo ahorrar tiempo. Es dejar de depender de procesos frágiles y empezar a confiar en la información que utilizas para operar.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <div class="card benefit-card">
-          <h3>Menos trabajo manual</h3>
-          <p>Tu equipo, o tú, dejáis de perder horas en tareas repetitivas que no deberían seguir haciéndose a mano.</p>
-        </div>
-
-        <div class="card benefit-card">
-          <h3>Más rapidez al encontrar información</h3>
-          <p>Todo queda almacenado y preparado para búsquedas posteriores sin rebuscar entre correos, carpetas o PDFs antiguos.</p>
-        </div>
-
-        <div class="card benefit-card">
-          <h3>Más control sobre pagos y vencimientos</h3>
-          <p>Sabes qué entra, qué vence y cuándo conviene actuar, con avisos por Telegram o email antes de llegar tarde.</p>
         </div>
       </div>
     </div>
   </section>
 
   <section class="section section-soft" id="personalizacion">
-    <div class="container dual-panel">
+    <div class="container dual-panel reveal-up">
       <div class="card" style="margin:0;">
         <div class="tag">Personalización</div>
         <h2 style="font-size: clamp(1.8rem, 4vw, 2.8rem); max-width: 15ch;">No es una herramienta. Es un sistema.</h2>
@@ -1574,42 +2121,40 @@
     </div>
   </section>
 
-  <section class="section section-dark">
-    <div class="container">
-      <div class="section-head">
-        <h2>Antes de hablar, míralo.</h2>
-        <p>
-          En el canal de Telegram ves vídeos informativos y ejemplos reales. Puedes ver cómo funciona, preguntar dudas (también sobre personalización) y hacerte una idea de cómo encajaría en tu negocio.
-        </p>
-      </div>
-
-      <div class="hero-actions" style="margin-top:0; margin-bottom:0;">
-        <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
-           class="btn btn-secondary btn-telegram"
-           style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%; max-width:520px;">
-          <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
-          <span style="flex:1; text-align:center;">Seguir canal de Telegram</span>
-          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
-            <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
-          </svg>
-        </a>
-        <a href="#contacto" class="btn btn-primary">Pedir demo</a>
-      </div>
-    </div>
-  </section>
-
   <section class="section section-alt">
-    <div class="container">
+    <div class="container reveal-up">
       <div class="section-head">
-        <h2>Si tú, o tu equipo, seguís pasando datos a mano…</h2>
+        <h2>Qué ganas cuando dejas de hacerlo a mano</h2>
         <p>
-          No es porque lo estéis haciendo mal. Es porque ya no debería hacerse así.
+          Automatizar no es solo ahorrar tiempo. Es dejar de depender de procesos frágiles y empezar a confiar en la información con la que operas.
         </p>
       </div>
 
-      <div class="card">
+      <div class="grid-2">
+        <div class="card">
+          <h3>Menos trabajo manual</h3>
+          <p>Tu equipo, o tú, dejáis de perder horas en tareas repetitivas.</p>
+        </div>
+
+        <div class="card">
+          <h3>Más rapidez al encontrar información</h3>
+          <p>Todo queda almacenado y preparado para búsquedas posteriores.</p>
+        </div>
+
+        <div class="card">
+          <h3>Más control sobre pagos y vencimientos</h3>
+          <p>Sabes qué entra, qué vence y cuándo conviene actuar.</p>
+        </div>
+
+        <div class="card">
+          <h3>Más tranquilidad</h3>
+          <p>Menos dependencia de memoria, correos sueltos o tareas que alguien “hará luego”.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px;">
         <p class="lead">
-          Si recibes facturas, tickets, albaranes, partes de trabajo, documentos técnicos… en imagen, PDF o foto, ya tienes una parte del negocio que se puede ordenar mejor. Y si además quieres buscar conceptos, controlar vencimientos y recibir avisos antes de tiempo, todavía más.
+          Si recibes facturas, tickets, albaranes, partes de trabajo o documentos técnicos en imagen, PDF o foto, ya tienes una parte del negocio que se puede ordenar mejor.
         </p>
         <div class="hero-actions" style="margin-top:22px; margin-bottom:0;">
           <a href="#contacto" class="btn btn-primary">Quiero una demo</a>
@@ -1619,7 +2164,7 @@
   </section>
 
   <section class="section section-soft" id="contacto">
-    <div class="container">
+    <div class="container reveal-up">
       <div class="cta-box">
         <div class="cta-copy">
           <div class="tag">Quién está detrás</div>
@@ -1692,7 +2237,6 @@
         var vencEl = document.getElementById('metricVencimientos');
         if (!docsEl || !vencEl) return;
 
-        // Rangos razonables para efecto "en vivo"
         var docs = randInt(12, 48);
         var venc = randInt(0, 9);
 
@@ -1717,6 +2261,77 @@
       } else {
         tick();
         setInterval(tick, 2000);
+      }
+    })();
+  </script>
+
+  <script>
+    // Revelar bloques al hacer scroll
+    (function () {
+      if (!('IntersectionObserver' in window)) {
+        // Fallback: mostrar todo si no hay soporte
+        var all = document.querySelectorAll('.reveal-up');
+        for (var i = 0; i < all.length; i++) {
+          all[i].classList.add('is-visible');
+        }
+        return;
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.18 });
+
+      var nodes = document.querySelectorAll('.reveal-up');
+      nodes.forEach(function (el) { observer.observe(el); });
+    })();
+
+    // Secuencia específica para "¿Esto es lo que hay?"
+    (function () {
+      var section = document.getElementById('section-esto-es-lo-que-hay');
+      if (!section) return;
+
+      var answer = document.getElementById('esto-answer');
+      var claimsWrap = document.getElementById('esto-body');
+      if (!answer || !claimsWrap) return;
+
+      function runSequence() {
+        // Mostrar respuesta tras 1s
+        setTimeout(function () {
+          answer.style.opacity = '1';
+        }, 1000);
+
+        // Mostrar bloques con círculo trazado a mano (poco a poco)
+        var claims = claimsWrap.querySelectorAll('.esto-claim');
+        for (var i = 0; i < claims.length; i++) {
+          (function (idx) {
+            setTimeout(function () {
+              claims[idx].classList.add('is-visible');
+            }, 2000 + (idx * 650));
+          })(i);
+        }
+
+      }
+
+      if ('IntersectionObserver' in window) {
+        var seen = false;
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!seen && entry.isIntersecting) {
+              seen = true;
+              runSequence();
+              io.disconnect();
+            }
+          });
+        }, { threshold: 0.3 });
+        io.observe(section);
+      } else {
+        // Fallback: lanzar secuencia al cargar
+        runSequence();
       }
     })();
   </script>
