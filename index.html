@@ -192,6 +192,10 @@
       margin-bottom: 20px;
     }
 
+    .hero-scroll-hint + .hero-micro {
+      margin-top: 22px;
+    }
+
     .hero-micro {
       display: flex;
       flex-wrap: wrap;
@@ -222,6 +226,67 @@
       border-radius: 999px;
       background: var(--accent);
       display: inline-block;
+    }
+
+    .hero-scroll-hint {
+      margin-top: 12px;
+    }
+
+    .hero-scroll-hint a {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      color: var(--accent-soft);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .hero-scroll-hint a:hover {
+      color: #8CF442;
+    }
+
+    .hero-scroll-arrows {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      margin-top: 4px;
+    }
+
+    .hero-scroll-arrows svg {
+      display: block;
+      color: #8CF442;
+      animation: heroScrollNudge 1.85s ease-in-out infinite;
+    }
+
+    .hero-scroll-arrows svg:nth-child(1) {
+      animation-delay: 0s;
+      opacity: 0.95;
+    }
+
+    .hero-scroll-arrows svg:nth-child(2) {
+      animation-delay: 0.12s;
+      opacity: 0.82;
+    }
+
+    .hero-scroll-arrows svg:nth-child(3) {
+      animation-delay: 0.24s;
+      opacity: 0.68;
+    }
+
+    .hero-scroll-arrows svg:nth-child(4) {
+      animation-delay: 0.36s;
+      opacity: 0.52;
+    }
+
+    @keyframes heroScrollNudge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
     }
 
     @keyframes microIn {
@@ -1757,7 +1822,8 @@
     @media (prefers-reduced-motion: reduce) {
       .saas-live, .saas-dots span,
       .flow-badge-in, .flow-badge-ia, .flow-badge-ok,
-      .hero-micro span {
+      .hero-micro span,
+      .hero-scroll-arrows svg {
         animation: none !important;
       }
       .hero-micro span {
@@ -1853,6 +1919,22 @@
 
       .hero {
         padding: 18px 0 42px;
+      }
+
+      .hero-scroll-hint {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 16px;
+      }
+
+      .hero-scroll-hint a {
+        align-items: center;
+      }
+
+      .hero-scroll-arrows {
+        align-items: center;
       }
 
       h1 {
@@ -1970,13 +2052,14 @@
 
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-          Automatización documental para empresas
+          Automatización documental a medida para empresas desde 50€/mes
         </div>
 
         <h1>Tus documentos no deberían depender de que alguien los abra y los teclee.</h1>
 
         <p class="lead" style="margin-top:22px;">
           Si en tu empresa dedicáis horas a revisar facturas, tickets, albaranes, partes de trabajo o PDFs que llegan por email, foto o reenvío, no tenéis un sistema: tenéis trabajo manual disfrazado de rutina.
+          No hablamos de proyectos complejos ni costosos: hablamos de un sistema que podéis tener funcionando con una cuota mensual contenida.
         </p>
 
         <p class="lead">
@@ -1984,30 +2067,25 @@
           Entra un documento. Sale información útil. Sale control.
         </p>
 
-        <p class="lead" style="margin-top:8px; font-size:0.95rem; color:var(--accent-soft);">
-          Sistema a medida para empresas · Implantación rápida · Cuota mensual baja
-        </p>
-
-        <div class="hero-actions">
-          <a href="#contacto"
-             class="btn btn-primary">
-            Solicitar información
-          </a>
-
-          <a href="https://t.me/+7ryuzIZ4-UdkYzRk" target="_blank" rel="noopener"
-             class="btn btn-secondary btn-telegram"
-             style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-            <img src="logo_solo_texto.png" alt="IAra" style="height:18px; width:auto; opacity:0.95; flex-shrink:0;" />
-            <span style="flex:1; text-align:center;">Ver demos en Telegram</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" style="display:block; flex-shrink:0;">
-              <path fill="#229ED9" d="M9.02 15.2l-.37 5.2c.53 0 .76-.23 1.04-.5l2.5-2.38 5.18 3.8c.95.53 1.63.25 1.88-.88l3.4-15.92v0c.33-1.53-.55-2.13-1.48-1.78L1.33 9.64C-.15 10.22-.13 11.06 1.05 11.42l5.3 1.65L18.9 5.4c.59-.38 1.13-.17.69.21L9.02 15.2z"></path>
-            </svg>
+        <div class="hero-scroll-hint">
+          <a href="#hero-visual" aria-label="Descúbrelo: desplázate para ver más">
+            <span>Descúbrelo</span>
+            <span class="hero-scroll-arrows" aria-hidden="true">
+              <svg width="26" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg width="26" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg width="26" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <svg width="26" height="22" viewBox="0 0 24 24" fill="none">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
           </a>
         </div>
-
-        <p style="margin-top:10px; margin-bottom:0; font-size:0.9rem; color:var(--muted);">
-          Sin compromiso. Te explico cómo encajaría en tu caso.
-        </p>
 
         <div class="hero-micro">
           <span><i></i>Email</span>
@@ -2079,19 +2157,23 @@
     </div>
   </section>
 
-  <section class="section section-alt" style="background-image: linear-gradient(rgba(11,11,11,0.50), rgba(11,11,11,0.50)), url('desastre.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+  <section id="descubre" class="section section-alt" style="background-image: linear-gradient(rgba(11,11,11,0.50), rgba(11,11,11,0.50)), url('desastre.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div class="container reveal-up">
       <div class="section-head">
-        <h2>Una bandeja de entrada no es un proceso.</h2>
+        <h2>¿Te pasa que…?</h2>
+        <p class="lead" style="margin-top:12px;">
+          Te llegan documentos de todo tipo —facturas, tickets, albaranes, partes— por <strong>distintas vías</strong>: email, WhatsApp, PDF reenviado, foto o papel.
+          Nada entra igual: unos en un sitio, otros en otro, y cada uno con su lío (descargas, renombres, reenvíos, fotos que entran tarde o mal).
+        </p>
         <p class="lead" style="margin-top:10px;">
-          Que un documento llegue no significa que el sistema funcione. Significa que alguien tiene que abrirlo, revisarlo, decidir qué hacer con él, sacar los datos y moverlos a otro sitio.
+          Que algo llegue no significa que el sistema funcione. Significa que <strong>alguien</strong> tiene que abrirlo, revisarlo, decidir qué hacer con él, sacar los datos y moverlos a otro sitio.
         </p>
       </div>
 
       <div class="story-grid">
         <div class="card">
           <p>
-            Y ese “alguien” puede ser una persona de tu equipo. O puedes ser tú. Porque en muchas empresas no solo pierde tiempo administración: también lo pierde quien termina resolviendo el caos.
+            Y ese “alguien” puede ser una persona de tu equipo. O puedes ser tú. En muchas empresas no solo pierde tiempo administración: también lo pierde quien acaba apagando fuegos.
           </p>
         </div>
 
@@ -2101,8 +2183,7 @@
 
         <div class="card">
           <p>
-            Menos correos, menos búsquedas, menos prisas de última hora.
-            Más orden desde el primer documento.
+            Lo que necesitas no es más disciplina: es un <strong>flujo único</strong> donde todo lo que entra quede localizable, con trazabilidad y sin depender de que alguien lo abra y lo teclee a mano.
           </p>
         </div>
       </div>
@@ -2363,20 +2444,20 @@
             </div>
             <div class="esto-claim-desc">
               No hablamos de un desarrollo desde cero con meses de espera y presupuestos absurdos.
-              Hablamos de un sistema a medida, con implantación rápida, coste inicial asumible y cuota mensual baja.
+              Con un coste inicial asumible y una cuota mensual contenida, en menos de un mes podéis tenerlo funcionando.
             </div>
           </div>
         </div>
 
         <div class="esto-promise" id="esto-promise-card" aria-label="Coste inicial y tiempo de puesta en marcha">
           <div class="esto-promise-kicker">Modelo de servicio</div>
-          <div class="esto-promise-title">Coste inicial asumible + cuota mensual baja</div>
+          <div class="esto-promise-title">Coste inicial asumible + cuota mensual desde 50&nbsp;€</div>
           <div class="esto-promise-sub">
             Un sistema a medida no tiene por qué convertirse en un proyecto interminable. El primer flujo puede estar funcionando en menos de un mes.
           </div>
           <ul class="esto-promise-list">
             <li>Arranque con coste inicial asumible</li>
-            <li>Cuota mensual baja y sostenible</li>
+            <li>Cuota mensual sostenible en el tiempo</li>
             <li>Listo para operar en pocas semanas</li>
           </ul>
         </div>
