@@ -1489,6 +1489,47 @@
       border-radius: 999px;
     }
 
+    .ia-explain-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .ia-step {
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .ia-step-no {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 10px;
+      background: rgba(140, 244, 66, 0.2);
+      color: var(--accent-soft);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .ia-step-title {
+      font-size: 0.98rem;
+      color: var(--text);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .ia-step-desc {
+      margin: 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
     .gestoria-layout {
       display: grid;
       grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
@@ -1883,6 +1924,10 @@
         gap: 14px;
       }
 
+      .ia-explain-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .gestoria-layout {
         grid-template-columns: 1fr;
       }
@@ -2040,6 +2085,10 @@
         width: 72%;
         top: 44px;
       }
+
+      .ia-explain-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -2052,23 +2101,22 @@
 
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-          Automatización documental a medida para empresas desde 50€/mes
+          Software a medida que automatiza procesos
         </div>
 
-        <h1>Tus documentos no deberían depender de que alguien los abra y los teclee.</h1>
+        <h1>Software a medida que automatiza tus procesos</h1>
 
         <p class="lead" style="margin-top:22px;">
-          Si en tu empresa dedicáis horas a revisar facturas, tickets, albaranes, partes de trabajo o PDFs que llegan por email, foto o reenvío, no tenéis un sistema: tenéis trabajo manual disfrazado de rutina.
-          No hablamos de proyectos complejos ni costosos: hablamos de un sistema que podéis tener funcionando con una cuota mensual contenida.
+          Procesamos documentos que llegan por foto, email o escaneados y los convertimos en información útil dentro de un sistema adaptado a tu empresa.
         </p>
 
         <p class="lead">
-          <span class="strong">IAraBot convierte ese caos en un flujo estable.</span>
-          Entra un documento. Sale información útil. Sale control.
+          <span class="strong">Entiende documentos automáticamente.</span>
+          Después organiza, valida y transforma esa información para que tu equipo trabaje con control real.
         </p>
 
         <div class="hero-scroll-hint">
-          <a href="#hero-visual" aria-label="Descúbrelo: desplázate para ver más">
+          <a href="#descubre" aria-label="Descúbrelo: desplázate para ver más">
             <span>Descúbrelo</span>
             <span class="hero-scroll-arrows" aria-hidden="true">
               <svg width="26" height="22" viewBox="0 0 24 24" fill="none">
@@ -2088,12 +2136,12 @@
         </div>
 
         <div class="hero-micro">
-          <span><i></i>Email</span>
-          <span><i></i>Reenvío</span>
-          <span><i></i>Telegram</span>
-          <span><i></i>Conceptos guardados</span>
-          <span><i></i>Vencimientos</span>
-          <span><i></i>Avisos</span>
+          <span><i></i>Sin trabajo manual</span>
+          <span><i></i>Adaptado a tu flujo</span>
+          <span><i></i>Informes a medida</span>
+          <span><i></i>Entrada por foto, email o escaneado</span>
+          <span><i></i>Datos validados</span>
+          <span><i></i>Trazabilidad</span>
         </div>
       </div>
 
@@ -2330,12 +2378,51 @@
     </div>
   </section>
 
+  <section class="section section-dark">
+    <div class="container reveal-up" style="--reveal-delay:0.04s;">
+      <div class="section-head">
+        <h2>¿Qué hace la IA con reconocimiento de imágenes?</h2>
+        <p>
+          Dentro del software a medida, esta capacidad se encarga de entender lo que llega por foto, email o escaneado.
+          No es el producto en sí: es la tecnología que acelera tu proceso y evita trabajo manual.
+        </p>
+      </div>
+
+      <div class="ia-explain-grid" aria-label="Proceso de documentos dentro del sistema">
+        <div class="ia-step reveal-up" style="--reveal-delay:0.08s;">
+          <div class="ia-step-no">1</div>
+          <div class="ia-step-title">Recibe el documento</div>
+          <p class="ia-step-desc">Factura, ticket o parte por foto, email, PDF o escáner.</p>
+        </div>
+        <div class="ia-step reveal-up" style="--reveal-delay:0.14s;">
+          <div class="ia-step-no">2</div>
+          <div class="ia-step-title">Entiende la información</div>
+          <p class="ia-step-desc">Detecta datos relevantes sin que nadie tenga que teclearlos.</p>
+        </div>
+        <div class="ia-step reveal-up" style="--reveal-delay:0.20s;">
+          <div class="ia-step-no">3</div>
+          <div class="ia-step-title">Organiza y valida</div>
+          <p class="ia-step-desc">Aplica reglas, conceptos y validaciones según tu operativa real.</p>
+        </div>
+        <div class="ia-step reveal-up" style="--reveal-delay:0.26s;">
+          <div class="ia-step-no">4</div>
+          <div class="ia-step-title">Genera salida útil</div>
+          <p class="ia-step-desc">Informes, paneles y acciones adaptadas a lo que necesita tu empresa.</p>
+        </div>
+      </div>
+
+      <p class="lead" style="margin-top:14px;">
+        Resultado: no te adaptas tú a una plantilla cerrada; el sistema se adapta a tu proceso y convierte documentos en decisiones.
+      </p>
+    </div>
+  </section>
+
   <section class="section section-alt">
     <div class="container reveal-up" style="--reveal-delay:0.05s;">
       <div class="section-head">
-        <h2>IAraBot lo ordena en el mismo flujo.</h2>
+        <h2>Cómo funciona en tu operativa</h2>
         <p>
-          Lo que entra por email, Telegram, foto o PDF no se queda en una bandeja. Termina convertido en información útil y en un sistema con trazabilidad.
+          1) Entra el documento. 2) Se entiende automáticamente. 3) El software organiza y valida. 4) Se generan paneles, informes o acciones a medida.
         </p>
       </div>
 
@@ -2413,7 +2500,7 @@
               <div class="esto-claim-title">No es un software genérico</div>
             </div>
             <div class="esto-claim-desc">
-              No es el típico programa que pagas hoy y mañana intentas forzar dentro de tu empresa aunque no encaje.
+              No trabajamos con plantillas cerradas que te obligan a encajar tu proceso.
               IAraBot se adapta a cómo trabajáis ahora y a lo que necesitáis controlar.
             </div>
           </div>
@@ -2429,7 +2516,7 @@
             </div>
             <div class="esto-claim-desc">
               Primero entiendo qué documentos manejas, qué excepciones tenéis y qué información quieres bajo control.
-              Con eso construimos reglas, conceptos, flujos y vencimientos con sentido para tu negocio.
+              Con eso construimos reglas, validaciones, informes, paneles y flujos con sentido para tu negocio.
             </div>
           </div>
 
@@ -2469,13 +2556,13 @@
   <section class="section section-soft" id="contacto">
     <div class="container reveal-up">
       <div class="cta-box" style="grid-template-columns: 1fr;">
-        <div class="cta-copy">
+        <div class="cta-copy" style="max-width:none;">
           <div class="tag">Quién está detrás</div>
           <h2 style="max-width: 20ch;">¿Listo para ver IArabot en acción?</h2>
 
           <div class="section-head" style="margin-top:18px; margin-bottom:0; max-width: 860px;">
             <h3 style="text-transform:none; letter-spacing:-0.02em; line-height:1.2; margin:0; font-size:1.55rem;">
-              Ver demos reales o recibir una orientación por email
+              Ver demos reales o pedir una orientación para tu empresa
             </h3>
             <p class="lead" style="margin-top:10px;">
               Entra al canal para ver demos reales. Y si quieres saber cómo encajaría en tu empresa, déjame tu email y te envío una orientación clara, sin compromiso.
